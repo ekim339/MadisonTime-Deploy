@@ -1,0 +1,87 @@
+/* common styles */
+
+* {
+  margin: 0;
+  padding: 10;
+  outline: none;
+  font-family: "Red Hat Text";
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  background-color: #fff;
+}
+/* end of common styles */
+
+/* default display */
+.timetable-header{
+  font-size: 5rem;
+  padding: 30px 50px;
+}
+
+.days{
+  display: grid;
+  grid-template-rows: 40px;
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  justify-items: center;
+  grid-gap: 2rem;
+  margin: 1rem 10rem;
+}
+
+.days h3{
+  /* width: 14.2867%; */
+  background-color: aliceblue;
+  font-size: 2.5rem;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.display-courses{
+  display: grid;
+  grid-template-rows: 60vh;
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  grid-gap: 2rem;
+  margin: 0 10rem;
+  /* justify-content: space-evenly;
+  align-items: center;
+  gap: 3rem;
+  margin: 3rem 10rem;
+  row-gap: 3rem;
+  height: 60vh;
+  background-color: #000; */
+}
+
+.display-courses div{
+  min-width: 30px;
+  background-color: #ddd;
+  border-radius: 1rem;
+}
+
+.add-course-btn{
+  position: fixed;
+  bottom: 4rem;
+  right: 10rem;
+  width: 12rem;
+  padding: 1rem 1rem;
+  background-color: red;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s;
+}
+
+.add-course-btn:hover{
+  background-color: darkred;
+}
+
+/* end of default display */
+
+/* add modal */
+
+/* end of add modal */

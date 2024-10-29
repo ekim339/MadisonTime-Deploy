@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+    </style>
+  <title>MadisonTime</title>
+</head>
+<body>
+  <!-- default display -->
+  <h1 class="timetable-header">My Timetable</h1>
+  <div class="timetable">
+    <div class="days">
+      <h3 class="weekdays">Mon</h3>
+      <h3 class="weekdays">Tue</h3>
+      <h3 class="weekdays">Wed</h3>
+      <h3 class="weekdays">Thu</h3>
+      <h3 class="weekdays">Fri</h3>
+      <h3 class="weekends">Sat</h3>
+      <h3 class="weekends">Sun</h3>
+    </div>
+    <div class="display-courses">
+      <div class="mon"></div>
+      <div class="tue"></div>
+      <div class="wed"></div>
+      <div class="thu"></div>
+      <div class="fri"></div>
+      <div class="sat"></div>
+      <div class="sun"></div>
+    </div>
+  </div>
+  <!-- end of default display -->
+
+  <button type="button" class="add-course-btn">+ Course</button>
+
+  <!-- add course modal -->
+  <div class="modal-wrapper">
+    <div class="modal">
+      <div class="course-name">Course Name</div>
+      <input type="text" class="course-name-input">
+      <div class="location">Location</div>
+      <input type="text" class="location-input">
+      <div>Time</div>
+      <button type="button">Add</button>
+    </div>
+  </div>
+  <!-- end of add course modal -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
