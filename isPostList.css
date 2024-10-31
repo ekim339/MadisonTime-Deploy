@@ -1,0 +1,76 @@
+/* isPostList.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.post-list {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.post-item {
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+}
+
+.post-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.post-item a:hover {
+    color: #007bff;
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #777;
+}
+
+/* 상단 배너 스타일링 */
+.header-banner {
+    width: 100%;
+    background-color: #990000; /* 원하는 색상으로 변경 가능 */
+    color: white;
+    padding: 15px 0; /* 상하 여백 */
+    text-align: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* 다른 콘텐츠 위에 오도록 설정 */
+}
+
+/* 상단 배너가 고정되었을 때 콘텐츠 위치 조정 */
+.main-content {
+    margin-top: 80px; /* 배너 높이만큼 아래로 밀어줌 */
+    margin-left: 0px;
+    padding: 20px;
+}
+/* 상단에 제목과 검색 모듈을 가로로 정렬 */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #990000;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
