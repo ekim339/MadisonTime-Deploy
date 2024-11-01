@@ -12,60 +12,83 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
   </style>
+  <script
+  src="https://kit.fontawesome.com/ed63704ebd.js"
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css"/>
   <title>MadisonTime</title>
 </head>
 <body>
-  <!-- default display -->
-  <h1 class="timetable-header">My Timetable</h1>
-  <div class="timetable">
-    <div class="days">
-      <h3 class="weekdays">Mon</h3>
-      <h3 class="weekdays">Tue</h3>
-      <h3 class="weekdays">Wed</h3>
-      <h3 class="weekdays">Thu</h3>
-      <h3 class="weekdays">Fri</h3>
-      <h3 class="weekends">Sat</h3>
-      <h3 class="weekends">Sun</h3>
-    </div>
-    <div class="display-courses">
-      <div class="mon"></div>
-      <div class="tue"></div>
-      <div class="wed"></div>
-      <div class="thu"></div>
-      <div class="fri"></div>
-      <div class="sat"></div>
-      <div class="sun"></div>
-    </div>
-  </div>
-  <!-- end of default display -->
-
-  <button type="button" class="add-course-btn">+ Course</button>
-
-  <!-- add course modal -->
-  <div class="modal-wrapper">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="modal-title">Add a Course</h3>
-        <i class="fas fa-times"></i>
+  <div class="content-wrapper">
+    <!-- left -->
+    <div class="left">
+      <div class="left-content">
+        <div class="left-content-heading home">
+            <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+        </div>
+        <div class="left-content-heading schedule">
+            <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
+        </div>
+        <div class="left-content-heading profile">
+            <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
+        </div>
+        <div class="left-content-heading settings">
+            <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
+        </div>
       </div>
-      <div class="input-wrapper">
-        <div class="course-name">Course Name</div>
-        <input type="text" class="course-name-input">
-        <div class="location">Location</div>
-        <input type="text" class="location-input">
-        <div class="from">From</div>
-        <input type="time" class="from-input" min="09:00" max="18:00" required>
-        <div class="to">To</div>
-        <input type="time" class="to-input">
-        <div class="color">Select color for this course</div>
-        <input type="color" value="#ff0000" id="course-color">
-      </div>
-      <button type="button" class="add">Add</button>
     </div>
-  </div>
-  <!-- end of add course modal -->
+    <!-- left -->
 
+    <!-- default display -->
+    <div class="content">
+      <h1 class="timetable-header">My Timetable</h1>
+      <div class="timetable">
+        <div class="days">
+          <h3 class="weekdays">Mon</h3>
+          <h3 class="weekdays">Tue</h3>
+          <h3 class="weekdays">Wed</h3>
+          <h3 class="weekdays">Thu</h3>
+          <h3 class="weekdays">Fri</h3>
+          <h3 class="weekends">Sat</h3>
+          <h3 class="weekends">Sun</h3>
+        </div>
+        <div class="display-courses">
+          <div class="mon"></div>
+          <div class="tue"></div>
+          <div class="wed"></div>
+          <div class="thu"></div>
+          <div class="fri"></div>
+          <div class="sat"></div>
+          <div class="sun"></div>
+        </div>
+      </div>
+      <button type="button" class="add-course-btn">+ Course</button>
+    </div>
+    <!-- end of default display -->
+
+    <!-- add course modal -->
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Add a Course</h3>
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="input-wrapper">
+          <div class="course-name">Course Name</div>
+          <input type="text" class="course-name-input">
+          <div class="location">Location</div>
+          <input type="text" class="location-input">
+          <div class="from">From</div>
+          <input type="time" class="from-input" min="09:00" max="18:00" required>
+          <div class="to">To</div>
+          <input type="time" class="to-input">
+          <div class="color">Select color for this course</div>
+          <input type="color" value="#ff0000" id="course-color">
+        </div>
+        <button type="button" class="add">Add</button>
+      </div>
+    </div>
+    <!-- end of add course modal -->
     <script src="script.js"></script>
   </body>
 </html>

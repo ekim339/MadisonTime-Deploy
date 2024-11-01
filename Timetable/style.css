@@ -1,10 +1,9 @@
 /* common styles */
-
 * {
   margin: 0;
   padding: 0;
   outline: none;
-  font-family: "Red Hat Text";
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 html{
@@ -16,10 +15,74 @@ body{
 }
 /* end of common styles */
 
+.content-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  height: 100vh;
+  align-items: center;
+}
+
+/* login page left */
+.left {
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack items vertically */
+  background-color: #990000; /* Maintain the background color */
+  color: #fff;
+  height: 100%; /* Ensure it fills the height */
+}
+
+.left-content {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack items vertically */
+  flex-grow: 1; /* Allow it to grow to fill available space */
+  padding: 20px; /* Optional: Add padding */
+}
+
+.left-content-heading {
+  text-align: center;
+  margin: 0;
+  margin-top: 20px; /* Add margin for spacing */
+}
+
+/* Ensure buttons are spaced correctly */
+.profile-button {
+  margin-top: 75vh; /* Push these buttons to the bottom */
+}
+
+/* Styles for buttons */
+.home-button,
+.schedule-button,
+.profile-button,
+.settings-button {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.home-button:hover,
+.schedule-button:hover,
+.profile-button:hover,
+.settings-button:hover {
+  color: #f3b8b8; /* Change hover color */
+}
+/* end of left */
+
 /* default display */
+.content{
+  grid-column: 2/3;
+  grid-row: 1;
+  height: 100%;
+}
+
 .timetable-header{
   font-size: 5rem;
-  padding: 30px 50px;
+  padding: 50px 50px;
 }
 
 .days{
@@ -32,10 +95,8 @@ body{
 }
 
 .days h3{
-  /* width: 14.2867%; */
   font-size: 2.5rem;
-  /* display: flex;
-  justify-content: center; */
+  justify-content: center;
 }
 
 .display-courses{
@@ -44,13 +105,6 @@ body{
   grid-template-columns: repeat(7, minmax(150px, 1fr));
   grid-gap: 2rem;
   margin: 0 10rem;
-  /* justify-content: space-evenly;
-  align-items: center;
-  gap: 3rem;
-  margin: 3rem 10rem;
-  row-gap: 3rem;
-  height: 60vh;
-  background-color: #000; */
 }
 
 .display-courses div{
@@ -72,13 +126,12 @@ body{
   border-radius: 3rem;
   cursor: pointer;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 
 .add-course-btn:hover{
-  background-color: darkred;
+  color: #f3b8b8;
 }
-
 /* end of default display */
 
 /* add modal */
@@ -246,11 +299,11 @@ button{
   border-radius: 1rem;
   cursor: pointer;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 
 button:hover{
-  background-color: darkred;
+  color: #f3b8b8;
 }
 
 /* end of add modal */
