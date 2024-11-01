@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"/>
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
-    </style>
+  </style>
+  <link rel="stylesheet" href="style.css"/>
   <title>MadisonTime</title>
 </head>
 <body>
@@ -39,12 +45,23 @@
   <!-- add course modal -->
   <div class="modal-wrapper">
     <div class="modal">
-      <div class="course-name">Course Name</div>
-      <input type="text" class="course-name-input">
-      <div class="location">Location</div>
-      <input type="text" class="location-input">
-      <div>Time</div>
-      <button type="button">Add</button>
+      <div class="modal-header">
+        <h3 class="modal-title">Add a Course</h3>
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="input-wrapper">
+        <div class="course-name">Course Name</div>
+        <input type="text" class="course-name-input">
+        <div class="location">Location</div>
+        <input type="text" class="location-input">
+        <div class="from">From</div>
+        <input type="time" class="from-input" min="09:00" max="18:00" required>
+        <div class="to">To</div>
+        <input type="time" class="to-input">
+        <div class="color">Select color for this course</div>
+        <input type="color" value="#ff0000" id="course-color">
+      </div>
+      <button type="button" class="add">Add</button>
     </div>
   </div>
   <!-- end of add course modal -->
