@@ -1,0 +1,142 @@
+<!-- posts.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostList</title>
+    <link rel="stylesheet" href="isPostList.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+/>
+<link
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+    rel="stylesheet"
+/>
+<script
+    src="https://kit.fontawesome.com/ed63704ebd.js"
+    crossorigin="anonymous"
+></script>
+</head>
+<body>
+
+ 
+  
+  
+    <header class="header">
+        <div class="title">Madison Time</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" class="search-bar-input" />
+            <button type="button" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+    
+        <div class="main-content">
+            <div class="left">
+                <div class="left-content">
+                    <div class="left-content-heading home">
+                        <button
+                            type="button"
+                            class="home-button"
+                            onclick="location.href='./MadisonTime_HomePage.html'"
+                        >
+                            <i class="fa-solid fa-house"></i>Home
+                        </button>
+                    </div>
+                    <div class="left-content-heading schedule">
+                        <button
+                            type="button"
+                            class="schedule-button"
+                            onclick="location.href='../Timetable/timetable.html'"
+                        >
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
+                    </div>
+                    <div class="left-content-heading profile">
+                        <button type="button" class="profile-button">
+                            <i class="fa-solid fa-user"></i>Profile
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button type="button" class="settings-button">
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    <div class="main-content">
+
+    <div class="post-list">
+        <div class="header-bar">
+            <h1>Name of Page</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search posts...">
+                <button>Search</button>
+            </div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=1">PostTitle1</a>
+            <div class="post-meta">Author: user1 | Date: 2024-10-29</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle2</a>
+            <div class="post-meta">Author: user2 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle3</a>
+            <div class="post-meta">Author: user3 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle4</a>
+            <div class="post-meta">Author: user4 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle5</a>
+            <div class="post-meta">Author: user5 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle6</a>
+            <div class="post-meta">Author: user6 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle7</a>
+            <div class="post-meta">Author: user7 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle8</a>
+            <div class="post-meta">Author: user8 | Date: 2024-10-28</div>
+        </div>
+        <div class="post-item">
+            <a href="post_detail.html?id=2">PostTitle9</a>
+            <div class="post-meta">Author: user9 | Date: 2024-10-28</div>
+        </div>
+
+        <!-- 추가 게시물 목록 -->
+        <div class="footer-bar">
+            <button class="write-button">Post</button>
+            <div class="pagination">
+                <button class="page-btn">&lt;</button>
+                <span class="page-num">1</span>
+                <span class="page-num">2</span>
+                <span class="page-num">3</span>
+                <span class="page-num">4</span>
+                <span class="page-num">5</span>
+                <span class="page-num">6</span>
+                <span class="page-num">7</span>
+                <span class="page-num">8</span>
+                <span class="page-num">9</span>
+                <span class="page-num">10</span>
+                <button class="page-btn">&gt;</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>
