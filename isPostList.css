@@ -150,9 +150,9 @@ body {
 
 /* 상단 배너가 고정되었을 때 콘텐츠 위치 조정 */
 .main-content {
-    margin-top: 1px;
-    margin-left: 160px;
-    margin-right: 160px;
+    margin-top: 30px;
+    margin-left: 125px;
+    margin-right: 110px;
     background-color: white;
     border: 1px solid #ca7a7a;
 }
@@ -160,74 +160,132 @@ body {
 html {
     font-size: 62.5%;
 }
-.side-banner {
-    grid-column: 1 / 2;
-    grid-row: 1 / 4;
-    background-color: #990000;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 66.67%;
-    max-width: 20rem;
-    padding: 1rem;
-    margin: 0;
-}
-
-.side-banner ul {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+/* 왼쪽 영역을 화면 최좌측에 고정 */
+.left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; /* 왼쪽 영역의 너비 설정 */
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #990000; /* 배경색 */
+    color: #fff;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    list-style: none;
-}
-.side-banner li {
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: #555;
-    padding: 1rem;
-    width: 100%;
-    display: block;
-    transition: color 0.3s;
-}
-.side-banner li:last-child {
-    margin-left: auto;
-}
-.side-banner li::after {
-    content: "";
-    width: 100%;
-    height: 0.4rem;
-    background-color: #990000;
-    position: absolute;
-    bottom: -2.5rem;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.side-banner li:hover::after {
-    opacity:1;
-}
-.side-banner a {
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: #fff;
-    padding: 1rem;
-    width: 100%;
-    display: block;
-    transition: color 0.3s;
-}
-.side-banner li:hover a {
-    color: #fff;
-    background-color: #990000;
-}
-.side-banner i {
-    color: #990000;
-    font-size: 2rem;
+    align-items: center; /* 가운데 정렬 */
+    justify-content: space-between; /* 상하 공간 균등 분배 */
 }
 
-.content-container{
+/* left 내부 요소 스타일 */
+.left-content {
     display: flex;
+    flex-direction: column;
+    align-items: center; /* 내부 콘텐츠 가운데 정렬 */
+    flex-grow: 1;
+    padding: 20px;
+    width: 100%; /* left 내부에서 전체 너비 차지 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+}
+
+/* left-content-heading: 중앙 정렬 및 여백 설정 */
+.left-content-heading {
+    text-align: center;
+    margin: 20px 0; /* 상하 여백 균등 추가 */
+    width: 100%;
+}
+
+/* Ensure buttons are spaced correctly */
+.profile-button {
+    margin-top: 50vh; /* Push these buttons to the bottom */
+}
+/* common styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/* Styles for buttons */
+.home-button,
+.schedule-button,
+.profile-button,
+.settings-button {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-button:hover,
+.schedule-button:hover,
+.profile-button:hover,
+.settings-button:hover {
+    color: #f3b8b8; /* Change hover color */
+}
+
+
+/* Header section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid #990000;
+    padding: 3px;
+    position: fixed;
+    top: 0;
+    left: 240px;
+    width:83%;
+    z-index: 1000;
+}
+
+/* Title styling */
+.title {
+    font-size: 2.75rem;
+    color: #990000;
+}
+
+
+/* Search bar styling */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar-input {
+    width: 10rem;
+    height: 3rem;
+    border: 0.1rem solid #990000;
+    border-radius: 3rem;
+    background-color: #FACECE;
+    padding-left: 5rem;
+    transition: all 0.3s;
+}
+
+.search-bar-input:focus {
+    background-color: #fff;
+    border-color: #ff0000;
+    outline: solid #ff0000;
+}
+
+.search-button {
+    border: none;
+    color: #990000;
+    font-size: large;
+    background-color: #fff;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-button:hover {
+    color: #fff;
+    background-color: #ff0000;
 }

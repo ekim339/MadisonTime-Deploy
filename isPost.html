@@ -6,21 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>isPost</title>
     <link rel="stylesheet" href="isPost.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+/>
+<link
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+    rel="stylesheet"
+/>
+<script
+    src="https://kit.fontawesome.com/ed63704ebd.js"
+    crossorigin="anonymous"
+></script>
 </head>
 <body>
-
-
-
-    <div class="content-container">
-        <div class="side-banner">
-            <ul>
-                <li class="brand"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Language: English</a></li>
-            </ul>
+    <!-- Header section (title and search bar) -->
+  
+  
+  
+    <header class="header">
+        <div class="title">Madison Time</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" class="search-bar-input" />
+            <button type="button" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
-
+    </header>
+    
         <div class="main-content">
+            <div class="left">
+                <div class="left-content">
+                    <div class="left-content-heading home">
+                        <button
+                            type="button"
+                            class="home-button"
+                            onclick="location.href='./MadisonTime_HomePage.html'"
+                        >
+                            <i class="fa-solid fa-house"></i>Home
+                        </button>
+                    </div>
+                    <div class="left-content-heading schedule">
+                        <button
+                            type="button"
+                            class="schedule-button"
+                            onclick="location.href='../Timetable/timetable.html'"
+                        >
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
+                    </div>
+                    <div class="left-content-heading profile">
+                        <button type="button" class="profile-button">
+                            <i class="fa-solid fa-user"></i>Profile
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button type="button" class="settings-button">
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
             <div class="post-detail">
                 <h1 class="post-title">PostTitle</h1>
                 <div class="post-meta">Author: user name | Date: 2024-10-29</div>
@@ -47,7 +97,6 @@
                 </div>
             </div>
         </div>
-    </div>
     
 </body>
 </html>
