@@ -24,7 +24,7 @@ body {
 .title{
     grid-column: 2/4;
 	grid-row: 1/2;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: left;
     font-size: 27.5px;
