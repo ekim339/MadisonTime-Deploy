@@ -1,84 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
-      rel="stylesheet"
-    />
-    <script
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+            crossorigin="anonymous"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+            rel="stylesheet"
+        />
+        <script
             src="https://kit.fontawesome.com/ed63704ebd.js"
             crossorigin="anonymous"
         ></script>
-    <link rel="stylesheet" href="style - Board.css" />
-    <title>MadisonTime Board</title>
-</head>
-<body>
-    
-     
-
-    <!-- container page -->
-    <section class="container-page">
-        <header class="title">Madison Time</header>
-     <!-- left -->
-        <div class="left">
-            <div class="left-content">
-                <div class="left-content-heading home">
-                    <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
-                </div>
-                <div class="left-content-heading schedule">
-                    <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
-                </div>
-                <div class="left-content-heading profile">
-                    <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
-                </div>
-                <div class="left-content-heading settings">
-                <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
-             </div>
-        </div>
-    </div>
-    
-    <!-- end of left -->
-    <!-- right -->
-    <div class="right">
-        <div class="search-bar">
-            <input
-            type="text"
-            placeholder="Search"
-            class="search-bar-input"
-            />
-        </div>
-        <div><button type="button" class="search-button"><i class="fas fa-search"></i></button></div>
-    </div>
-    <!-- end of right -->
-        <div class="container">
-            <div class="container-content">
-                <h1>Board</h1>
-                <form action="submit_post" method="POST">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter your title here." required>
+        <link rel="stylesheet" href="style - Board.css" />
+        <title>MadisonTime Board</title>
+    </head>
+    <body>
+        <!-- container page -->
+        <section class="container-page">
+            <header class="title">Madison Time</header>
+            <!-- left -->
+            <div class="left">
+                <div class="left-content">
+                    <div class="left-content-heading home">
+                        <button type="button" class="home-button">
+                            <i class="fa-solid fa-house"></i>Home
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="content">Content</label>
-                        <textarea id="content" name="content" rows="5" placeholder="Write your content here...." required></textarea>
+                    <div class="left-content-heading schedule">
+                        <button type="button" class="schedule-button">
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
                     </div>
-                    <button type="submit">Submit Post</button>
-                </form>
+                    <div class="left-content-heading profile">
+                        <button type="button" class="profile-button">
+                            <i class="fa-solid fa-user"></i>Profile
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button type="button" class="settings-button">
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>    
-    </section>
-    
-    <!-- end of container page -->
-    
-     <script src="script.js"></script>
-</body>
+
+            <!-- end of left -->
+            <!-- right -->
+            <div class="right">
+                <div class="search-bar">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        class="search-bar-input"
+                    />
+                </div>
+                <div>
+                    <button type="button" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- end of right -->
+            <div class="container">
+                <div class="container-content">
+                    <h1>Board</h1>
+                    <form action="submit_post" method="POST">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                placeholder="Enter your title here."
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea
+                                id="content"
+                                name="content"
+                                rows="5"
+                                placeholder="Write your content here...."
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit">Submit Post</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- end of container page -->
+
+        <script src="script.js"></script>
+    </body>
 </html>
