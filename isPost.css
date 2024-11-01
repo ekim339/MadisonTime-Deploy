@@ -14,6 +14,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    border-bottom: 1px solid #ca7a7a;;
 }
 
 .post-meta {
@@ -32,7 +33,7 @@ body {
 }
 
 .comment {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ca7a7a;;
     padding: 10px 0;
 }
 
@@ -64,22 +65,37 @@ body {
     margin-top: 10px;
 }
 
-/* 상단 배너 스타일링 */
 .header-banner {
     width: 100%;
-    background-color: #990000; /* 원하는 색상으로 변경 가능 */
+    background-color: #990000;
     color: white;
-    padding: 15px 0; /* 상하 여백 */
+    padding: 15px 5px;
     text-align: left;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; /* 다른 콘텐츠 위에 오도록 설정 */
+    z-index: 1000;
 }
-
 /* 상단 배너가 고정되었을 때 콘텐츠 위치 조정 */
 .main-content {
     margin-top: 80px; /* 배너 높이만큼 아래로 밀어줌 */
-    margin-left: 0px;
+    margin-left: 200px;
+    margin-right: 200px;
     padding: 20px;
+    background-color: white;
 }
+/* common styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #fbe7e7;
+}
+/* end of common styles */
