@@ -4,19 +4,18 @@ body {
 }
 
 /* 왼쪽 영역을 화면 최좌측에 고정 */
+
 .left {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px; /* 왼쪽 영역의 너비 설정 */
-    height: 100vh; /* 화면 전체 높이 */
-    background-color: #990000; /* 배경색 */
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    background-color: #990000; /* Maintain the background color */
     color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 가운데 정렬 */
-    justify-content: space-between; /* 상하 공간 균등 분배 */
+    height: 100%; /* Ensure it fills the height */
 }
 
 /* left 내부 요소 스타일 */
@@ -39,7 +38,7 @@ body {
 
 /* Ensure buttons are spaced correctly */
 .profile-button {
-    margin-top: 50vh; /* Push these buttons to the bottom */
+    margin-top: 60vh; /* Push these buttons to the bottom */
 }
 
 /* 메인 콘텐츠 영역: 화면 중앙에 정렬 */
@@ -158,16 +157,23 @@ html {
     padding: 3px;
     position: fixed;
     top: 0;
-    left: 240px;
-    width:83%;
+    left: 138px;
+    width:90%;
     z-index: 1000;
 }
 
 /* Title styling */
-.title {
-    font-size: 2.75rem;
-    color: #990000;
+.title{
+    grid-column: 2/4;
+	grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 27.5px;
+   
+    background-color: #fff;
 }
+
 
 /* Search bar styling */
 .search-bar {
