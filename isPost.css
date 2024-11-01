@@ -65,17 +65,7 @@ body {
     margin-top: 10px;
 }
 
-.header-banner {
-    width: 100%;
-    background-color: #990000;
-    color: white;
-    padding: 15px 5px;
-    text-align: left;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
+
 /* 상단 배너가 고정되었을 때 콘텐츠 위치 조정 */
 .main-content {
     margin-top: 80px; /* 배너 높이만큼 아래로 밀어줌 */
@@ -99,3 +89,75 @@ body {
     background-color: #fbe7e7;
 }
 /* end of common styles */
+/* login page left */
+.side-banner {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    background-color: #990000;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 66.67%;
+    max-width: 20rem;
+    padding: 1rem;
+    margin: 0;
+}
+
+.side-banner ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+}
+.side-banner li {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #555;
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    transition: color 0.3s;
+}
+.side-banner li:last-child {
+    margin-left: auto;
+}
+.side-banner li::after {
+    content: "";
+    width: 100%;
+    height: 0.4rem;
+    background-color: #990000;
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.side-banner li:hover::after {
+    opacity:1;
+}
+.side-banner a {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    transition: color 0.3s;
+}
+.side-banner li:hover a {
+    color: #fff;
+    background-color: #990000;
+}
+.side-banner i {
+    color: #990000;
+    font-size: 2rem;
+}
+
+.content-container{
+    display: flex;
+}

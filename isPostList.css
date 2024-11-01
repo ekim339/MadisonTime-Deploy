@@ -83,13 +83,14 @@ body {
 
 /* 글 작성 버튼 스타일 */
 .write-button {
-    padding: 10px 20px;
+    padding: 15px 20px;
     background-color: #990000;
     color: white;
     font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 /* 페이지 넘김 스타일 */
@@ -103,7 +104,7 @@ body {
     font-size: 16px;
     color: #333;
     cursor: pointer;
-    margin: 0 5px;
+    margin: 0 2px;
     border: none;
     background-color: transparent;
 }
@@ -145,21 +146,11 @@ body {
 }
 
 
-.header-banner {
-    width: 100%;
-    background-color: #990000;
-    color: white;
-    padding: 0px 5px;
-    text-align: left;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
+
 
 /* 상단 배너가 고정되었을 때 콘텐츠 위치 조정 */
 .main-content {
-    margin-top: 80px;
+    margin-top: 1px;
     margin-left: 160px;
     margin-right: 160px;
     background-color: white;
@@ -168,4 +159,75 @@ body {
 
 html {
     font-size: 62.5%;
+}
+.side-banner {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    background-color: #990000;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 66.67%;
+    max-width: 20rem;
+    padding: 1rem;
+    margin: 0;
+}
+
+.side-banner ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+}
+.side-banner li {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #555;
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    transition: color 0.3s;
+}
+.side-banner li:last-child {
+    margin-left: auto;
+}
+.side-banner li::after {
+    content: "";
+    width: 100%;
+    height: 0.4rem;
+    background-color: #990000;
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.side-banner li:hover::after {
+    opacity:1;
+}
+.side-banner a {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    transition: color 0.3s;
+}
+.side-banner li:hover a {
+    color: #fff;
+    background-color: #990000;
+}
+.side-banner i {
+    color: #990000;
+    font-size: 2rem;
+}
+
+.content-container{
+    display: flex;
 }
