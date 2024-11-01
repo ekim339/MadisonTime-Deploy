@@ -18,24 +18,59 @@
     <title>MadisonTime Board</title>
 </head>
 <body>
+    
+     
 
     <!-- container page -->
     <section class="container-page">
+        <header class="title">Madison Time</header>
+     <!-- left -->
+        <div class="left">
+            <div class="left-content">
+                <div class="left-content-heading home">
+                    <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+                </div>
+                <div class="left-content-heading schedule">
+                    <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
+                </div>
+                <div class="left-content-heading profile">
+                    <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
+                </div>
+                <div class="left-content-heading settings">
+                <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
+             </div>
+        </div>
+    </div>
+    
+    <!-- end of left -->
+    <!-- right -->
+    <div class="right">
+        <div class="search-bar">
+            <input
+            type="text"
+            placeholder="Search"
+            class="search-bar-input"
+            />
+        </div>
+        <div><button type="button" class="search-button"><i class="fas fa-search"></i></button></div>
+    </div>
+    <!-- end of right -->
         <div class="container">
-            <h1>Board</h1>
-            <form action="submit_post" method="POST">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" placeholder="Enter your title here." required>
-                </div>
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea id="content" name="content" rows="5" placeholder="Write your content here...." required></textarea>
-                </div>
-                <button type="submit">Submit Post</button>
-            </form>
+            <div class="container-content">
+                <h1>Board</h1>
+                <form action="submit_post" method="POST">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="Enter your title here." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" rows="5" placeholder="Write your content here...." required></textarea>
+                    </div>
+                    <button type="submit">Submit Post</button>
+                </form>
+            </div>
         </div>    
-        
     </section>
     
     <!-- end of container page -->

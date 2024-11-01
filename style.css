@@ -16,80 +16,61 @@ body {
 /* login page */
 .login-page {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: grid;
     grid-template-columns: minmax(5rem, 1fr) 2fr minmax(5rem, 1fr);
     grid-template-rows: repeat(2, min-content) 1fr;
-    grid-row-gap: 1.5rem;
+    grid-row-gap: 2rem;
 }
 /* login page left */
-.login-page-left {
+.left {
     grid-column: 1 / 2;
-    grid-row: 1 / 4;
-    background-color: #990000;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 66.67%;
-    max-width: 20rem;
-    padding: 1rem;
-    margin: 0;
+    grid-row: 1 / -1;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    background-color: #990000; /* Maintain the background color */
+    color: #fff;
+    height: 100%; /* Ensure it fills the height */
 }
 
-.login-page-left ul {
-    width: 100%;
+.left-content {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    flex-grow: 1; /* Allow it to grow to fill available space */
+    padding: 20px; /* Optional: Add padding */
+}
+
+.left-content-heading {
+    text-align: center;
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    list-style: none;
+    margin-top: 20px; /* Add margin for spacing */
 }
-.login-page-left li {
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: #555;
-    padding: 1rem;
-    width: 100%;
-    display: block;
-    transition: color 0.3s;
+/* Ensure buttons are spaced correctly */
+.profile-button {
+    margin-top: 70vh; /* Push these buttons to the bottom */
 }
-.login-page-left li:last-child {
-    margin-left: auto;
-}
-.login-page-left li::after {
-    content: "";
-    width: 100%;
-    height: 0.4rem;
+
+/* Styles for buttons */
+.home-button,
+.schedule-button,
+.profile-button,
+.settings-button {
     background-color: #990000;
-    position: absolute;
-    bottom: -2.5rem;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.login-page-left li:hover::after {
-    opacity:1;
-}
-.login-page-left a {
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: #555;
-    padding: 1rem;
-    width: 100%;
-    display: block;
-    transition: color 0.3s;
-}
-.login-page-left li:hover a {
     color: #fff;
-    background-color: #990000;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
-.login-page-left i {
-    color: #990000;
-    font-size: 2rem;
+
+.home-button:hover,
+.schedule-button:hover,
+.profile-button:hover,
+.settings-button:hover {
+    color: #f3b8b8; /* Change hover color */
 }
+
+
 
 /* end of login page left */
 /* login */
@@ -98,16 +79,18 @@ body {
     grid-row: 2 / 3;
     background-color: #fff;
     width: 100rem;
-    height: 70vh;
+    height: 90vh;
     display: grid;
-    grid-template-columns: 10rem 8fr;
+    grid-template-columns: 15rem 8fr;
     grid-template-rows: 2fr 1fr;
     box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
+    margin-left: 4rem;
 }
 .login-content {
     grid-column: 2 / -1;
     grid-row: 1 / 2;
     padding: 5rem 1rem 0;
+    padding-top: 10rem;
 }
 .login-content h2 {
     font-size: 2.4rem;
