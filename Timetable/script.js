@@ -10,17 +10,18 @@ const btnF = document.querySelector('.f-button');
 const btnS = document.querySelector('.s-button');
 const btnSu = document.querySelector('.su-button');
 const btnAdd = document.querySelector('.add');
-// const courseName;
 const tbxCourseName = document.querySelector('.course-name-input');
-// const location;
 const tbxLocation = document.querySelector('.location-input');
-// const from;
 const timeFrom = document.querySelector('.from-input');
-// const to;
 const timeTo = document.querySelector('.to-input');
-// const courseColor;
 const clrCourse = document.querySelector('.course-color');
-
+const mon = document.querySelector('mon');
+const tue = document.querySelector('tue');
+const wed = document.querySelector('wed');
+const thu = document.querySelector('thu');
+const fri = document.querySelector('fri');
+const sat = document.querySelector('sat');
+const sun = document.querySelector('sun');
 /*************************************************/
 /*************************************************/
 
@@ -75,16 +76,42 @@ btnAdd.addEventListener('click', () => {
   const from = timeFrom.value;
   const to = timeTo.value;
   const color = clrCourse.value;
-  console.log(courseName);
-  console.log(location);
-  console.log(from);
-  console.log(to);
-  console.log(color);
-  checkDays();
+  createCourse(checkDays(), courseName, location, from, to, color);
 });
 
 function checkDays(){
+  const days = [];
   if (btnM.classList.contains('active')){
-    console.log('Mon');
+    days.push(mon);
   }
+  if (btnT.classList.contains('active')){
+    days.push(tue);
+  }
+  if (btnW.classList.contains('active')){
+    days.push(wed);
+  }
+  if (btnTh.classList.contains('active')){
+    days.push(thu);
+  }
+  if (btnF.classList.contains('active')){
+    days.push(fri);
+  }
+  if (btnS.classList.contains('active')){
+    days.push(sat);
+  }
+  if (btnS.classList.contains('active')){
+    days.push(sun);
+  }
+  return days;
+}
+
+function createCourse(daysArray, courseName, location, from, to, color){
+  for (var i=0; i<array.length; i++){
+    var course = document.createElement('div');
+    course.style.backgroundColor(color);
+    course.innerHTML += courseName;
+    course.innerHtml += location;
+    daysArray[i].append(course);
+  }
+  
 }
