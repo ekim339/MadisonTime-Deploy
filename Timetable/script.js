@@ -69,9 +69,3 @@ btnSu.addEventListener('click', function(){
   clicked(btnSu);
 });
 
-// add button
-
-btnM.addEventListener('click', () => {
-  const courseName = tbxCourseName.value;
-  const location = tbxLocation.value;
-});
