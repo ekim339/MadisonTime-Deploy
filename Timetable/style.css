@@ -144,12 +144,11 @@ color: #f3b8b8;
   left: 0;
   right: 0;
   bottom: 0;
-  /* visibility: hidden; */
 }
 
 .modal-wrapper-display{
   opacity: 1;
-  /* visibility: visible; */
+  visibility: visible;
 }
 
 .modal{
@@ -163,7 +162,7 @@ color: #f3b8b8;
   min-height: 700px;
   border-radius: 1.5rem;
   transform: translate(-50%, -50%);
-  /* display: none; */
+  display: none;
 }
 
 .modal-header{
@@ -257,7 +256,7 @@ color: #f3b8b8;
   grid-column: 1;
 }
 
-#course-color{
+.course-color{
   grid-row: 5;
   grid-column: 2;
   -webkit-appearance: none;
@@ -270,12 +269,12 @@ color: #f3b8b8;
   cursor: pointer;
 }
 
-#course-color::-webkit-color-swatch{
+.course-color::-webkit-color-swatch{
   border-radius: 50%;
   border: 7px solid #000;
 }
 
-#course-color::-moz-color-swatch{
+.course-color::-moz-color-swatch{
   border-radius: 50%;
   border: 7px solid #000;
 }
