@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+            src="https://kit.fontawesome.com/ed63704ebd.js"
+            crossorigin="anonymous"
+        ></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>MadisonTime</title>
+</head>
+<body>
+
+
+    <!-- login page -->
+    <section class="login-page">
+        <!-- login page left -->
+        <div class="left">
+            <div class="left-content">
+                <div class="left-content-heading home">
+                    <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+                </div>
+                <div class="left-content-heading schedule">
+                    <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
+                </div>
+                <div class="left-content-heading profile">
+                    <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
+                </div>
+                <div class="left-content-heading settings">
+                    <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- end of left -->
+        <!-- login -->
+         <div class="login">
+            <div class="login-content">
+                <h2>Log in to MadisonTime</h2>
+                <form class="login-form">
+                    <p>
+                        <label for="username" class="visually-hidden">Username</label>
+                        <input type="text" id="username" placeholder="Phone, email, or username" />
+                        <a href="#" class="forgot-link">Forgot ID</a>
+                    </p>
+                    <p>
+                        <label for="password" class="visually-hidden">Password</label>
+                        <input type="password" id="password" placeholder="Password" />
+                        <a href="#" class="forgot-link">Forgot Password</a>
+                    </p>
+                    <div>
+                        <button type="button" class="login-form-btn">Log In</button>
+                        <input type="checkbox" class="login-form-checkbox" id="check">
+                        <label for="check">Remember me</label>
+                        <a href="#" class="signup-link">sign-up</a>
+                    </div>
+                </form>
+            </div>
+            
+         </div>
+        <!-- end of login -->
+    </section>
+    
+    <!-- end of login page -->
+    
+     <script src="script.js"></script>
+</body>
+</html>

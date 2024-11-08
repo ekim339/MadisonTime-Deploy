@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+            crossorigin="anonymous"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+            rel="stylesheet"
+        />
+        <script
+            src="https://kit.fontawesome.com/ed63704ebd.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- feeds page -->
+        <section class="feeds-page">
+            <header class="title">Madison Time</header>
+            <!-- left -->
+            <div class="left">
+                <div class="left-content">
+                    <div class="left-content-heading home">
+                        <button
+                            type="button"
+                            class="home-button"
+                            onclick="location.href='./MadisonTime_HomePage.html'"
+                        >
+                            <i class="fa-solid fa-house"></i>Home
+                        </button>
+                    </div>
+                    <div class="left-content-heading schedule">
+                        <button
+                            type="button"
+                            class="schedule-button"
+                            onclick="location.href='../Timetable/timetable.html'"
+                        >
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
+                    </div>
+                    <div class="left-content-heading profile">
+                        <button type="button" class="profile-button">
+                            <i class="fa-solid fa-user"></i>Profile
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button type="button" class="settings-button">
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end of left -->
+            <!-- right -->
+            <div class="right">
+                <div class="search-bar">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        class="search-bar-input"
+                    />
+                </div>
+                <div>
+                    <button type="button" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- end of right -->
+            <!-- center -->
+            <div class="center">
+                <div class="add-post">
+                    <p class="post-modal">
+                        Questions? What do you want to share?
+                    </p>
+                    <button
+                        type="button"
+                        class="post-btn"
+                        onclick="location.href='../BoardPage/MadisonTime-Board.html'"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+                <div class="center-contents">
+                    <h2 class="title-text">CS 300 P06 is not doable</h2>
+                    <p class="modal body1">
+                        Did anyone finish the project by yourself? I sat in my
+                        table for 4 hours and still couldn't figure out how to
+                        use recursion &#x1F622;
+                    </p>
+                    <div class="comment-container">
+                        <input
+                            type="text"
+                            placeholder="Add a comment"
+                            class="comment"
+                        />
+                        <button type="button" class="comment-button">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="center-contents">
+                    <h2 class="title-text">Fun classes at Madison</h2>
+                    <p class="modal body2">
+                        What has been the best fun classes you guys have taken
+                        at uw madison (class with a great prof and learnt a lot
+                        etc)?
+                    </p>
+                    <div class="comment-container">
+                        <input
+                            type="text"
+                            placeholder="Add a comment"
+                            class="comment"
+                        />
+                        <button type="button" class="comment-button">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="center-contents">
+                    <h2 class="title-text">Am I cooked?</h2>
+                    <p class="modal body3">
+                        I heard bad stuff about cs job market. Is the employment
+                        still saturated? Will I be able to get a job in 4 years
+                        after college?
+                    </p>
+                    <div class="comment-container">
+                        <input
+                            type="text"
+                            placeholder="Add a comment"
+                            class="comment"
+                        />
+                        <button type="button" class="comment-button">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- end of center -->
+        </section>
+        <!-- end of feeds page -->
+    </body>
+</html>
