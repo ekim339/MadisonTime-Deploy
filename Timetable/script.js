@@ -69,23 +69,3 @@ btnSu.addEventListener('click', function(){
   clicked(btnSu);
 });
 
-// add button
-btnAdd.addEventListener('click', () => {
-  const courseName = tbxCourseName.value;
-  const location = tbxLocation.value;
-  const from = timeFrom.value;
-  const to = timeTo.value;
-  const color = clrCourse.value;
-  console.log(courseName);
-  console.log(location);
-  console.log(from);
-  console.log(to);
-  console.log(color);
-  checkDays();
-});
-
-function checkDays(){
-  if (btnM.classList.contains('active')){
-    console.log('Mon');
-  }
-}
