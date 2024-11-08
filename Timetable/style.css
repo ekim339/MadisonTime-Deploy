@@ -2,28 +2,30 @@
 * {
   margin: 0;
   padding: 0;
-  outline: none;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
-body{
-  background-color: #fff;
+body {
+  height: 100%;
 }
 /* end of common styles */
 
+/* contents */
 .content-wrapper{
   display: grid;
+  height: 100vh;
+  margin: 0;
   grid-template-columns: 0.5fr 4fr;
   grid-template-rows: auto;
-  height: 100vh;
-  align-items: center;
+  font-family: 'Josefin Sans', sans-serif;
+
 }
 
-/* login page left */
+/* left */
 .left {
   grid-column: 1 / 2;
   grid-row: 1 / -1;
@@ -75,62 +77,62 @@ body{
 
 /* default display */
 .content{
-  grid-column: 2/3;
-  grid-row: 1;
-  height: 100%;
+grid-column: 2/3;
+grid-row: 1;
+height: 100%;
 }
 
 .timetable-header{
-  font-size: 5rem;
-  padding: 50px 50px;
+font-size: 5rem;
+padding: 50px 50px;
 }
 
 .days{
-  display: grid;
-  grid-template-rows: 40px;
-  grid-template-columns: repeat(7, 1fr);
-  justify-items: center;
-  grid-gap: 2rem;
-  margin: 1rem 10rem;
+display: grid;
+grid-template-rows: 40px;
+grid-template-columns: repeat(7, 1fr);
+justify-items: center;
+grid-gap: 2rem;
+margin: 1rem 10rem;
 }
 
 .days h3{
-  font-size: 2.5rem;
-  justify-content: center;
+font-size: 2.5rem;
+justify-content: center;
 }
 
 .display-courses{
-  display: grid;
-  grid-template-rows: 60vh;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 2rem;
-  margin: 0 10rem;
+display: grid;
+grid-template-rows: 60vh;
+grid-template-columns: repeat(7, 1fr);
+grid-gap: 2rem;
+margin: 0 10rem;
 }
 
 .display-courses div{
-  min-width: 30px;
-  background-color: #ddd;
-  border-radius: 1rem;
+min-width: 30px;
+background-color: #ddd;
+border-radius: 1rem;
 }
 
 .add-course-btn{
-  position: fixed;
-  bottom: 4rem;
-  right: 10rem;
-  width: 12rem;
-  padding: 1rem 1rem;
-  background-color: #9B0000;
-  color: #fff;
-  font-size: 2rem;
-  border: none;
-  border-radius: 3rem;
-  cursor: pointer;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
-  transition: color 0.3s;
+position: fixed;
+bottom: 4rem;
+right: 10rem;
+width: 12rem;
+padding: 1rem 1rem;
+background-color: #9B0000;
+color: #fff;
+font-size: 2rem;
+border: none;
+border-radius: 3rem;
+cursor: pointer;
+box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+transition: color 0.3s;
 }
 
 .add-course-btn:hover{
-  color: #f3b8b8;
+color: #f3b8b8;
 }
 /* end of default display */
 
@@ -142,12 +144,12 @@ body{
   left: 0;
   right: 0;
   bottom: 0;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .modal-wrapper-display{
   opacity: 1;
-  visibility: visible;
+  /* visibility: visible; */
 }
 
 .modal{
@@ -159,12 +161,9 @@ body{
   min-width: 500px;
   height: 70vh;
   min-height: 700px;
-  /* top: 0;
-  left: 0;
-  right: 0; */
   border-radius: 1.5rem;
   transform: translate(-50%, -50%);
-  display: none;
+  /* display: none; */
 }
 
 .modal-header{
@@ -172,10 +171,6 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0; */
 }
 
 .modal-header h3{
@@ -285,8 +280,7 @@ body{
   border: 7px solid #000;
 }
 
-button{
-  /* float: right; */
+.add{
   position: absolute;
   bottom: 5rem;
   right: 5rem;
@@ -302,8 +296,48 @@ button{
   transition: color 0.3s;
 }
 
-button:hover{
+.add:hover{
   color: #f3b8b8;
 }
 
+.days-text{
+  margin-left: 5rem;
+  margin-top: 5rem;
+  font-size: 2rem;
+}
+
+.days-button-wrapper{
+  display: flex;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.days-button{
+  display: flex;
+  position: relative;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 0.5em;
+  border: 0;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.m-button:active,
+.t-button:active,
+.w-button:active,
+.th-button:active,
+.f-button:active,
+.s-button:active,
+.su-button:active,
+.active {
+  top: 2px;
+  left: 1px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  background-color: pink;
+}
 /* end of add modal */
+
