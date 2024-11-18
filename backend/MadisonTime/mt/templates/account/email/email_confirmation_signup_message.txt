@@ -1,0 +1,12 @@
+Hello, {{ user.nickname }}
+
+Thank you for using Madison Time.
+
+In order to use Madison Time, email verification is required. Please verify your email by clicking the following link.
+
+
+{{ activate_url }}
+
+Thank you.
+
+Madison Time

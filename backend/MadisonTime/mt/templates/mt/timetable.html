@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+        crossorigin="anonymous"
+    />
+    <link
+        href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static "mt/css/timetable.css" %}" />
+  </head>
+  <body>
+    <!-- feeds page -->
+    <section class="content-wrapper">
+      <!-- <header class="title">Madison Time</header> -->
+      <!-- left -->
+      <div class="left">
+        <div class="left-content">
+          <div class="left-content-heading home">
+            <a href="{% url 'home' %}">
+              <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+            </a>
+          </div>
+          <div class="left-content-heading schedule">
+              <a href="{% url 'timetable' %}">
+                <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
+              </a>
+          </div>
+          <div class="left-content-heading profile">
+              <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
+          </div>
+          <div class="left-content-heading settings">
+              <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
+          </div>
+        </div>
+      </div>
+      <!-- end of left -->
+
+      <!-- default display -->
+      <div class="content">
+        <h1 class="timetable-header">My Timetable</h1>
+        <div class="timetable">
+          <div class="days">
+            <h3 class="weekdays">Mon</h3>
+            <h3 class="weekdays">Tue</h3>
+            <h3 class="weekdays">Wed</h3>
+            <h3 class="weekdays">Thu</h3>
+            <h3 class="weekdays">Fri</h3>
+            <h3 class="weekends">Sat</h3>
+            <h3 class="weekends">Sun</h3>
+          </div>
+          <div class="display-courses">
+            <div class="mon"></div>
+            <div class="tue"></div>
+            <div class="wed"></div>
+            <div class="thu"></div>
+            <div class="fri"></div>
+            <div class="sat"></div>
+            <div class="sun"></div>
+          </div>
+        </div>
+        <button type="button" class="add-course-btn">+ Course</button>
+      </div>
+      <!-- end of default display -->
+    </section>
+    <!-- end of feeds page -->
+
+    <!-- add course modal -->
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Add a Course</h3>
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="input-wrapper">
+          <div class="course-name">Course Name</div>
+          <input type="text" class="course-name-input" id="course-name-input">
+          <div class="location">Location</div>
+          <input type="text" class="location-input" id="location-input">
+          <div class="from">From</div>
+          <input type="time" class="from-input" id="from-input" min="09:00" max="18:00" required>
+          <div class="to">To</div>
+          <input type="time" class="to-input" id="to-input">
+          <div class="color">Select color for this course</div>
+          <input type="color" value="#ff0000" class="course-color">
+        </div>
+        <button type="button" class="add">Add</button>
+        <div class="days-text">Select days</div>
+        <div class="days-button-wrapper">
+          <button type="button" class="days-button m-button">M</button>
+          <button type="button" class="days-button t-button">T</button>
+          <button type="button" class="days-button w-button">W</button>
+          <button type="button" class="days-button th-button">Th</button>
+          <button type="button" class="days-button f-button">F</button>
+          <button type="button" class="days-button s-button">S</button>
+          <button type="button" class="days-button su-button">Su</button>
+        </div>
+      </div>
+    </div>
+    <!-- end of add course modal -->
+    <script src="{% static 'mt/js/timetable.js' %}"></script>
+  </body>
+</html>

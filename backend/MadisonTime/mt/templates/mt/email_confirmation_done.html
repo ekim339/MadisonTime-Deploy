@@ -1,0 +1,6 @@
+Email confirmation is done.
+{% if user.is_authenticated %}
+  <a href="{% url 'home' %}">Home</a>
+{% else %}
+  <a href="{% url 'account_login' %}">Log in</a>
+{% endif %}
