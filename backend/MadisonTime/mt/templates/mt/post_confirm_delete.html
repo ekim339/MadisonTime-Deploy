@@ -1,0 +1,17 @@
+{% extends 'mt_base/base.html' %}
+
+{% block title %}
+  {{post.title}} | MadisonTime
+{% endblock title %}
+
+{% block content %}
+<form class="post-confirm-delete" method="post">
+  {% csrf_token %}
+  <span class="content">Would you like to delete this post?</span>
+  <button class="delete-btn" type="submit">Delete<button>
+  <a href="{% url 'post-detail' post.id %}">
+    <button type="button">Cancel</button>
+  </a>
+
+</form>
+{% endblock content %}

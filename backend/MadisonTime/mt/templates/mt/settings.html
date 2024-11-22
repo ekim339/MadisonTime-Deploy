@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정 페이지</title>
+    <link rel="stylesheet" href="{% static 'mt/css/settings.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"/>
+<link
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+    rel="stylesheet"
+    />
+<script
+    src="https://kit.fontawesome.com/ed63704ebd.js"
+    crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+    <header class="header">
+        <div class="title">Madison Time</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" class="search-bar-input" />
+            <button type="button" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="left">
+            <div class="left-content">
+                <div class="left-content-heading home">
+                    <button
+                        type="button"
+                        class="home-button"
+                        onclick="location.href='./MadisonTime_HomePage.html'"
+                    >
+                        <i class="fa-solid fa-house"></i>Home
+                    </button>
+                </div>
+                <div class="left-content-heading schedule">
+                    <button
+                        type="button"
+                        class="schedule-button"
+                        onclick="location.href='../Timetable/timetable.html'"
+                    >
+                        <i class="fa-solid fa-calendar-days"></i>Schedule
+                    </button>
+                </div>
+                <div class="left-content-heading profile">
+                    <button type="button" class="profile-button">
+                        <i class="fa-solid fa-user"></i>Profile
+                    </button>
+                </div>
+                <div class="left-content-heading settings">
+                    <button type="button" class="settings-button">
+                        <i class="fas fa-gear"></i>Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="settings-container">
+            <!-- 제목 섹션 -->
+            <div class="settings-section">
+                <h1>Settings</h1>
+            </div>
+            
+            <!-- 사용자 정보 섹션 -->
+            <div class="settings-section">
+                <h2>User Info</h2>
+                <div class="info-container">
+                    <p>ID: <span id="userId">user123</span></p>
+                    <p>Name: <span id="userName">Taeyeon Lee</span></p>
+                </div>
+            </div>
+            
+            <!-- 아이디 변경 섹션 -->
+            <div class="settings-section">
+                <h2>Change ID</h2>
+                <div class="input-container">
+                    <input type="text" id="newUserId" placeholder="New ID">
+                    <button onclick="changeUserId()">Change</button>
+                </div>
+            </div>
+            
+            <!-- 비밀번호 변경 섹션 -->
+            <div class="settings-section">
+                <h2>Change password</h2>
+                <div class="input-container">
+                    <input type="password" id="currentPassword" placeholder="current password">
+                    <input type="password" id="newPassword" placeholder="new password">
+                    <input type="password" id="newPassword" placeholder="confirm new password">
+                    <button onclick="changePassword()">Confirm</button>
+                </div>
+            </div>
+            
+            <!-- 알림 설정 섹션 -->
+            <div class="settings-section">
+                <h2>System Message</h2>
+                <div class="toggle-container">
+                    <button id="toggleButton" class="toggle-button active" onclick="toggleState()">ON</button>
+                </div>
+            </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

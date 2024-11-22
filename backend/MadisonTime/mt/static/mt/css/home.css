@@ -28,7 +28,7 @@ body {
 
 .title{
   grid-column: 2/4;
-grid-row: 1/2;
+  grid-row: 1/2;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -37,7 +37,21 @@ grid-row: 1/2;
   background-color: #fff;
 }
 
+.buttons {
+  color: white;
+  transition: 0.3s;
+}
+
+a {
+  text-decoration: none;
+}
+
+.post-detail{
+  color: black;
+}
+
 .left {
+  /* position: fixed; */
   grid-column: 1 / 2;
   grid-row: 1 / -1;
   display: flex; /* Enable flexbox */
@@ -62,14 +76,16 @@ grid-row: 1/2;
 
 /* Ensure buttons are spaced correctly */
 .profile-button {
-  margin-top: 75vh; /* Push these buttons to the bottom */
+  margin-top: 65vh; /* Push these buttons to the bottom */
 }
 
 /* Styles for buttons */
 .home-button,
 .schedule-button,
 .profile-button,
-.settings-button {
+.settings-button,
+.logOut-button {
+  font-family: "Josefin Sans", sans-serif;
   background-color: #990000;
   color: #fff;
   border: none;
@@ -78,10 +94,12 @@ grid-row: 1/2;
   transition: 0.3s;
 }
 
+.buttons:hover,
 .home-button:hover,
 .schedule-button:hover,
 .profile-button:hover,
-.settings-button:hover {
+.settings-button:hover,
+.logOut-button:hover{
   color: #f3b8b8; /* Change hover color */
 }
 
@@ -89,7 +107,7 @@ grid-row: 1/2;
 /* right */
 .right{
   grid-column: 4 / -1;
-grid-row: 1 / 2;
+  grid-row: 1 / 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,24 +116,39 @@ grid-row: 1 / 2;
   background-color: #fff;
 }
 
+/* .right {
+  position: fixed; /* Fix the element to the screen */
+  top: 0; /* Align it to the top of the screen */
+  right: 0; /* Align it to the right of the screen */
+  height: 100%; /* Make it span the full height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #990000;
+  border-left: solid #990000; /* Change to border-left to separate from content */
+  background-color: #fff;
+  width: 20%; /* Adjust width as necessary */
+  z-index: 10; /* Ensure it stays on top of other elements */
+} */
+
 .search-bar {
   display: flex;
-align-items: center;
-position: relative;
+  align-items: center;
+  position: relative;
 }
 .search-bar-input {
-width: 10rem;
-height: 3rem;
-border: 0.1rem solid #990000;
-border-radius: 3rem;
-background-color: #FACECE;
-padding-left: 5rem;
-transition: all 0.3s;
+  width: 10rem;
+  height: 3rem;
+  border: 0.1rem solid #990000;
+  border-radius: 3rem;
+  background-color: #FACECE;
+  padding-left: 5rem;
+  transition: all 0.3s;
 }
 
 .search-bar-input:focus {
-background-color: #fff;
-border-color: #ff0000;
+  background-color: #fff;
+  border-color: #ff0000;
   outline: solid #ff0000;
 }
 
@@ -145,6 +178,7 @@ border-color: #ff0000;
 
 .add-post{
   font-size: 16px;
+  justify-content: center;
 }
 /* feed */
 .center-contents {
@@ -158,7 +192,6 @@ border-color: #ff0000;
   background-color: #fff;
 }
 
-
 .add-post {
   display: flex; 
   align-items: center; 
@@ -167,7 +200,8 @@ border-color: #ff0000;
   margin: 20px; 
 }
 
-.post-modal {
+.post-
+ {
   font-size: large;
   font-weight: bold;
 }
@@ -189,6 +223,10 @@ transition: background-color 0.3s;
   background-color: #ff0000;
 }
 
+.empty{
+  font-size: large;
+}
+
 .title-text {
   grid-column: 1/-1;
   grid-row: 1;
@@ -196,22 +234,30 @@ transition: background-color 0.3s;
   padding: 20px;
 }
 
-.modal {
+.date,
+.author{
+  font-size: small;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+.content {
   grid-column: 1/-1;
   grid-row: 2; 
   font-size: 16px;
-  padding: 12px;
+  padding: 20px;
 }
 
 .comment-container {
   display: flex; /* Use flexbox to arrange input and button */
   width: 100%; /* Ensure the container takes full width */
   padding-top: 8px;
-  padding-top: 8px;
+  padding-left: 20px;
+  padding-bottom: 20px;
 }
 
 .comment {
-  flex-grow: 1; /* Make the input take up remaining space */
+  flex-grow: 0.9; /* Make the input take up remaining space */
   height: 3rem;
   border: 0.1rem solid #990000;
   border-radius: 3rem;
@@ -231,6 +277,7 @@ transition: background-color 0.3s;
   background-color: #fff;
   margin-left: 10px; /* Space between input and button */
   transition: 0.3ms;
+  padding-right: 20px;
 }
 
 
@@ -239,8 +286,51 @@ transition: background-color 0.3s;
   background-color: #990000;
 }
 
-
-
-
 /* end of feed */
+
+/* footer */
+footer {
+  color: #fff; /* White text */
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px; /* Space above the footer */
+}
+
+.pagination {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: block;
+  padding: 8px 12px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #b22222; /* Red background for links */
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #f3b8b8; /* Light red on hover */
+}
+
+.current {
+  display: block;
+  padding: 8px 12px;
+  background-color: #f3b8b8; /* Highlighted background */
+  color: #990000; /* Dark red text */
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+
+/* end of footer*/
 /* end of feeds page */

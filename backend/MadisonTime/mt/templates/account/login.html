@@ -1,7 +1,13 @@
+{% extends "mt_base/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static "mt/css/login.css"%}"/>
+{% endblock %}
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -33,7 +39,9 @@
         <div class="left">
             <div class="left-content">
                 <div class="left-content-heading home">
-                    <button type="button" class="home-button"><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a></button>
+                  <a href="{% url 'home' %}">
+                    <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+                  </a>
                 </div>
                 <div class="left-content-heading schedule">
                     <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
@@ -47,9 +55,10 @@
             </div>
         </div>
         
-        <!-- end of left -->
+        <!-- end of left --> {% endcomment %}
         <!-- login -->
-         <div class="login">
+        {% block content %}
+        <div class="login">
             <div class="login-content">
                 <h2>Log in to MadisonTime</h2>
                 <form method="post" class="login-form">
@@ -84,14 +93,14 @@
                         <a href="{% url 'account_signup' %}" class="signup-link">sign-up</a>
                     </div>
                 </form>
-            </div>
-            
+            </div> 
          </div>
         <!-- end of login -->
-    </section>
+        {% endblock %}
+    {% comment %} </section>
     
     <!-- end of login page -->
     
      <script src="script.js"></script>
 </body>
-</html>
+</html> {% endcomment %}

@@ -1,0 +1,89 @@
+{% extends "mt_base/base.html" %} 
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/post_form.css" %} />
+{% endblock css %}
+
+{% block title %}
+  {% if review %}
+    {{ review.title }}
+  {% else %}
+    New Post
+  {% endif %} | MadisonTime
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="container-content">
+            <h1>New Post</h1>
+            <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    {{ form.title|add_class:"mt-input"|attr:"placeholder:Enter your title here."}}
+                    {% for error in form.title.errors %}
+                      <div class="error-message">{{error}}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    {{ form.content|add_class:"mt-input"|attr:"placeholder:Write your content here..."}}
+                    {% for error in form.content.errors %}
+                      <div class="error-message">{{error}}</div>
+                    {% endfor %}
+                </div>
+                <div class="image">
+                  <div class="image-content">
+                    <div>
+                      {% if post.image1 %}
+                        <img src="{{post.image1.url}}">
+                      {% endif %}
+                      {{form.image1}}
+                      {% for error in form.image1.errors %}
+                        <div class="error-message">{{error}}</div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="image">
+                  <div class="image-content">
+                    <div>
+                      {% if post.image2 %}
+                        <img src="{{post.image2.url}}">
+                      {% endif %}
+                      {{form.image2}}
+                      {% for error in form.image2.errors %}
+                        <div class="error-message">{{error}}</div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="image">
+                  <div class="image-content">
+                    <div>
+                      {% if post.image3 %}
+                        <img src="{{post.image3.url}}">
+                      {% endif %}
+                      {{form.image3}}
+                      {% for error in form.image3.errors %}
+                        <div class="error-message">{{error}}</div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="post-buttons">
+                  <a 
+                    href="{% if post %} {% url 'post-detail' post.id %}
+                          {% else %} {% url 'home' %}
+                          {% endif %}">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                  </a>
+                  <button type="submit" class="submit-btn">Submit Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

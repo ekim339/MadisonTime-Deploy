@@ -1,0 +1,124 @@
+{% load static %}
+
+<!-- post_detail.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>isPost</title>
+    <link rel="stylesheet" href="{% static 'mt/css/post_detail.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+/>
+<link
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
+    rel="stylesheet"
+/>
+<script
+    src="https://kit.fontawesome.com/ed63704ebd.js"
+    crossorigin="anonymous"
+></script>
+<script src="script.js"></script>
+</head>
+<body>
+    <!-- Header section (title and search bar) -->
+    <header class="header">
+        <div class="title">Madison Time</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" class="search-bar-input" />
+            <button type="button" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+    
+        <div class="main-content">
+            <div class="left">
+                <div class="left-content">
+                  <div class="left-content-heading home">
+                    <a href="{% url 'home' %}" class="buttons">
+                      <button type="button" class="home-button">
+                          <i class="fa-solid fa-house"></i>Home
+                      </button>
+                    </a>
+                  </div>
+                  <div class="left-content-heading schedule">
+                      <a href="{% url 'timetable' %}"  class="buttons">
+                        <button type="button" class="schedule-button">
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
+                      </a>
+                  </div>
+                    <div class="left-content-heading profile">
+                        <button type="button" class="profile-button">
+                            <i class="fa-solid fa-user"></i>Profile
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button type="button" class="settings-button" onclick="location.href='Setting.html'">
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                    {% if user.is_authenticated %}
+                      <div class="left-content-heading settings">
+                        <a href="{% url 'account_logout' %}" class="buttons"">
+                          <button type="button" class="logOut-button"> 
+                                <i class="fa-solid fa-right-from-bracket"></i>Log Out
+                          </button>
+                        </a>
+                      </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            
+            <div class="post-detail">
+                <h1 class="post-title">{{post.title}}</h1>
+                <div class="post-meta">Author: {{post.author.nickname}} | Date: {{post.dt_created|date:"M, d Y H:i"}}</div>
+                <div class="post-content">
+                    {{ post.content|linebreaksbr }}
+                    {% if post.image1 %}
+                      <img class="image1" src="{{post.image1.url}}">
+                    {% endif %}
+                    {% if post.image2 %}
+                      <img class="image2" src="{{post.image2.url}}">
+                    {% endif %}
+                    {% if post.image3 %}
+                      <img class="image3" src="{{post.image3.url}}">
+                    {% endif %}
+                </div>
+                <div class="ud-buttons">
+                  <div class="edit">
+                      <a class = "edit-button" href="{% url 'post-update' post.id %}">Edit</a>
+                  </div>
+                  <div class="delete">
+                      <a class = "delete-button" href="{% url 'post-delete' post.id %}">Delete</a>
+                  </div>
+                </div>
+
+                <div class="comments-section">
+                    <h2>Comment</h2>
+                    <div class="comment">
+                        <div class="comment-meta">comment1: userA | Date: 2024-10-29</div>
+                        <div class="comment-content">Lorem ipsum dolor sit amet.</div>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-meta">comment2: userB | Date: 2024-10-28</div>
+                        <div class="comment-content">Lorem ipsum dolor sit amet consectetur.</div>
+                    </div>
+                </div>
+
+                <div class="comment-form">
+                    <h3>Comment</h3>
+                    <textarea placeholder="Add comment...."></textarea>
+                    <button>Add Comment</button>
+                </div>
+            </div>
+        </div>
+    
+</body>
+</html>
