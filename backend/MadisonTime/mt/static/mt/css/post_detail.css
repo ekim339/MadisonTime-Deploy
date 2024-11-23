@@ -66,18 +66,38 @@ a {
 }
 
 
-
 /* edit and delete buttons */
-.ud-buttons{
+.ud-post-buttons,
+.ud-comment-buttons{
   display: flex;
-  justify-content: right;
   gap: 1rem;
+}
+
+.ud-post-buttons{
+  justify-content: right;
 }
 
 .edit-button,
 .delete-button{
   font-size: 16px;
   color: #990000;
+}
+
+/* edit comment section */
+.edit-comment-buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-button{
+  background-color: transparent;
+  border: none;
+  color: #990000;
+  cursor: pointer;
+}
+
+#id_content{
+  width: 100%;
 }
 
 /* 제목 및 댓글 스타일 */
@@ -136,6 +156,12 @@ a {
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.ud-comment-cuttons{
+  display: flex;
+  justify-content: right;
+  gap: 1rem;
 }
 
 /* common styles */

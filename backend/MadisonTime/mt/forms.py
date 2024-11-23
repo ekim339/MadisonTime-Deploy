@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Post
+from .models import User, Post, Comment
 
 class SignupForm(forms.ModelForm):
   class Meta:
@@ -22,4 +22,14 @@ class PostForm(forms.ModelForm):
     ]
     widgets = {
       'content': forms.Textarea(attrs={"rows":7, "cols":10}),
+    }
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    fields = [
+      'content'
+    ]
+    widgets = {
+      'content': forms.Textarea(attrs={"rows":3, "cols":10}),
     }

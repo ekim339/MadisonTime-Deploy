@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!-- post_detail.html -->
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>isPost</title>
+    <title>{{post.title}} | MadisonTime</title>
     <link rel="stylesheet" href="{% static 'mt/css/post_detail.css' %}">
     <link
     rel="stylesheet"
@@ -91,31 +92,80 @@
                       <img class="image3" src="{{post.image3.url}}">
                     {% endif %}
                 </div>
-                <div class="ud-buttons">
-                  <div class="edit">
+                <div class="ud-post-buttons">
+                  <div class="edit-post">
                       <a class = "edit-button" href="{% url 'post-update' post.id %}">Edit</a>
                   </div>
-                  <div class="delete">
-                      <a class = "delete-button" href="{% url 'post-delete' post.id %}">Delete</a>
+                  <div class="delete-post">
+                      <a 
+                        class = "delete-button" 
+                        href="{% url 'post-delete' post.id %}"
+                        onclick="return confirm('Would you really like to delete this post?');"
+                      >Delete</a>
                   </div>
                 </div>
 
                 <div class="comments-section">
                     <h2>Comment</h2>
-                    <div class="comment">
-                        <div class="comment-meta">comment1: userA | Date: 2024-10-29</div>
-                        <div class="comment-content">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                    <div class="comment">
-                        <div class="comment-meta">comment2: userB | Date: 2024-10-28</div>
-                        <div class="comment-content">Lorem ipsum dolor sit amet consectetur.</div>
-                    </div>
+                    {% if post.comments.all %}
+                        {% for comment in post.comments.all %}
+                          {% if edit_comment and comment.id == edit_comment.id %}
+                            <div class="comment-meta">
+                              {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
+                              {% if comment.edited %} | Last edited: {{comment.dt_updated|date:"M d, Y H:i"}}
+                              {% endif %}
+                            </div>
+                            <form method="post">
+                              {% csrf_token %}
+                              <input type="hidden" name="edit_comment_id" value="{{ edit_comment.id }}">
+                              {{ edit_form.as_p }}
+                              <div class="edit-comment-buttons">
+                                <div class="confirm-edit">
+                                    <button type="submit" class="edit-button">Submit</button>
+                                </div>
+                                <div class="cancel-edit">
+                                    <a class = "delete-button" href="{% url 'post-detail' post.id %}">Cancel</a>0[;/]
+                                </div>
+                              </div>
+                            </form>
+                          {% else %}
+                            <div class="comment">
+                              <div class="comment-meta">
+                                {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
+                                {% if comment.dt_created != comment.dt_updated %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
+                                {% endif %}
+                              </div>
+                              <div class="comment-content">{{comment.content}}</div>
+                            </div>
+                            <div class="ud-comment-buttons">
+                              <div class="edit-comment">
+                                  <a class ="edit-button" href="?edit_comment={{comment.id}}">Edit</a>
+                              </div>
+                              <div class="delete-comment">
+                                  <div class="delete-post">
+                                      <a 
+                                        class = "delete-button" 
+                                        href="{% url 'comment-delete' comment.id %}"
+                                        onclick="return confirm('Would you really like to delete this comment?');"
+                                      >Delete</a>
+                                  </div>
+                              </div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="comment-form">
                     <h3>Comment</h3>
-                    <textarea placeholder="Add comment...."></textarea>
-                    <button>Add Comment</button>
+                    <form method="POST" autocomplete="off">
+                      {% csrf_token %}
+                      {{form.content|add_class:"comment-input"|attr:"placeholder:Add comment...."}}
+                      {% for error in form.content.errors %}
+                      <div class="error-message">{{error}}</div>
+                      {% endfor %}
+                      <button type="submit">Add Comment</button>
+                    </form>
                 </div>
             </div>
         </div>
