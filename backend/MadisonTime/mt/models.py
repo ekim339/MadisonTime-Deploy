@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 from .validators import validate_no_special_characters
 
 # Create your models here.
@@ -33,9 +34,18 @@ class Comment(models.Model):
   content = models.TextField()
   dt_created = models.DateTimeField(auto_now_add=True)
   dt_updated = models.DateTimeField(auto_now=True)
+  edited = models.BooleanField(default=False)
 
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
 
+  def save(self, *args, **kwargs):
+    if self.pk:
+      original = Comment.objects.get(pk=self.pk)
+      if self.content != original.content:
+        self.edited = True
+        self.dt_updated = timezone.now()
+    super().save(*args, **kwargs)
+
   def __str__(self):
-    return f"Comment by {self.author.username} on {self.post.title}"
+    return f"{self.author.username} on {self.post.title}"

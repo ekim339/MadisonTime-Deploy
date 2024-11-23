@@ -124,7 +124,7 @@
                                     <button type="submit" class="edit-button">Submit</button>
                                 </div>
                                 <div class="cancel-edit">
-                                    <a class = "delete-button" href="{% url 'post-detail' post.id %}">Cancel</a>0[;/]
+                                    <a class = "delete-button" href="{% url 'post-detail' post.id %}">Cancel</a>
                                 </div>
                               </div>
                             </form>
@@ -132,7 +132,7 @@
                             <div class="comment">
                               <div class="comment-meta">
                                 {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
-                                {% if comment.dt_created != comment.dt_updated %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
+                                {% if comment.edited %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
                                 {% endif %}
                               </div>
                               <div class="comment-content">{{comment.content}}</div>
