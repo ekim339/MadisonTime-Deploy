@@ -15,13 +15,14 @@ const tbxLocation = document.querySelector('.location-input');
 const timeFrom = document.querySelector('.from-input');
 const timeTo = document.querySelector('.to-input');
 const clrCourse = document.querySelector('.course-color');
-const mon = document.querySelector('mon');
-const tue = document.querySelector('tue');
-const wed = document.querySelector('wed');
-const thu = document.querySelector('thu');
-const fri = document.querySelector('fri');
-const sat = document.querySelector('sat');
-const sun = document.querySelector('sun');
+const mon = document.querySelector('.mon');
+const tue = document.querySelector('.tue');
+const wed = document.querySelector('.wed');
+const thu = document.querySelector('.thu');
+const fri = document.querySelector('.fri');
+const sat = document.querySelector('.sat');
+const sun = document.querySelector('.sun');
+
 /*************************************************/
 /*************************************************/
 
@@ -77,7 +78,19 @@ btnAdd.addEventListener('click', () => {
   const to = timeTo.value;
   const color = clrCourse.value;
   createCourse(checkDays(), courseName, location, from, to, color);
+
+  // Clear inputs
+  tbxCourseName.value = '';
+  tbxLocation.value = '';
+  timeFrom.value = '';
+  timeTo.value = '';
+  clrCourse.value = '#ff0000';
+
+  // Close modal
+  modalAdd.style.display = 'none';
+  modalWrapper.classList.remove('modal-wrapper-display');
 });
+
 
 function checkDays(){
   const days = [];
@@ -106,12 +119,17 @@ function checkDays(){
 }
 
 function createCourse(daysArray, courseName, location, from, to, color){
-  for (var i=0; i<array.length; i++){
+  for (var i = 0; i < daysArray.length; i++) {
     var course = document.createElement('div');
-    course.style.backgroundColor(color);
-    course.innerHTML += courseName;
-    course.innerHtml += location;
+    course.style.backgroundColor = color;
+    course.innerHTML = `
+        <div>${courseName}</div>
+        <div>${location}</div>
+        <div>${from} - ${to}</div>
+    `;
+    course.classList.add('course');
     daysArray[i].append(course);
-  }
+}
+
   
 }

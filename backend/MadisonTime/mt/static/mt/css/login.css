@@ -50,9 +50,12 @@
 .login-form input:focus {
     background-color: #d9ebf7;
 }
-.login-form div {
-    margin-top: 2rem;
+.error-message{
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
+
+/* s */
 .login-form button {
     padding: 1rem 1.5rem;
     background-color: #990000;

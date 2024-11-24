@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
             crossorigin="anonymous"
         ></script>
     <link rel="stylesheet" href="{% static 'mt/css/signup.css' %}" />
-    <title>MadisonTime</title>
+    <title>Sign Up | MadisonTime</title>
 </head>
 <body>
 
@@ -30,22 +32,35 @@
          <div class="SignUp">
             <div class="SignUp-content">
                 <h2>Create Your MadisonTime Account</h2>
-                <form class="SignUp-form">
+                <form class="SignUp-form" method="post">
+                  {% csrf_token %}
                     <p>
                         <label for="email" class="visually-hidden">Email</label>
-                        <input type="email" id="email" placeholder="Enter your Email" required />
+                        {{ form.email|add_class:"mt-input"|attr:"placeholder:Enter your Email"|add_error_class:"error"}}
+                        {% for error in form.email.errors %}
+                          <div class="error-message">{{ error }}</div>
+                        {% endfor %}
                     </p>
-                    {% comment %} <p>
-                        <label for="username" class="visually-hidden">Username</label>
-                        <input type="text" id="username" placeholder="Enter your Username" required />
-                    </p> {% endcomment %}
+                    <p>
+                        <label for="nickname" class="visually-hidden">Nickname</label>
+                        {{ form.nickname|add_class:"mt-input"|attr:"placeholder:Enter your Username"|add_error_class:"error"}}
+                        {% for error in form.nickname.errors %}
+                          <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </p>
                     <p>
                         <label for="password" class="visually-hidden">Password</label>
-                        <input type="password" id="password" placeholder="Enter your Password" required />
+                        {{ form.password1|add_class:"mt-input"|attr:"placeholder:Enter your Password"|add_error_class:"error"}}
+                        {% for error in form.password1.errors %}
+                          <div class="error-message">{{ error }}</div>
+                        {% endfor %}
                     </p>
                     <p>
                         <label for="confirm-password" class="visually-hidden">Confirm Password</label>
-                        <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+                        {{ form.password2|add_class:"mt-input"|attr:"placeholder:Confirm Password"|add_error_class:"error"}}
+                        {% for error in form.password2.errors %}
+                          <div class="error-message">{{ error }}</div>
+                        {% endfor %}
                     </p>
                     <div>
                         <button type="submit" class="SignUp-form-btn">Sign Up</button>

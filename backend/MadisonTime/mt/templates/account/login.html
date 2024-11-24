@@ -7,100 +7,43 @@
   <link rel="stylesheet" href="{% static "mt/css/login.css"%}"/>
 {% endblock %}
 
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-            src="https://kit.fontawesome.com/ed63704ebd.js"
-            crossorigin="anonymous"
-        ></script>
-    <link rel="stylesheet" href="{% static "mt/css/login.css"%}" />
-    <title>MadisonTime</title>
-</head>
-<body>
-
-
-    <!-- login page -->
-    <section class="login-page">
-        <!-- login page left -->
-        <div class="left">
-            <div class="left-content">
-                <div class="left-content-heading home">
-                  <a href="{% url 'home' %}">
-                    <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
-                  </a>
-                </div>
-                <div class="left-content-heading schedule">
-                    <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
-                </div>
-                <div class="left-content-heading profile">
-                    <button type="button" class="profile-button"><i class="fa-solid fa-user"></i>Profile</button>
-                </div>
-                <div class="left-content-heading settings">
-                    <button type="button" class="settings-button"><i class="fas fa-gear"></i>Settings</button>
-                </div>
+{% block content %}
+<div class="login">
+    <div class="login-content">
+        <h2>Log in to MadisonTime</h2>
+        <form method="post" action="{% url 'account_login' %}?next={{request.GET.next|default:''}}" class="login-form">
+            {% csrf_token %}
+            {% comment %} <input type="hidden" name="next" value="{{ request.GET.next|default:'' }}"> {% endcomment %}
+            <!-- error messages -->
+            {% for error in form.non_field_errors %}
+              <div class="error-message">{{ error }}</div>
+            {% endfor %}
+            <p>
+                <!--<label for="username" class="visually-hidden">Username</label>-->
+                <label class="visually-hidden">Email</label>
+                {% comment %} <input type="text" id="username" placeholder="Email or username" /> {% endcomment %}
+                {{ form.login|add_class:"mt-input"|attr:"placeholder:Email"|add_error_class:"error"}}
+                {% for error in form.login.errors %}
+                  <div class="error-message">{{ error }}</div>
+                {% endfor %}
+                <a href="#" class="forgot-link">Forgot ID</a>
+            </p>
+            <p>
+                <label for="password" class="visually-hidden">Password</label>
+                {{ form.password|add_class:"mt-input"|attr:"placeholder:Password"|add_error_class:"error"}}
+                {% for error in form.password.errors %}
+                  <div class="error-message">{{ error }}</div>
+                {% endfor %}
+                <a href="{% url 'account_reset_password' %}" class="forgot-link">Forgot Password</a>
+            </p>
+            <div>
+                <button type="submit" class="login-form-btn">Log In</button>
+                <input type="checkbox" class="login-form-checkbox" id="check">
+                <label for="check">Remember me</label>
+                <a href="{% url 'account_signup' %}" class="signup-link">sign-up</a>
             </div>
-        </div>
-        
-        <!-- end of left --> {% endcomment %}
-        <!-- login -->
-        {% block content %}
-        <div class="login">
-            <div class="login-content">
-                <h2>Log in to MadisonTime</h2>
-                <form method="post" class="login-form">
-                    {% csrf_token %}
-                    <!-- error messages -->
-                    {% for error in form.non_field_errors %}
-                      {{ error }}
-                    {% endfor %}
-                    <p>
-                        <!--<label for="username" class="visually-hidden">Username</label>-->
-                        <label class="visually-hidden">Email</label>
-                        {% comment %} <input type="text" id="username" placeholder="Email or username" /> {% endcomment %}
-                        {{ form.login|add_class:"email-input"|attr:"placeholder:Email or username"|add_error_class:"error"}}
-                        {% for error in form.login.errors %}
-                          {{ error }}
-                        {% endfor %}
-                        <a href="#" class="forgot-link">Forgot ID</a>
-                    </p>
-                    <p>
-                        <label for="password" class="visually-hidden">Password</label>
-                        {% comment %} <input type="password" id="password" placeholder="Password" /> {% endcomment %}
-                        {{ form.password|add_class:"email-input"|attr:"placeholder:Password"|add_error_class:"error"}}
-                        {% for error in form.password.errors %}
-                          {{ error }}
-                        {% endfor %}
-                        <a href="{% url 'account_reset_password' %}" class="forgot-link">Forgot Password</a>
-                    </p>
-                    <div>
-                        <button type="submit" class="login-form-btn">Log In</button>
-                        <input type="checkbox" class="login-form-checkbox" id="check">
-                        <label for="check">Remember me</label>
-                        <a href="{% url 'account_signup' %}" class="signup-link">sign-up</a>
-                    </div>
-                </form>
-            </div> 
-         </div>
-        <!-- end of login -->
-        {% endblock %}
-    {% comment %} </section>
-    
-    <!-- end of login page -->
-    
-     <script src="script.js"></script>
-</body>
-</html> {% endcomment %}
+        </form>
+    </div> 
+  </div>
+<!-- end of login -->
+{% endblock %}

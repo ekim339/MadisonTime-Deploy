@@ -1,7 +1,6 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+ <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,11 @@
         href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
         rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static "mt/css/timetable.css" %}" />
+    <script
+            src="https://kit.fontawesome.com/ed63704ebd.js"
+            crossorigin="anonymous"
+        ></script>
+    <link rel="stylesheet" href="{% static 'mt/css/timetable.css' %}" />
   </head>
   <body>
     <!-- feeds page -->
@@ -26,13 +29,17 @@
       <div class="left">
         <div class="left-content">
           <div class="left-content-heading home">
-            <a href="{% url 'home' %}">
-              <button type="button" class="home-button"><i class="fa-solid fa-house"></i>Home</button>
+            <a href="{% url 'home' %}" class="buttons">
+              <button type="button" class="home-button">
+                  <i class="fa-solid fa-house"></i>Home
+              </button>
             </a>
           </div>
           <div class="left-content-heading schedule">
-              <a href="{% url 'timetable' %}">
-                <button type="button" class="schedule-button"><i class="fa-solid fa-calendar-days"></i>Schedule</button>
+              <a href="{% url 'timetable' %}"  class="buttons">
+                <button type="button" class="schedule-button">
+                    <i class="fa-solid fa-calendar-days"></i>Schedule
+                </button>
               </a>
           </div>
           <div class="left-content-heading profile">
@@ -43,7 +50,7 @@
           </div>
         </div>
       </div>
-      <!-- end of left -->
+      <!-- end of left --> 
 
       <!-- default display -->
       <div class="content">
@@ -109,4 +116,4 @@
     <!-- end of add course modal -->
     <script src="{% static 'mt/js/timetable.js' %}"></script>
   </body>
-</html>
+</html> 

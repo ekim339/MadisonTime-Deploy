@@ -1,0 +1,9 @@
+Hello {{ user.username }},
+
+Please confirm your email through the link below.
+
+{{ activate_url }}
+
+Thank you.
+
+Madison Time

@@ -28,6 +28,7 @@
         <navbar>
           {% if user.is_authenticated %}
             <h1>Welcome, {{user.nickname}}</h1>
+            <a href="{% url 'account_change_password' %}">change password</a>
           {% else %}
             <a href="{% url 'account_login' %}">log in</a>
             <a href="{% url 'account_signup' %}">sign up</a>
