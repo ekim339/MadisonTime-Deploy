@@ -5,13 +5,14 @@ from django.views.generic import (
   CreateView, 
   UpdateView)
 from django.views.generic.edit import FormMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
-from mt.models import Post, Comment
-from mt.forms import PostForm, CommentForm
+from mt.models import Post, Comment, Course
+from mt.forms import PostForm, CommentForm, CourseForm
 from mt.functions import confirmation_required_redirect
 
 # Create your views here.
@@ -21,8 +22,22 @@ def home(request):
 def board(request):
   return render(request, 'mt/board.html')
 
+@login_required
 def timetable(request):
-  return render(request, 'mt/timetable.html')
+  if request.method == "POST":
+    form = CourseForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('timetable')
+    else:
+      render(request, 'mt/timetable.html', {'form':form})
+  else:
+    form = CourseForm()
+
+  courses = Course.objects.filter(author=request.user)
+
+  return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
+  # return render(request, 'mt/timetable.html')
 
 def delete_post(request, post_id):
 
@@ -128,7 +143,6 @@ class PostDetailView(FormMixin, DetailView):
     form.save()
     return super(PostDetailView, self).form_valid(form)
   
-
 class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
   model = Post
   form_class = PostForm

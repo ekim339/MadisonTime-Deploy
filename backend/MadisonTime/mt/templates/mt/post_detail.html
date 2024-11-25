@@ -95,7 +95,7 @@
                       <img class="image3" src="{{post.image3.url}}">
                     {% endif %}
                 </div>
-                {% if review.author == user %}
+                {% if post.author == user %}
                   <div class="ud-post-buttons">
                     <div class="edit-post">
                         <a class = "edit-button" href="{% url 'post-update' post.id %}">Edit</a>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="comments-section">
-                    <h2>Comment</h2>
+                    <h2>Comments</h2>
                     {% if post.comments.all %}
                         {% for comment in post.comments.all %}
                           {% if edit_comment and comment.id == edit_comment.id %}
@@ -160,11 +160,13 @@
                             {% endif %}
                           {% endif %}
                         {% endfor %}
+                    {% else %}
+                        <h3 class="no-comment">No comments... Be the first one to comment!</h3>
                     {% endif %}
                 </div>
 
                 <div class="comment-form">
-                    <h3>Comment</h3>
+                    <h2>Add Comment</h2>
                     <form method="POST" autocomplete="off">
                       {% csrf_token %}
                       {{form.content|add_class:"comment-input"|attr:"placeholder:Add comment...."}}

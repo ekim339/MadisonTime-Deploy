@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
  <html lang="en">
   <head>
@@ -55,6 +57,11 @@
       <!-- default display -->
       <div class="content">
         <h1 class="timetable-header">My Timetable</h1>
+        {% if courses %}
+          {% for course in courses %}
+            {{ course.name }}
+          {% endfor %}
+        {% endif %}
         <div class="timetable">
           <div class="days">
             <h3 class="weekdays">Mon</h3>
@@ -88,29 +95,36 @@
           <h3 class="modal-title">Add a Course</h3>
           <i class="fas fa-times"></i>
         </div>
-        <div class="input-wrapper">
-          <div class="course-name">Course Name</div>
-          <input type="text" class="course-name-input" id="course-name-input">
-          <div class="location">Location</div>
-          <input type="text" class="location-input" id="location-input">
-          <div class="from">From</div>
-          <input type="time" class="from-input" id="from-input" min="09:00" max="18:00" required>
-          <div class="to">To</div>
-          <input type="time" class="to-input" id="to-input">
-          <div class="color">Select color for this course</div>
-          <input type="color" value="#ff0000" class="course-color">
-        </div>
-        <button type="button" class="add">Add</button>
-        <div class="days-text">Select days</div>
-        <div class="days-button-wrapper">
-          <button type="button" class="days-button m-button">M</button>
-          <button type="button" class="days-button t-button">T</button>
-          <button type="button" class="days-button w-button">W</button>
-          <button type="button" class="days-button th-button">Th</button>
-          <button type="button" class="days-button f-button">F</button>
-          <button type="button" class="days-button s-button">S</button>
-          <button type="button" class="days-button su-button">Su</button>
-        </div>
+        <form method="post">
+          <div class="input-wrapper">
+            <div class="course-name">Course Name</div>
+            <input type="text" class="course-name-input" id="course-name-input">
+            {{form.name|add_class:"course-name-input"}}
+            <div class="location">Location</div>
+            {% comment %} <input type="text" class="location-input" id="location-input"> {% endcomment %}
+            {{form.location|add_class:"location-input"}}
+            <div class="from">From</div>
+            {% comment %} <input type="time" class="from-input" id="from-input" min="09:00" max="18:00" required> {% endcomment %}
+            {{form.time_from|add_class:"from-input"|attr:"min:09:00"|attr:"max:18:00"}}
+            <div class="to">To</div>
+            {% comment %} <input type="time" class="to-input" id="to-input"> {% endcomment %}
+            {{form.time_to|add_class:"to-input"|attr:"min:09:00"|attr:"max:18:00"}}
+            <div class="color">Select color for this course</div>
+            <input type="color" value="#ff0000" class="course-color">
+            {{form.color}}
+          </div>
+          <button type="submit" class="add">Add</button>
+          <div class="days-text">Select days</div>
+          <div class="days-button-wrapper">
+            <button type="button" class="days-button m-button">M</button>
+            <button type="button" class="days-button t-button">T</button>
+            <button type="button" class="days-button w-button">W</button>
+            <button type="button" class="days-button th-button">Th</button>
+            <button type="button" class="days-button f-button">F</button>
+            <button type="button" class="days-button s-button">S</button>
+            <button type="button" class="days-button su-button">Su</button>
+          </div>
+        </form>
       </div>
     </div>
     <!-- end of add course modal -->

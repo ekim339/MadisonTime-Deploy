@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mt',
     'widget_tweaks',
+    'colorfield',
     'allauth',
     'allauth.account',
 ]
