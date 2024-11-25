@@ -12,3 +12,13 @@ def confirmation_required_redirect(*args, **kwargs):
   # send email to user who haven't confirmed their email
   send_email_confirmation(request, request.user)
   return redirect("account_email_confirmation_required")
+
+def calculateDuration(time_from, time_to):
+  time_from_hrs = time_from.hour + time_from.minute / 60
+  time_to_hrs = time_to.hour + time_to.minute / 60
+  duration = time_to_hrs - time_from_hrs
+  return duration
+
+def calculatePosition(time_from):
+  time_from_start = (time_from.hour - 6) + time_from.minute / 60
+  return time_from_start

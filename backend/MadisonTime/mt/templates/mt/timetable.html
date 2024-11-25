@@ -22,6 +22,7 @@
             crossorigin="anonymous"
         ></script>
     <link rel="stylesheet" href="{% static 'mt/css/timetable.css' %}" />
+    
   </head>
   <body>
     <!-- feeds page -->
@@ -57,11 +58,6 @@
       <!-- default display -->
       <div class="content">
         <h1 class="timetable-header">My Timetable</h1>
-        {% if courses %}
-          {% for course in courses %}
-            {{ course.name }}
-          {% endfor %}
-        {% endif %}
         <div class="timetable">
           <div class="days">
             <h3 class="weekdays">Mon</h3>
@@ -72,14 +68,105 @@
             <h3 class="weekends">Sat</h3>
             <h3 class="weekends">Sun</h3>
           </div>
+          <div class="timeline">
+            <div class="time-slot">6:00 AM</div>
+            <div class="time-slot">7:00 AM</div>
+            <div class="time-slot">8:00 AM</div>
+            <div class="time-slot">9:00 AM</div>
+            <div class="time-slot">10:00 AM</div>
+            <div class="time-slot">11:00 AM</div>
+            <div class="time-slot">12:00 PM</div>
+            <div class="time-slot">1:00 PM</div>
+            <div class="time-slot">2:00 PM</div>
+            <div class="time-slot">3:00 PM</div>
+            <div class="time-slot">4:00 PM</div>
+            <div class="time-slot">5:00 PM</div>
+            <div class="time-slot">6:00 PM</div>
+            <div class="time-slot">7:00 PM</div>
+            <div class="time-slot">8:00 PM</div>
+            <div class="time-slot">9:00 PM</div>
+            <div class="time-slot">10:00 PM</div>
+            <div class="time-slot">11:00 PM</div>
+            <div class="time-slot">12:00 AM</div>
+          </div>
           <div class="display-courses">
-            <div class="monday"></div>
-            <div class="tuesday"></div>
-            <div class="wednesday"></div>
-            <div class="thursday"></div>
-            <div class="friday"></div>
-            <div class="saturday"></div>
-            <div class="sunday"></div>
+            <div class="display monday">
+              <div class="courses mon">
+              {% if courses %}
+                {% for course in courses %}
+                  {% if course.mon %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              </div>
+            </div>
+            <div class="display tuesday">
+              <div class="courses tue">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.tue %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="display wednesday">
+              <div class="courses wed">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.wed %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="display thursday">
+              <div class="courses thu">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.thu %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="display friday">
+              <div class="courses fri">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.fri %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="display saturday">
+              <div class="courses sat">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.sat %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="display sunday">
+              <div class="courses sun">
+                {% if courses %}
+                  {% for course in courses %}
+                    {% if course.sun %}
+                      <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
         <button type="button" class="add-course-btn">+ Course</button>
@@ -89,62 +176,69 @@
     <!-- end of feeds page -->
 
     <!-- add course modal -->
-    <div class="modal-wrapper">
-      <div class="modal">
-        <div class="modal-header">
-          <h3 class="modal-title">Add a Course</h3>
-          <i class="fas fa-times"></i>
+      <div class="modal-wrapper {% if modal_open %}modal-wrapper-display{% endif %}">
+        <div class="modal">
+          <div class="modal-header">
+            <h3 class="modal-title">Add a Course</h3>
+            <i class="fas fa-times"></i>
+          </div>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="input-wrapper">
+              <div class="course-name">Course Name</div>
+              {{form.name|add_class:"course-name-input"}}
+              {% for error in form.name.errors %}
+                <div class="error-message">{{error}}</div>
+              {% endfor %}
+              <div class="location">Location</div>
+              {{form.location|add_class:"location-input"}}
+              {% for error in form.location.errors %}
+                <div class="error-message">{{error}}</div>
+              {% endfor %}
+              <div class="from">From</div>
+              {{form.time_from|add_class:"from-input"}}
+              {% for error in form.time_from.errors %}
+                <div class="error-message">{{error}}</div>
+              {% endfor %}
+              <div class="to">To</div>
+              {{form.time_to|add_class:"to-input"}}
+              {% for error in form.time_to.errors %}
+                <div class="error-message">{{error}}</div>
+              {% endfor %}
+              <div class="color">Select color for this course</div>
+              <input type="color" name="color" value="#ff0000" class="course-color">
+              {% for error in form.color.errors %}
+                <div class="error-message">{{error}}</div>
+              {% endfor %}
+            </div>
+            <button type="submit" class="add">Add</button>
+            <div class="days-text">Select days</div>
+            <div class="days-button-wrapper">
+              <input type="hidden" name="mon" id="mon" value="{{ course.mon }}">
+              <button type="button" class="days-button m-button">M</button>
+              <input type="hidden" name="tue" id="tue" value="{{ course.tue }}">
+              <button type="button" class="days-button t-button">T</button>
+              <input type="hidden" name="wed" id="wed" value="{{ course.wed }}">
+              <button type="button" class="days-button w-button">W</button>
+              <input type="hidden" name="thu" id="thu" value="{{ course.thu }}">
+              <button type="button" class="days-button th-button">Th</button>
+              <input type="hidden" name="fri" id="fri" value="{{ course.fri }}">
+              <button type="button" class="days-button f-button">F</button>
+              <input type="hidden" name="sat" id="sat" value="{{ course.sat }}">
+              <button type="button" class="days-button s-button">S</button>
+              <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
+              <button type="button" class="days-button su-button">Su</button>
+            </div>
+          </form>
         </div>
-        <form method="POST">
-          {% csrf_token %}
-          <div class="input-wrapper">
-            <div class="course-name">Course Name</div>
-            {{form.name|add_class:"course-name-input"}}
-            {% for error in form.name.errors %}
-              <div class="error-message">{{error}}</div>
-            {% endfor %}
-            <div class="location">Location</div>
-            {{form.location|add_class:"location-input"}}
-            {% for error in form.location.errors %}
-              <div class="error-message">{{error}}</div>
-            {% endfor %}
-            <div class="from">From</div>
-            {{form.time_from|add_class:"from-input"}}
-            {% for error in form.time_from.errors %}
-              <div class="error-message">{{error}}</div>
-            {% endfor %}
-            <div class="to">To</div>
-            {{form.time_to|add_class:"to-input"}}
-            {% for error in form.time_to.errors %}
-              <div class="error-message">{{error}}</div>
-            {% endfor %}
-            <div class="color">Select color for this course</div>
-            <input type="color" name="color" value="#ff0000" class="course-color">
-            {% for error in form.color.errors %}
-              <div class="error-message">{{error}}</div>
-            {% endfor %}
-          </div>
-          <button type="submit" class="add">Add</button>
-          <div class="days-text">Select days</div>
-          <div class="days-button-wrapper">
-            <input type="hidden" name="mon" id="mon" value="{{ course.mon }}">
-            <button type="button" class="days-button m-button">M</button>
-            <input type="hidden" name="tue" id="tue" value="{{ course.tue }}">
-            <button type="button" class="days-button t-button">T</button>
-            <input type="hidden" name="wed" id="wed" value="{{ course.wed }}">
-            <button type="button" class="days-button w-button">W</button>
-            <input type="hidden" name="thu" id="thu" value="{{ course.thu }}">
-            <button type="button" class="days-button th-button">Th</button>
-            <input type="hidden" name="fri" id="fri" value="{{ course.fri }}">
-            <button type="button" class="days-button f-button">F</button>
-            <input type="hidden" name="sat" id="sat" value="{{ course.sat }}">
-            <button type="button" class="days-button s-button">S</button>
-            <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
-            <button type="button" class="days-button su-button">Su</button>
-          </div>
-        </form>
+        {% comment %} <script>
+          $(document).ready(function() {
+            {% if form.errors %}
+            $("#modal").modal("show");
+            {% endif %}
+          });
+        </script> {% endcomment %}
       </div>
-    </div>
     <!-- end of add course modal -->
     <script src="{% static 'mt/js/timetable.js' %}"></script>
   </body>

@@ -93,64 +93,86 @@ btnSu.addEventListener('click', function(){
   updateInputField(btnSu, sunInput);
 });
 
-btnAdd.addEventListener('click', () => {
-  const courseName = tbxCourseName.value;
-  const location = tbxLocation.value;
-  const from = timeFrom.value;
-  const to = timeTo.value;
-  const color = clrCourse.value;
-  createCourse(checkDays(), courseName, location, from, to, color);
+// btnAdd.addEventListener('click', () => {
+//   const courseName = tbxCourseName.value;
+//   const location = tbxLocation.value;
+//   const from = timeFrom.value;
+//   const to = timeTo.value;
+//   const color = clrCourse.value;
+//   createCourse(checkDays(), courseName, location, from, to, color);
 
-  // Clear inputs
-  // tbxCourseName.value = '';
-  // tbxLocation.value = '';
-  // timeFrom.value = '';
-  // timeTo.value = '';
-  // clrCourse.value = '#ff0000';
+//   // Clear inputs
+//   tbxCourseName.value = '';
+//   tbxLocation.value = '';
+//   timeFrom.value = '';
+//   timeTo.value = '';
+//   clrCourse.value = '#ff0000';
 
-  // Close modal
-  modalAdd.style.display = 'none';
-  modalWrapper.classList.remove('modal-wrapper-display');
+//   // Close modal
+//   modalAdd.style.display = 'none';
+//   modalWrapper.classList.remove('modal-wrapper-display');
+// });
+
+btnAdd.addEventListener('click', (e) => {
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    const errors = document.querySelectorAll('.error-message');
+
+    // Prevent closing the modal if there are validation errors
+    if (errors.length > 0) {
+      e.preventDefault(); // Stop form submission
+      modalAdd.style.display = 'block';
+      modalWrapper.classList.add('modal-wrapper-display');
+    }
+    else{
+      // tbxCourseName.value = '';
+      // tbxLocation.value = '';
+      // timeFrom.value = '';
+      // timeTo.value = '';
+      // clrCourse.value = '#ff0000';
+      modalAdd.style.display = 'none';
+      modalWrapper.classList.remove('modal-wrapper-display');
+    }
+  });
 });
 
 
-function checkDays(){
-  const days = [];
-  if (btnM.classList.contains('active')){
-    days.push(monBox);
-  }
-  if (btnT.classList.contains('active')){
-    days.push(tueBox);
-  }
-  if (btnW.classList.contains('active')){
-    days.push(wedBox);
-  }
-  if (btnTh.classList.contains('active')){
-    days.push(thuBox);
-  }
-  if (btnF.classList.contains('active')){
-    days.push(friBox);
-  }
-  if (btnS.classList.contains('active')){
-    days.push(satBox);
-  }
-  if (btnS.classList.contains('active')){
-    days.push(suBoxn);
-  }
-  return days;
-}
+// function checkDays(){
+//   const days = [];
+//   if (btnM.classList.contains('active')){
+//     days.push(monBox);
+//   }
+//   if (btnT.classList.contains('active')){
+//     days.push(tueBox);
+//   }
+//   if (btnW.classList.contains('active')){
+//     days.push(wedBox);
+//   }
+//   if (btnTh.classList.contains('active')){
+//     days.push(thuBox);
+//   }
+//   if (btnF.classList.contains('active')){
+//     days.push(friBox);
+//   }
+//   if (btnS.classList.contains('active')){
+//     days.push(satBox);
+//   }
+//   if (btnS.classList.contains('active')){
+//     days.push(suBoxn);
+//   }
+//   return days;
+// }
 
-function createCourse(daysArray, courseName, location, from, to, color){
-  for (var i = 0; i < daysArray.length; i++) {
-    var course = document.createElement('div');
-    course.style.backgroundColor = color;
-    course.innerHTML = `
-        <div>${courseName}</div>
-        <div>${location}</div>
-        <div>${from} - ${to}</div>
-    `;
-    course.classList.add('course');
-    daysArray[i].append(course);
-}
+// function createCourse(daysArray, courseName, location, from, to, color){
+//   for (var i = 0; i < daysArray.length; i++) {
+//     var course = document.createElement('div');
+//     course.style.backgroundColor = color;
+//     course.innerHTML = `
+//         <div>${courseName}</div>
+//         <div>${location}</div>
+//         <div>${from} - ${to}</div>
+//     `;
+//     course.classList.add('course');
+//     daysArray[i].append(course);
+// }
   
-}

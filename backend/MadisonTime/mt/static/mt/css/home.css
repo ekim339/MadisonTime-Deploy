@@ -117,18 +117,18 @@ a {
 }
 
 /* .right {
-  position: fixed; /* Fix the element to the screen */
-  top: 0; /* Align it to the top of the screen */
-  right: 0; /* Align it to the right of the screen */
-  height: 100%; /* Make it span the full height */
+  position: fixed; 
+  top: 0; 
+  right: 0; 
+  height: 100%; 
   display: flex;
   align-items: center;
   justify-content: center;
   color: #990000;
-  border-left: solid #990000; /* Change to border-left to separate from content */
+  border-left: solid #990000; 
   background-color: #fff;
-  width: 20%; /* Adjust width as necessary */
-  z-index: 10; /* Ensure it stays on top of other elements */
+  width: 20%; 
+  z-index: 10; 
 } */
 
 .search-bar {

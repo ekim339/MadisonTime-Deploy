@@ -13,7 +13,7 @@ from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
 from mt.models import Post, Comment, Course
 from mt.forms import PostForm, CommentForm, CourseForm
-from mt.functions import confirmation_required_redirect
+from mt.functions import confirmation_required_redirect, calculateDuration, calculatePosition
 
 # Create your views here.
 def home(request):
@@ -51,11 +51,16 @@ def timetable(request):
       course.save()
       return redirect('timetable')
     else:
-      render(request, 'mt/timetable.html', {'form':form})
+      render(request, 'mt/timetable.html', {'form':form, "modal_open":True})
   else:
     form = CourseForm()
 
   courses = Course.objects.filter(author=request.user)
+  for course in courses:
+    duration = calculateDuration(course.time_from, course.time_to)
+    time_from_start = calculatePosition(course.time_from)
+    course.height = duration * 5.5555
+    course.position = time_from_start * 5.5555
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
   # return render(request, 'mt/timetable.html')

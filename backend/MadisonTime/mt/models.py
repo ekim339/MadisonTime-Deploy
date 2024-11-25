@@ -1,8 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from colorfield.fields import ColorField
-from .validators import validate_no_special_characters
+from .validators import (
+  validate_no_special_characters, 
+  validate_time_from, 
+  validate_time_to
+)
 
 # Create your models here.
 class User(AbstractUser):
@@ -67,8 +72,8 @@ class Comment(models.Model):
 class Course(models.Model):
   name = models.CharField(max_length=30)
   location = models.CharField(max_length=50, blank=True)
-  time_from = models.TimeField(null=True)
-  time_to = models.TimeField(null=True)
+  time_from = models.TimeField(null=True, validators=[validate_time_from])
+  time_to = models.TimeField(null=True, validators=[validate_time_to])
   color = ColorField(default="ff0000", null=True)
   mon = models.BooleanField(default=False)
   tue = models.BooleanField(default=False)
@@ -98,6 +103,12 @@ class Course(models.Model):
     if self.sun:
       days.append("sun")
     return days
+  
+  def clean(self):
+    super().clean()  # Call the parent class's clean method
+
+    if self.time_from == self.time_to:
+        raise ValidationError("Start time and end time must be different.")
   
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   
