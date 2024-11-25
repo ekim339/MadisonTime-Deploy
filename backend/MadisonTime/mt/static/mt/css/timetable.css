@@ -304,6 +304,7 @@ color: #f3b8b8;
   cursor: pointer;
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
   transition: color 0.3s;
+  outline: none;
 }
 
 .add:hover{

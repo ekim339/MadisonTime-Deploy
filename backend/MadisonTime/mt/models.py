@@ -67,9 +67,9 @@ class Comment(models.Model):
 class Course(models.Model):
   name = models.CharField(max_length=30)
   location = models.CharField(max_length=50, blank=True)
-  time_from = models.TimeField()
-  time_to = models.TimeField()
-  color = ColorField(default="ff0000")
+  time_from = models.TimeField(null=True)
+  time_to = models.TimeField(null=True)
+  color = ColorField(default="ff0000", null=True)
   mon = models.BooleanField(default=False)
   tue = models.BooleanField(default=False)
   wed = models.BooleanField(default=False)

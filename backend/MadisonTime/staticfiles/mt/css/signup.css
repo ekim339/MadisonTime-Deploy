@@ -1,0 +1,155 @@
+/* common styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #fbe7e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* end of common styles */
+
+
+/* signUp page */
+.SignUp-page {
+    width: 100%;
+    max-width: 70%;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* Content */
+.SignUp-content h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #000000;
+    margin-bottom: 2rem;
+}
+
+/* form */
+.SignUp-form p {
+    margin-bottom: 2rem;
+    text-align: left;
+    color: #000000;
+}
+.SignUp-form label {
+    display: block; 
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 0.5rem; 
+    margin-left: 0.5rem;
+    text-align: left;
+}
+
+.SignUp-form input[type="text"],
+.SignUp-form input[type="email"],
+.SignUp-form input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.SignUp-form input[type="text"]:focus,
+.SignUp-form input[type="email"]:focus,
+.SignUp-form input[type="password"]:focus {
+    border-color: #990000;
+    outline: none;
+}
+
+/* button */
+.SignUp-form-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.SignUp-form-btn:hover {
+    background-color: #990000;
+}
+
+/* checkbox */
+.SignUp-form-checkbox {
+    display: inline-block;
+    margin-right: 1rem;
+    vertical-align: middle;
+}
+
+.SignUp-form label {
+    display: inline-block;
+    font-size: 1.4rem;
+    color: #555;
+    
+}
+
+/* link */
+.signup-link,
+.login-link,
+.forgot-link {
+    font-size: 1.4rem;
+    color: #990000;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.signup-link:hover,
+.login-link:hover,
+.forgot-link:hover {
+    text-decoration: underline;
+}
+.SignUp-form .login-link-container {
+    text-align: left; 
+    margin-left: 3.1rem;
+    margin-top: 0.5rem; 
+}
+
+.SignUp-form .login-link {
+    font-size: 1.4rem;
+    color: #990000;
+    text-decoration: none;
+}
+
+.SignUp-form .login-link:hover {
+    text-decoration: underline;
+}
+
+/* ect */
+.SignUp-content p {
+    text-align: left;
+    font-size: 1.4rem;
+    color: #666;
+}
+
+/* 반응형 조정 */
+@media (max-width: 480px) {
+    .SignUp-page {
+        padding: 1.5rem;
+    }
+
+    .SignUp-form-btn {
+        font-size: 1.6rem;
+    }
+}

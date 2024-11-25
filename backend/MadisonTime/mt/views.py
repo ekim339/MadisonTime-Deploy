@@ -27,7 +27,9 @@ def timetable(request):
   if request.method == "POST":
     form = CourseForm(request.POST)
     if form.is_valid():
-      form.save()
+      course = form.save(commit=False)  # Don't save to the database yet
+      course.author = request.user      # Set the author field
+      course.save()
       return redirect('timetable')
     else:
       render(request, 'mt/timetable.html', {'form':form})

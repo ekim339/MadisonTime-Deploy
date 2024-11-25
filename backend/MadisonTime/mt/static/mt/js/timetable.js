@@ -80,11 +80,11 @@ btnAdd.addEventListener('click', () => {
   createCourse(checkDays(), courseName, location, from, to, color);
 
   // Clear inputs
-  tbxCourseName.value = '';
-  tbxLocation.value = '';
-  timeFrom.value = '';
-  timeTo.value = '';
-  clrCourse.value = '#ff0000';
+  // tbxCourseName.value = '';
+  // tbxLocation.value = '';
+  // timeFrom.value = '';
+  // timeTo.value = '';
+  // clrCourse.value = '#ff0000';
 
   // Close modal
   modalAdd.style.display = 'none';
@@ -130,6 +130,5 @@ function createCourse(daysArray, courseName, location, from, to, color){
     course.classList.add('course');
     daysArray[i].append(course);
 }
-
   
 }

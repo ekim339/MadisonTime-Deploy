@@ -47,5 +47,7 @@ class CourseForm(forms.ModelForm):
       'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun',
     ]
     widgets = {
-      'color' : ColorWidget
+      'time_from': forms.TimeInput(attrs={"type":"time"}),
+      'time_to':forms.TimeInput(attrs={"type":"time"}),
+      'color' : ColorWidget()
     }

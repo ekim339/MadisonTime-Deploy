@@ -95,23 +95,35 @@
           <h3 class="modal-title">Add a Course</h3>
           <i class="fas fa-times"></i>
         </div>
-        <form method="post">
+        <form method="POST">
+          {% csrf_token %}
           <div class="input-wrapper">
             <div class="course-name">Course Name</div>
-            <input type="text" class="course-name-input" id="course-name-input">
             {{form.name|add_class:"course-name-input"}}
+            {% for error in form.name.errors %}
+              <div class="error-message">{{error}}</div>
+            {% endfor %}
             <div class="location">Location</div>
-            {% comment %} <input type="text" class="location-input" id="location-input"> {% endcomment %}
             {{form.location|add_class:"location-input"}}
+            {% for error in form.location.errors %}
+              <div class="error-message">{{error}}</div>
+            {% endfor %}
             <div class="from">From</div>
-            {% comment %} <input type="time" class="from-input" id="from-input" min="09:00" max="18:00" required> {% endcomment %}
-            {{form.time_from|add_class:"from-input"|attr:"min:09:00"|attr:"max:18:00"}}
+            {{form.time_from|add_class:"from-input"}}
+            {% for error in form.time_from.errors %}
+              <div class="error-message">{{error}}</div>
+            {% endfor %}
             <div class="to">To</div>
-            {% comment %} <input type="time" class="to-input" id="to-input"> {% endcomment %}
-            {{form.time_to|add_class:"to-input"|attr:"min:09:00"|attr:"max:18:00"}}
+            {{form.time_to|add_class:"to-input"}}
+            {% for error in form.time_to.errors %}
+              <div class="error-message">{{error}}</div>
+            {% endfor %}
             <div class="color">Select color for this course</div>
-            <input type="color" value="#ff0000" class="course-color">
-            {{form.color}}
+            <input type="color" name="color" value="#ff0000" class="course-color">
+            {% for error in form.color.errors %}
+              <div class="error-message">{{error}}</div>
+            {% endfor %}
+            {% comment %} {{form.color}} {% endcomment %}
           </div>
           <button type="submit" class="add">Add</button>
           <div class="days-text">Select days</div>

@@ -1,0 +1,51 @@
+/* login page left */
+.left {
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack items vertically */
+  background-color: #990000; /* Maintain the background color */
+  color: #fff;
+  height: 100%; /* Ensure it fills the height */
+}
+
+.left-content {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack items vertically */
+  flex-grow: 1; /* Allow it to grow to fill available space */
+  padding: 20px; /* Optional: Add padding */
+}
+
+.left-content-heading {
+  text-align: center;
+  margin: 0;
+  margin-top: 20px; /* Add margin for spacing */
+}
+/* Ensure buttons are spaced correctly */
+.profile-button {
+  margin-top: 70vh; /* Push these buttons to the bottom */
+}
+
+/* Styles for buttons */
+.home-button,
+.schedule-button,
+.profile-button,
+.settings-button {
+  background-color: #990000;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.home-button:hover,
+.schedule-button:hover,
+.profile-button:hover,
+.settings-button:hover {
+  color: #f3b8b8; /* Change hover color */
+}
+
+
+
+/* end of login page left */

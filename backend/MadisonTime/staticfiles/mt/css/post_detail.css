@@ -1,0 +1,275 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fbe7e7;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 왼쪽 영역을 화면 최좌측에 고정 */
+
+.left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    background-color: #990000; /* Maintain the background color */
+    color: #fff;
+    height: 100%; /* Ensure it fills the height */
+}
+
+/* left 내부 요소 스타일 */
+.left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 내부 콘텐츠 가운데 정렬 */
+    flex-grow: 1;
+    padding: 20px;
+    width: 100%; /* left 내부에서 전체 너비 차지 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+}
+
+/* left-content-heading: 중앙 정렬 및 여백 설정 */
+.left-content-heading {
+    text-align: center;
+    margin: 20px 0; /* 상하 여백 균등 추가 */
+    width: 100%;
+}
+
+/* Ensure buttons are spaced correctly */
+.profile-button {
+    margin-top: 60vh; /* Push these buttons to the bottom */
+}
+
+/* 메인 콘텐츠 영역: 화면 중앙에 정렬 */
+.main-content {
+    margin-top: 80px; /* 상단 배너 높이만큼 여백 추가 */
+    margin-left: 300px; /* left 영역의 너비만큼 왼쪽 여백 추가 */
+    padding: 20px;
+    background-color: white;
+    width: 60%; /* 화면에서 중앙에 위치하게 설정 */
+}
+
+
+/* 포스트 콘텐츠 스타일 */
+.post-detail {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ca7a7a;
+    border-radius: 8px;
+}
+
+
+/* edit and delete buttons */
+.ud-post-buttons,
+.ud-comment-buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.ud-post-buttons{
+  justify-content: right;
+}
+
+.edit-button,
+.delete-button{
+  font-size: 16px;
+  color: #990000;
+}
+
+/* edit comment section */
+.edit-comment-buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-button{
+  background-color: transparent;
+  border: none;
+  color: #990000;
+  cursor: pointer;
+}
+
+#id_content{
+  width: 100%;
+}
+
+/* 제목 및 댓글 스타일 */
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ca7a7a;
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.post-content {
+    font-size: 16px;
+    margin-bottom: 30px;
+    max-width: 100%; 
+}
+
+.comments-section {
+    margin-top: 40px;
+}
+
+.comment {
+    border-bottom: 1px solid #ca7a7a;
+    padding: 10px 0;
+}
+
+.comment-meta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.comment-content {
+    font-size: 16px;
+}
+
+.comment-form {
+    margin-top: 20px;
+    margin-right: 2.5rem;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 1rem;
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.no-comment{
+  margin: 2rem 0;
+}
+
+.ud-comment-cuttons{
+  display: flex;
+  justify-content: right;
+  gap: 1rem;
+}
+
+/* common styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/* Styles for buttons */
+.home-button,
+.schedule-button,
+.profile-button,
+.settings-button,
+.logOut-button {
+    background-color: #990000;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-button:hover,
+.schedule-button:hover,
+.profile-button:hover,
+.settings-button:hover,
+.logOut-button:hover {
+    color: #f3b8b8; /* Change hover color */
+}
+
+
+/* Header section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid #990000;
+    padding: 3px;
+    position: fixed;
+    top: 0;
+    left: 138px;
+    width:90%;
+    z-index: 1000;
+}
+
+/* Title styling */
+.title{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 27.5px;
+   
+    background-color: #fff;
+}
+
+
+/* Search bar styling */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar-input {
+    width: 10rem;
+    height: 3rem;
+    border: 0.1rem solid #990000;
+    border-radius: 3rem;
+    background-color: #FACECE;
+    padding-left: 5rem;
+    transition: all 0.3s;
+}
+
+.search-bar-input:focus {
+    background-color: #fff;
+    border-color: #ff0000;
+    outline: solid #ff0000;
+}
+
+.search-button {
+    border: none;
+    color: #990000;
+    font-size: large;
+    background-color: #fff;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-button:hover {
+    color: #fff;
+    background-color: #ff0000;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
