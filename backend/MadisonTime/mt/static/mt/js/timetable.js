@@ -2,6 +2,13 @@ const btnAddCourse = document.querySelector('.add-course-btn');
 const modalAdd = document.querySelector('.modal');
 const modalWrapper = document.querySelector('.modal-wrapper');
 const addModalX = document.querySelector('.modal-header i');
+const monInput = document.getElementById('mon');
+const tueInput = document.getElementById('tue');
+const wedInput = document.getElementById('wed');
+const thuInput = document.getElementById('thu');
+const friInput = document.getElementById('fri');
+const satInput = document.getElementById('sat');
+const sunInput = document.querySelector('sun');
 const btnM = document.querySelector('.m-button');
 const btnT = document.querySelector('.t-button');
 const btnW = document.querySelector('.w-button');
@@ -15,13 +22,13 @@ const tbxLocation = document.querySelector('.location-input');
 const timeFrom = document.querySelector('.from-input');
 const timeTo = document.querySelector('.to-input');
 const clrCourse = document.querySelector('.course-color');
-const mon = document.querySelector('.mon');
-const tue = document.querySelector('.tue');
-const wed = document.querySelector('.wed');
-const thu = document.querySelector('.thu');
-const fri = document.querySelector('.fri');
-const sat = document.querySelector('.sat');
-const sun = document.querySelector('.sun');
+const monBox = document.querySelector('.monday');
+const tueBox = document.querySelector('.tuesday');
+const wedBox = document.querySelector('.wednesday');
+const thuBox = document.querySelector('.thursday');
+const friBox = document.querySelector('.friday');
+const satBox = document.querySelector('.saturday');
+const sunBox = document.querySelector('.sunday');
 
 /*************************************************/
 /*************************************************/
@@ -42,33 +49,48 @@ function clicked(button) {
   button.classList.toggle('active');
 }
 
+function updateInputField(button, inputField){
+  if (button.classList.contains('active')) {
+    inputField.value = "True"; // Set to True if active
+} else {
+    inputField.value = "False"; // Set to False if not active
+}
+}
+
 btnM.addEventListener('click', function(){
   clicked(btnM);
+  updateInputField(btnM, monInput);
 });
 
 
 btnT.addEventListener('click', function(){
   clicked(btnT);
+  updateInputField(btnT, tueInput);
 });
 
 btnW.addEventListener('click', function(){
   clicked(btnW);
+  updateInputField(btnW, wedInput);
 });
 
 btnTh.addEventListener('click', function(){
   clicked(btnTh);
+  updateInputField(btnTh, thuInput);
 });
 
 btnF.addEventListener('click', function(){
   clicked(btnF);
+  updateInputField(btnF, friInput);
 });
 
 btnS.addEventListener('click', function(){
   clicked(btnS);
+  updateInputField(btnS, satInput);
 });
 
 btnSu.addEventListener('click', function(){
   clicked(btnSu);
+  updateInputField(btnSu, sunInput);
 });
 
 btnAdd.addEventListener('click', () => {
@@ -95,25 +117,25 @@ btnAdd.addEventListener('click', () => {
 function checkDays(){
   const days = [];
   if (btnM.classList.contains('active')){
-    days.push(mon);
+    days.push(monBox);
   }
   if (btnT.classList.contains('active')){
-    days.push(tue);
+    days.push(tueBox);
   }
   if (btnW.classList.contains('active')){
-    days.push(wed);
+    days.push(wedBox);
   }
   if (btnTh.classList.contains('active')){
-    days.push(thu);
+    days.push(thuBox);
   }
   if (btnF.classList.contains('active')){
-    days.push(fri);
+    days.push(friBox);
   }
   if (btnS.classList.contains('active')){
-    days.push(sat);
+    days.push(satBox);
   }
   if (btnS.classList.contains('active')){
-    days.push(sun);
+    days.push(suBoxn);
   }
   return days;
 }

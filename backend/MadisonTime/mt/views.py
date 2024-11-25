@@ -29,6 +29,25 @@ def timetable(request):
     if form.is_valid():
       course = form.save(commit=False)  # Don't save to the database yet
       course.author = request.user      # Set the author field
+
+      # get days input
+      mon = request.POST.get("mon") == "True"
+      tue = request.POST.get("tue") == "True"
+      wed = request.POST.get("wed") == "True"
+      thu = request.POST.get("thu") == "True"
+      fri = request.POST.get("fri") == "True"
+      sat = request.POST.get("sat") == "True"
+      sun = request.POST.get("sun") == "True"
+
+      # update model field
+      form.mon = mon
+      form.tue = tue
+      form.wed = wed
+      form.thu = thu
+      form.fri = fri
+      form.sat = sat
+      form.sun = sun
+
       course.save()
       return redirect('timetable')
     else:
