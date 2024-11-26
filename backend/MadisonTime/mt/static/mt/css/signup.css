@@ -1,23 +1,3 @@
-/* common styles */
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Josefin Sans", sans-serif;
-}
-
-html {
-    font-size: 62.5%;
-}
-
-body {
-    background-color: #fbe7e7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-/* end of common styles */
-
 
 /* signUp page */
 .SignUp-page {
@@ -30,7 +10,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
+    margin-left: 137px;
+    margin-top: 40px;
 }
 
 /* Content */

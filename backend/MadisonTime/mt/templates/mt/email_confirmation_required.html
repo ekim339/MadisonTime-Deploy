@@ -1,15 +1,18 @@
-{% extends "mt_base/base.html" %}
 {% load static %}
 
-{% block css %}
-  {{block.super}}
-  <link rel="stylesheet" href="{% static "mt/css/email_confirmation_required.css"%}"/>
-{% endblock css %}
-
-{% block content %}
-<div class="email-confirmation">
-  <p class="message"> You must verify your email address in order create a post or comment. We've sent you an email to {{ user.email }}. Please check and comlete the email confirmation.
-  </p>
-  {% comment %} <a class="redirect" href="{% url 'home' %}">Home</a> {% endcomment %}
-</div>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MadisonTime</title>
+        <link rel="stylesheet" href="{% static 'mt/css/email_confirmaiton_required.css' %}" />
+    </head>
+    <body>
+      <div class="email-confirmation">
+        <p class="message"> You must verify your email address in order create a post or comment. We've sent you an email to {{ user.email }}. Please check and comlete the email confirmation.
+        </p>
+        <a class="redirect" href="{% url 'home' %}">Home</a>
+      </div>
+    </body>
+</html>

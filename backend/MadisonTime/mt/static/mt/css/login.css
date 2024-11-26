@@ -21,7 +21,7 @@
     grid-template-rows: 2fr 1fr;
     box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
     margin-left: 4rem;
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
 }
 .login-content {
     grid-column: 2 / -1;

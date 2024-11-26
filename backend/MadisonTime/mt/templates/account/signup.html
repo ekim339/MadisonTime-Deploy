@@ -1,31 +1,17 @@
+{% extends "mt_base/base_no_search.html" %} 
 {% load static %}
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-            src="https://kit.fontawesome.com/ed63704ebd.js"
-            crossorigin="anonymous"
-        ></script>
-    <link rel="stylesheet" href="{% static 'mt/css/signup.css' %}" />
-    <title>Sign Up | MadisonTime</title>
-</head>
-<body>
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/signup.css" %} />
+{% endblock css %}
 
+{% block title %}
+SignUp | MadisonTime
+{% endblock title %}
+
+{% block content %}
     <!-- SignUp page -->
     <section class="SignUp-page">
         <!-- SignUp -->
@@ -75,9 +61,4 @@
          </div>
         <!-- end of SignUp -->
     </section>
-    
-    <!-- end of SignUp page -->
-    
-     <script src="script.js"></script>
-</body>
-</html>
+{% endblock content %}
