@@ -117,10 +117,10 @@ btnAdd.addEventListener('click', (e) => {
   const form = document.querySelector('form');
   form.addEventListener('submit', (event) => {
     const errors = document.querySelectorAll('.error-message');
-
+    
     // Prevent closing the modal if there are validation errors
     if (errors.length > 0) {
-      e.preventDefault(); // Stop form submission
+      e.preventDefault();// Stop form submission
       modalAdd.style.display = 'block';
       modalWrapper.classList.add('modal-wrapper-display');
     }
@@ -130,11 +130,29 @@ btnAdd.addEventListener('click', (e) => {
       // timeFrom.value = '';
       // timeTo.value = '';
       // clrCourse.value = '#ff0000';
+      form.submit()
       modalAdd.style.display = 'none';
       modalWrapper.classList.remove('modal-wrapper-display');
     }
   });
 });
+
+// const form = document.querySelector('form');
+
+// form.addEventListener('submit', (e) => {
+//   const errors = document.querySelectorAll('.error-message');
+
+//   // Prevent closing the modal if there are validation errors
+//   if (errors.length > 0) {
+//     e.preventDefault(); // Stop form submission
+//     modalAdd.style.display = 'block';
+//     modalWrapper.classList.add('modal-wrapper-display');
+//   } else {
+//     // Proceed with submission
+//     modalAdd.style.display = 'none';
+//     modalWrapper.classList.remove('modal-wrapper-display');
+//   }
+// });
 
 
 // function checkDays(){
