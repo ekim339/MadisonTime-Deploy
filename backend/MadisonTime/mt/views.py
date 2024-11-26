@@ -26,6 +26,9 @@ def home(request):
 def board(request):
   return render(request, 'mt/board.html')
 
+def course_detail(request):
+  return render(request, 'mt/course_detail.html')
+
 @login_required
 def timetable(request):
   if request.method == "POST":
@@ -79,7 +82,6 @@ def timetable(request):
     course.position = time_from_start * 5.5555
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
-  # return render(request, 'mt/timetable.html')
 
 @login_required
 def settings(request):

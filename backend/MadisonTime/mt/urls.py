@@ -27,6 +27,7 @@ urlpatterns = [
       views.PostDetailView.as_view(), 
       name='post-detail'
     ),
+    path('coursedetail/', views.course_detail, name='course-detail'),
 
     # settings urls
     path('settings/', views.settings, name='settings'),

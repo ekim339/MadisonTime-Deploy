@@ -4,7 +4,7 @@
 
 {% block css %}
   {{ block.super }}
-  <link rel="stylesheet" href={% static "mt/css/timetable.css" %} />
+  <link rel="stylesheet" href={% static "mt/css/course_detail.css" %} />
 {% endblock css %}
 
 {% block content %}
@@ -128,6 +128,7 @@
 </section>
 <!-- end of feeds page -->
 
+
 <!-- add course modal -->
   <div class="modal-wrapper" id="modal-wrapper" {% if modal_open %}modal-wrapper-display{% endif %}>
     <div class="modal">
@@ -135,46 +136,22 @@
         <h3 class="modal-title">Add a Course</h3>
         <i class="fas fa-times"></i>
       </div>
-      <form method="POST">
-        {% csrf_token %}
         <div class="input-wrapper">
           <div class="course-name">Course Name</div>
-          {{form.name|add_class:"course-name-input"}}
-          {% for error in form.name.errors %}
-            <div class="error-message">{{error}}</div>
-          {% endfor %}
+
           <div class="location">Location</div>
-          {{form.location|add_class:"location-input"}}
-          {% for error in form.location.errors %}
-            <div class="error-message">{{error}}</div>
-          {% endfor %}
+
           <div class="from">From</div>
-          {{form.time_from|add_class:"from-input"}}
-          {% for error in form.time_from.errors %}
-            <div class="error-message">{{error}}</div>
-          {% endfor %}
+
           <div class="to">To</div>
-          {{form.time_to|add_class:"to-input"}}
-          {% for error in form.time_to.errors %}
-            <div class="error-message">{{error}}</div>
-          {% endfor %}
+
           <div class="color">Select color for this course</div>
-          <input type="color" name="color" value="#ff0000" class="course-color">
-          {% for error in form.color.errors %}
-            <div class="error-message">{{error}}</div>
-          {% endfor %}
+          <!-- course 색깔 보여주는 element 넣기 -->
+
         </div>
+        <!-- add 버튼말고 edit, delete 버튼 넣기 -->
         <button type="submit" class="add">Add</button>
-        {% comment %} {% if error_message %}
-            <div class="error-message">
-                {% for field, messages in error_message.items %}
-                    <strong>{{ field }}:</strong>
-                    {% for message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %} {% endcomment %}
+
         <div class="days-text">Select days</div>
         <div class="days-button-wrapper">
           <input type="hidden" name="mon" id="mon" value="{{ course.mon }}">
@@ -192,7 +169,6 @@
           <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
           <button type="button" class="days-button su-button">Su</button>
         </div>
-      </form>
     </div>
   </div>
 <!-- end of add course modal -->
