@@ -15,12 +15,13 @@
     grid-row: 2 / 3;
     background-color: #fff;
     width: 100rem;
-    height: 90vh;
+    height: 80vh;
     display: grid;
     grid-template-columns: 15rem 8fr;
     grid-template-rows: 2fr 1fr;
     box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
     margin-left: 4rem;
+    margin-top: 4rem;
 }
 .login-content {
     grid-column: 2 / -1;

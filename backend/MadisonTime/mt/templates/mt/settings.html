@@ -1,6 +1,18 @@
+{% extends "mt_base/base_no_search.html" %} 
 {% load static %}
+{% load widget_tweaks %}
 
-<!DOCTYPE html>
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/settings.css" %} />
+{% endblock css %}
+
+{% block title %}
+Settings | MadisonTime
+{% endblock title %}
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -31,26 +43,23 @@
             </button>
         </div>
     </header>
-    <div class="main-content">
-        <div class="left">
+    <div class="main-content"> {% endcomment %}
+
+        {% comment %} <div class="left">
             <div class="left-content">
                 <div class="left-content-heading home">
-                    <button
-                        type="button"
-                        class="home-button"
-                        onclick="location.href='./MadisonTime_HomePage.html'"
-                    >
+                  <a href="{% url 'home' %}" class="buttons">
+                    <button type="button" class="home-button">
                         <i class="fa-solid fa-house"></i>Home
                     </button>
+                  </a>
                 </div>
                 <div class="left-content-heading schedule">
-                    <button
-                        type="button"
-                        class="schedule-button"
-                        onclick="location.href='../Timetable/timetable.html'"
-                    >
+                  <a href="{% url 'timetable' %}"  class="buttons">
+                    <button type="button" class="schedule-button">
                         <i class="fa-solid fa-calendar-days"></i>Schedule
                     </button>
+                  </a>
                 </div>
                 <div class="left-content-heading profile">
                     <button type="button" class="profile-button">
@@ -58,12 +67,17 @@
                     </button>
                 </div>
                 <div class="left-content-heading settings">
+                  <a href="{% url 'settings' %}"  class="buttons">
                     <button type="button" class="settings-button">
                         <i class="fas fa-gear"></i>Settings
                     </button>
+                  </a>
                 </div>
             </div>
         </div>
+        
+         {% endcomment %}
+         {% block content%}
         <div class="settings-container">
             <!-- 제목 섹션 -->
             <div class="settings-section">
@@ -74,30 +88,49 @@
             <div class="settings-section">
                 <h2>User Info</h2>
                 <div class="info-container">
-                    <p>ID: <span id="userId">user123</span></p>
-                    <p>Name: <span id="userName">Taeyeon Lee</span></p>
+                    <p>Email: <span id="email">{{user.email}}</span></p>
+                    <p>Nickname: <span id="nickname">{{curr_nickname}}</span></p>
                 </div>
             </div>
-            
+
             <!-- 아이디 변경 섹션 -->
-            <div class="settings-section">
-                <h2>Change ID</h2>
-                <div class="input-container">
-                    <input type="text" id="newUserId" placeholder="New ID">
-                    <button onclick="changeUserId()">Change</button>
-                </div>
-            </div>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="settings-section">
+                  <h2>Change Nickname</h2>
+                  <div class="input-container">
+                      {{nickname_change_form.nickname|attr:"placeholder:New nickname"}}
+                      {% for error in nickname_change_form.nickname.errors %}
+                        <div class="error-message">{{ error }}</div>
+                      {% endfor %}
+                      <button type="submit">Change</button>
+                  </div>
+              </div>
+            </form>
             
             <!-- 비밀번호 변경 섹션 -->
-            <div class="settings-section">
-                <h2>Change password</h2>
-                <div class="input-container">
-                    <input type="password" id="currentPassword" placeholder="current password">
-                    <input type="password" id="newPassword" placeholder="new password">
-                    <input type="password" id="newPassword" placeholder="confirm new password">
-                    <button onclick="changePassword()">Confirm</button>
-                </div>
-            </div>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="settings-section">
+                  <h2>Change password</h2>
+                  <div class="input-container">
+                      {{password_change_form.old_password|attr:"placeholder:Current password"|add_error_class:"error"}}
+                      {% for error in password_change_form.old_password.errors %}
+                        <div class="error-message">{{ error }}</div>
+                      {% endfor %}
+                      {{password_change_form.new_password1|attr:"placeholder:New password"|add_error_class:"error"}}
+                      {% for error in password_change_form.new_password1.errors %}
+                        <div class="error-message">{{ error }}</div>
+                      {% endfor %}
+                      {{password_change_form.new_password2|attr:"placeholder:Confirm new password"|add_error_class:"error"}}
+                      {% for error in password_change_form.new_password2.errors %}
+                        <div class="error-message">{{ error }}</div>
+                      {% endfor %}
+                      
+                      <button type="submit">Confirm</button>
+                  </div>
+              </div>
+            </form>
             
             <!-- 알림 설정 섹션 -->
             <div class="settings-section">
@@ -106,8 +139,8 @@
                     <button id="toggleButton" class="toggle-button active" onclick="toggleState()">ON</button>
                 </div>
             </div>
-        </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+            {% endblock content %}
+        {% comment %} </div> {% endcomment %}
+    {% comment %} <script src="script.js"></script> {% endcomment %}
+{% comment %} </body>
+</html> {% endcomment %}

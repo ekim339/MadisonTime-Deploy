@@ -1,6 +1,7 @@
+{% extends "mt_base/base.html" %} 
 {% load static %}
 {% load widget_tweaks %}
-
+{% comment %} 
 <!-- post_detail.html -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,9 +36,19 @@
                 <i class="fas fa-search"></i>
             </button>
         </div>
-    </header>
+    </header> {% endcomment %}
+
+    {% block css %}
+      {{ block.super }}
+      <link rel="stylesheet" href={% static "mt/css/post_detail.css" %} />
+    {% endblock css %}
+
+    {% block title %}
+    {{post.title}} | MadisonTime
+    {% endblock title %}
     
-        <div class="main-content">
+        
+        {% comment %} <div class="main-content">
             <div class="left">
                 <div class="left-content">
                   <div class="left-content-heading home">
@@ -74,110 +85,113 @@
                       </div>
                     {% endif %}
                 </div>
-            </div>
+            </div> {% endcomment %}
 
-            
-            <div class="post-detail">
-                <h1 class="post-title">{{post.title}}</h1>
-                <div class="post-meta">Author: {{post.author.nickname}} | Date: {{post.dt_created|date:"M, d Y H:i"}}
-                    {% if post.edited == True %} | Last edited: {{post.dt_updated|date:"M d, Y H:i"}}
+            {% block content %}
+            <div class="main-content">
+              <div class="post-detail">
+                  <h1 class="post-title">{{post.title}}</h1>
+                  <div class="post-meta">Author: {{post.author.nickname}} | Date: {{post.dt_created|date:"M, d Y H:i"}}
+                      {% if post.edited == True %} | Last edited: {{post.dt_updated|date:"M d, Y H:i"}}
+                      {% endif %}
+                  </div>
+                  <div class="post-content">
+                      {{ post.content|linebreaksbr }}
+                      {% if post.image1 %}
+                        <img class="image1" src="{{post.image1.url}}">
+                      {% endif %}
+                      {% if post.image2 %}
+                        <img class="image2" src="{{post.image2.url}}">
+                      {% endif %}
+                      {% if post.image3 %}
+                        <img class="image3" src="{{post.image3.url}}">
+                      {% endif %}
+                  </div>
+                  {% if post.author == user %}
+                    <div class="ud-post-buttons">
+                      <div class="edit-post">
+                          <a class = "edit-button" href="{% url 'post-update' post.id %}">Edit</a>
+                      </div>
+                      <div class="delete-post">
+                          <a 
+                            class = "delete-button" 
+                            href="{% url 'post-delete' post.id %}"
+                            onclick="return confirm('Would you really like to delete this post?');"
+                          >Delete</a>
+                      </div>
                     {% endif %}
-                </div>
-                <div class="post-content">
-                    {{ post.content|linebreaksbr }}
-                    {% if post.image1 %}
-                      <img class="image1" src="{{post.image1.url}}">
-                    {% endif %}
-                    {% if post.image2 %}
-                      <img class="image2" src="{{post.image2.url}}">
-                    {% endif %}
-                    {% if post.image3 %}
-                      <img class="image3" src="{{post.image3.url}}">
-                    {% endif %}
-                </div>
-                {% if post.author == user %}
-                  <div class="ud-post-buttons">
-                    <div class="edit-post">
-                        <a class = "edit-button" href="{% url 'post-update' post.id %}">Edit</a>
-                    </div>
-                    <div class="delete-post">
-                        <a 
-                          class = "delete-button" 
-                          href="{% url 'post-delete' post.id %}"
-                          onclick="return confirm('Would you really like to delete this post?');"
-                        >Delete</a>
-                    </div>
-                  {% endif %}
-                </div>
+                  </div>
 
-                <div class="comments-section">
-                    <h2>Comments</h2>
-                    {% if post.comments.all %}
-                        {% for comment in post.comments.all %}
-                          {% if edit_comment and comment.id == edit_comment.id %}
-                            <div class="comment-meta">
-                              {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
-                              {% if comment.edited %} | Last edited: {{comment.dt_updated|date:"M d, Y H:i"}}
-                              {% endif %}
-                            </div>
-                            <form method="post">
-                              {% csrf_token %}
-                              <input type="hidden" name="edit_comment_id" value="{{ edit_comment.id }}">
-                              {{ edit_form.content }}
-                              <div class="edit-comment-buttons">
-                                <div class="confirm-edit">
-                                    <button type="submit" class="edit-button">Submit</button>
-                                </div>
-                                <div class="cancel-edit">
-                                    <a class = "delete-button" href="{% url 'post-detail' post.id %}">Cancel</a>
-                                </div>
-                              </div>
-                            </form>
-                          {% else %}
-                            <div class="comment">
+                  <div class="comments-section">
+                      <h2>Comments</h2>
+                      {% if post.comments.all %}
+                          {% for comment in post.comments.all %}
+                            {% if edit_comment and comment.id == edit_comment.id %}
                               <div class="comment-meta">
                                 {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
-                                {% if comment.edited %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
+                                {% if comment.edited %} | Last edited: {{comment.dt_updated|date:"M d, Y H:i"}}
                                 {% endif %}
                               </div>
-                              <div class="comment-content">{{comment.content}}</div>
-                              {% if comment.author == user %}
-                              <div class="ud-comment-buttons">
-                                <div class="edit-comment">
-                                    <a class ="edit-button" href="?edit_comment={{comment.id}}">Edit</a>
-                                </div>
-                                <div class="delete-comment">
-                                  <div class="delete-post">
-                                      <a 
-                                        class = "delete-button" 
-                                        href="{% url 'comment-delete' comment.id %}"
-                                        onclick="return confirm('Would you really like to delete this comment?');"
-                                      >Delete</a>
+                              <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="edit_comment_id" value="{{ edit_comment.id }}">
+                                {{ edit_form.content }}
+                                <div class="edit-comment-buttons">
+                                  <div class="confirm-edit">
+                                      <button type="submit" class="edit-button">Submit</button>
+                                  </div>
+                                  <div class="cancel-edit">
+                                      <a class = "delete-button" href="{% url 'post-detail' post.id %}">Cancel</a>
                                   </div>
                                 </div>
+                              </form>
+                            {% else %}
+                              <div class="comment">
+                                <div class="comment-meta">
+                                  {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
+                                  {% if comment.edited %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
+                                  {% endif %}
+                                </div>
+                                <div class="comment-content">{{comment.content}}</div>
+                                {% if comment.author == user %}
+                                <div class="ud-comment-buttons">
+                                  <div class="edit-comment">
+                                      <a class ="edit-button" href="?edit_comment={{comment.id}}">Edit</a>
+                                  </div>
+                                  <div class="delete-comment">
+                                    <div class="delete-post">
+                                        <a 
+                                          class = "delete-button" 
+                                          href="{% url 'comment-delete' comment.id %}"
+                                          onclick="return confirm('Would you really like to delete this comment?');"
+                                        >Delete</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                {% endif %}
                               </div>
-                              {% endif %}
-                            </div>
-                          {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <h3 class="no-comment">No comments... Be the first one to comment!</h3>
-                    {% endif %}
-                </div>
+                            {% endif %}
+                          {% endfor %}
+                      {% else %}
+                          <h3 class="no-comment">No comments... Be the first one to comment!</h3>
+                      {% endif %}
+                  </div>
 
-                <div class="comment-form">
-                    <h2>Add Comment</h2>
-                    <form method="POST" autocomplete="off">
-                      {% csrf_token %}
-                      {{form.content|add_class:"comment-input"|attr:"placeholder:Add comment...."}}
-                      {% for error in form.content.errors %}
-                      <div class="error-message">{{error}}</div>
-                      {% endfor %}
-                      <button type="submit">Add Comment</button>
-                    </form>
-                </div>
-            </div>
+                  <div class="comment-form">
+                      <h2>Add Comment</h2>
+                      <form method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        {{form.content|add_class:"comment-input"|attr:"placeholder:Add comment...."}}
+                        {% for error in form.content.errors %}
+                        <div class="error-message">{{error}}</div>
+                        {% endfor %}
+                        <button type="submit">Add Comment</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
         </div>
-    
+        {%endblock content%}
+{% comment %}     
 </body>
-</html>
+</html> {% endcomment %}

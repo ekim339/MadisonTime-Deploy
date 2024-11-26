@@ -10,7 +10,7 @@ admin.site.register(Post)
 admin.site.register(Comment)
 admin.site.register(Course)
 
-# super user: ekim339, ekim339@wisc.edu, madisontime
+# super user: ekim339, ekim339@wisc.edu, Madisontime^^00
 # user 1: testuser, test@gmail.com, testingsignup
 # user 1: test2@gmail.com, testuser2, testingsignup
 # user 3: test3@gmail.com, testuser3, Testingsignup^^00

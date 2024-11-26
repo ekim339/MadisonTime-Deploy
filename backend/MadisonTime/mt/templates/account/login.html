@@ -13,15 +13,11 @@
         <h2>Log in to MadisonTime</h2>
         <form method="post" action="{% url 'account_login' %}?next={{request.GET.next|default:''}}" class="login-form">
             {% csrf_token %}
-            {% comment %} <input type="hidden" name="next" value="{{ request.GET.next|default:'' }}"> {% endcomment %}
-            <!-- error messages -->
             {% for error in form.non_field_errors %}
               <div class="error-message">{{ error }}</div>
             {% endfor %}
             <p>
-                <!--<label for="username" class="visually-hidden">Username</label>-->
                 <label class="visually-hidden">Email</label>
-                {% comment %} <input type="text" id="username" placeholder="Email or username" /> {% endcomment %}
                 {{ form.login|add_class:"mt-input"|attr:"placeholder:Email"|add_error_class:"error"}}
                 {% for error in form.login.errors %}
                   <div class="error-message">{{ error }}</div>

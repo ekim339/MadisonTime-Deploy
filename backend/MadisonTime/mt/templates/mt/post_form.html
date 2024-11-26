@@ -8,8 +8,8 @@
 {% endblock css %}
 
 {% block title %}
-  {% if review %}
-    {{ review.title }}
+  {% if post %}
+    {{ post.title }}
   {% else %}
     New Post
   {% endif %} | MadisonTime
@@ -18,7 +18,11 @@
 {% block content %}
     <div class="container">
         <div class="container-content">
-            <h1>New Post</h1>
+            {% if post %}
+              <h1>Edit Post</h1>
+            {% else %}
+              <h1>New Post</h1>
+            {% endif %}
             <form method="POST" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">

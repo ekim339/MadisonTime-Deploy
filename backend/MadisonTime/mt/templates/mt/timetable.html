@@ -1,6 +1,15 @@
+{% extends "mt_base/base_no_search.html" %} 
 {% load static %}
 {% load widget_tweaks %}
 
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/timetable.css" %} />
+{% endblock css %}
+
+
+
+{% comment %} 
 <!DOCTYPE html>
  <html lang="en">
   <head>
@@ -52,8 +61,9 @@
           </div>
         </div>
       </div>
-      <!-- end of left --> 
+      <!-- end of left -->  {% endcomment %}
 
+      {% block content %}
       <!-- default display -->
       <div class="content">
         <h1 class="timetable-header">My Timetable</h1>
@@ -211,6 +221,16 @@
               {% endfor %}
             </div>
             <button type="submit" class="add">Add</button>
+            {% comment %} {% if error_message %}
+                <div class="error-message">
+                    {% for field, messages in error_message.items %}
+                        <strong>{{ field }}:</strong>
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %} {% endcomment %}
             <div class="days-text">Select days</div>
             <div class="days-button-wrapper">
               <input type="hidden" name="mon" id="mon" value="{{ course.mon }}">
@@ -230,6 +250,7 @@
             </div>
           </form>
         </div>
+        
         {% comment %} <script>
           $(document).ready(function() {
             {% if form.errors %}
@@ -240,6 +261,7 @@
       </div>
     <!-- end of add course modal -->
     <script src="{% static 'mt/js/timetable.js' %}"></script>
+    {% endblock content %}
     {% comment %} <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-KyZXEAg3QhqLMpG8r+8fhAXLRKfsN3RzT4zPbpXQWIc="

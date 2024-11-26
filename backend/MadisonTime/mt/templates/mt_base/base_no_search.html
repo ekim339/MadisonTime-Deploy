@@ -21,24 +21,12 @@
             crossorigin="anonymous"
         ></script>
         {% block css %}
-          <link rel="stylesheet" href="{% static 'mt/css/base.css' %}" />
+          <link rel="stylesheet" href="{% static 'mt/css/base_no_search.css' %}" />
         {% endblock %}
     </head>
     <body>
         <!-- feeds page -->
         <section class="feeds-page">
-            <header class="header">
-              <div class="title">Madison Time</div>
-              {% if user.is_authenticated %}
-                <h1>Welcome, {{user.nickname}}</h1>
-              {% endif %}
-              <div class="search-bar">
-                  <input type="text" placeholder="Search" class="search-bar-input" />
-                  <button type="button" class="search-button">
-                      <i class="fas fa-search"></i>
-                  </button>
-              </div>
-          </header>
             <!-- left -->
             <div class="left">
                 <div class="left-content">
@@ -58,10 +46,10 @@
                     </div>
                     <div class="left-content-heading board">
                       <a href="{% url 'board' %}"  class="buttons">
-                      <button type="button" class="board-button">
-                          <i class="fa-solid fa-note-sticky"></i>Board
-                      </button>
-                      </a>
+                        <button type="button" class="board-button">
+                            <i class="fa-solid fa-note-sticky"></i>Board
+                        </button>
+                        </a>
                     </div>
                     <div class="left-content-heading settings">
                       <a href="{% url 'settings' %}" class="settings">
@@ -82,7 +70,7 @@
                       <div class="left-content-heading settings">
                         <a href="{% url 'account_login' %}" class="buttons">
                           <button type="button" class="logOut-button"> 
-                                <i class="fa-solid fa-right-to-bracket"></i>Log In
+                                <i class="fa-solid fa-right-to-bracket"></i>Log Out
                           </button>
                         </a>
                       </div>
@@ -90,24 +78,6 @@
                 </div>
             </div>
 
-            <!-- end of left -->
-            <!-- right -->
-            {% comment %} <div class="right">
-                <div class="search-bar">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        class="search-bar-input"
-                    />
-                </div>
-                <div>
-                    <button type="button" class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div> {% endcomment %}
-            <!-- end of right -->
-            <!-- center -->
             <div class="center">
             {% block content %}
             {% endblock %}

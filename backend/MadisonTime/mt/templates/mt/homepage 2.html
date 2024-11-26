@@ -1,4 +1,4 @@
-{% comment %} {% load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,55 @@
         ></script>
         <link rel="stylesheet" href="{% static 'mt/css/home.css' %}" />
     </head>
+    {% comment %} <div class="left">
+                <div class="left-content">
+                    <div class="left-content-heading home">
+                        <button
+                            type="button"
+                            class="home-button"
+                            onclick="location.href='./MadisonTime_HomePage.html'"
+                        >
+                            <i class="fa-solid fa-house"></i>Home
+                        </button>
+                    </div>
+                    <div class="left-content-heading schedule">
+                        <button
+                            type="button"
+                            class="schedule-button"
+                            onclick="location.href='../Timetable/timetable.html'"
+                        >
+                            <i class="fa-solid fa-calendar-days"></i>Schedule
+                        </button>
+                    </div>
+                    <div class="left-content-heading board">
+                        <button 
+                            type="button" 
+                            class="board-button"
+                            onclick="location.href='../EachPost/isPostList.html'"
+                            >
+                            <i class="fa-solid fa-note-sticky"></i>Board
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button 
+                        type="button" 
+                        class="settings-button"
+                        >
+                            <i class="fas fa-gear"></i>Settings
+                        </button>
+                    </div>
+                    <div class="left-content-heading settings">
+                        <button 
+                        type="button" 
+                        class="logOut-button"
+                        onclick="location.href='../LoginPage/MadisonTime-Login.html'"
+                        >
+                            <i class="fa-solid fa-right-from-bracket"></i>Log Out
+                        </button>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+
     <body>
         <navbar>
           {% if user.is_authenticated %}
@@ -34,9 +83,17 @@
 
         <!-- feeds page -->
         <section class="feeds-page">
-            <header class="title">Madison Time</header>
+            <header class="header">
+              <div class="title">Madison Time</div>
+              <div class="search-bar">
+                  <input type="text" placeholder="Search" class="search-bar-input" />
+                  <button type="button" class="search-button">
+                      <i class="fas fa-search"></i>
+                  </button>
+              </div>
+              </header>
             <!-- left -->
-            <div class="left">
+            {% comment %} <div class="left">
                 <div class="left-content">
                     <div class="left-content-heading home">
                       <a href="{% url 'home' %}">
@@ -72,9 +129,61 @@
                     </div>
                     {% endif %}
                 </div>
-            </div>
+            </div> {% endcomment %}
 
             <!-- end of left -->
+
+            <!-- new left -->
+            <div class="left">
+              <div class="left-content">
+                  <div class="left-content-heading home">
+                      <button
+                          type="button"
+                          class="home-button"
+                          onclick="location.href='./MadisonTime_HomePage.html'"
+                      >
+                          <i class="fa-solid fa-house"></i>Home
+                      </button>
+                  </div>
+                  <div class="left-content-heading schedule">
+                      <button
+                          type="button"
+                          class="schedule-button"
+                          onclick="location.href='../Timetable/timetable.html'"
+                      >
+                          <i class="fa-solid fa-calendar-days"></i>Schedule
+                      </button>
+                  </div>
+                  <div class="left-content-heading board">
+                      <button 
+                          type="button" 
+                          class="board-button"
+                          onclick="location.href='../EachPost/isPostList.html'"
+                          >
+                          <i class="fa-solid fa-note-sticky"></i>Board
+                      </button>
+                  </div>
+                  <div class="left-content-heading settings">
+                      <button 
+                      type="button" 
+                      class="settings-button"
+                      >
+                          <i class="fas fa-gear"></i>Settings
+                      </button>
+                  </div>
+                  <div class="left-content-heading settings">
+                      <button 
+                      type="button" 
+                      class="logOut-button"
+                      onclick="location.href='../LoginPage/MadisonTime-Login.html'"
+                      >
+                          <i class="fa-solid fa-right-from-bracket"></i>Log Out
+                      </button>
+                  </div>
+              </div>
+            </div>
+            <!-- end of new left -->
+
             <!-- right -->
             <div class="right">
                 <div class="search-bar">
@@ -92,9 +201,7 @@
             </div>
             <!-- end of right -->
             <!-- center -->
-            <div class="center"> {% endcomment %}
-              {% extends "mt_base/base.html" %} 
-              {% block content %}
+            <div class="center">
                 <div class="add-post">
                     <p class="post-modal">
                         Questions? What do you want to share?
@@ -157,12 +264,11 @@
                     </ul>
                   </footer>
                 {% endif %}
-            {% endblock %}
- {% comment %} </div> 
+</div> 
 
             
             <!-- end of center -->
         </section>
         <!-- end of feeds page -->
     </body>
-</html> {% endcomment %}
+</html>

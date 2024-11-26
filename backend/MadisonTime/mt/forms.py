@@ -51,3 +51,8 @@ class CourseForm(forms.ModelForm):
       'time_to':forms.TimeInput(attrs={"type":"time"}),
       'color' : ColorWidget()
     }
+
+class NicknameChangeForm(forms.ModelForm):
+  class Meta:
+    model = User
+    fields = ["nickname",]

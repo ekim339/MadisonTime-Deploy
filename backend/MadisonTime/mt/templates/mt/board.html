@@ -1,0 +1,69 @@
+{% extends "mt_base/base.html" %} 
+{% load static %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/board.css" %} />
+{% endblock css %}
+
+{% block title %}
+Board | MadisonTime
+{% endblock title %}
+
+{% block content %}
+    {% comment %} <div class="main-content"> {% endcomment %}
+      <div class="content-wrapper">
+          <div class="header-bar">
+              <h1>PostList</h1>
+          </div>
+          <div class="post-list-container">
+              <div id="postList" class="post-list">
+                {% if posts %}
+                  {% for post in posts %}
+                    <a href="{% url 'post-detail' post.id %}">
+                      <div class="post-item">
+                        <div class="post-title">{{post.title}}</div>
+                        <div class="post-info">
+                          <span class="author">{{post.author.nickname}}</span>
+                          <span class="date">{{post.dt_created|date:"M, d Y"}}</span>
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                {% else %}
+                <div>No posts.. Be the first one to post!</div>
+                {% endif %}
+              </div>
+              
+              <div class="footer-bar">
+                  <a href="{% url 'post-create' %}">
+                    <button class="write-button">Post</button>
+                  </a>
+              </div>
+          </div>
+          {% if is_paginated %}
+          <footer>
+            <ul class="pagination">
+              {% if page_obj.has_previous %}
+                <li><a href="?page=1">Start</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+              {% endif %}
+
+              {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                  <li class="current">{{ num }}</li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                  <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}">End</a></li>
+              {% endif %}
+            </ul>
+          </footer>
+        {% endif %}
+      </div>
+    {% comment %} </div> {% endcomment %}
+{% endblock content %}

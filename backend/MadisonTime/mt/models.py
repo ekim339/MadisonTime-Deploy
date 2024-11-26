@@ -106,9 +106,6 @@ class Course(models.Model):
   
   def clean(self):
     super().clean()  # Call the parent class's clean method
-
-    # if self.time_from == self.time_to:
-    #     raise ValidationError("Start time and end time must be different.")
     
     if self.time_from >= self.time_to:
       raise ValidationError("Start time must be earlier than end time.")

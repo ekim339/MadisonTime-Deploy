@@ -6,13 +6,17 @@ from django.views.generic import (
   UpdateView)
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 from django.urls import reverse
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
-from mt.models import Post, Comment, Course
-from mt.forms import PostForm, CommentForm, CourseForm
+from allauth.account.forms import ChangePasswordForm
+from mt.models import User, Post, Comment, Course
+from mt.forms import PostForm, CommentForm, CourseForm, NicknameChangeForm
 from mt.functions import confirmation_required_redirect, calculateDuration, calculatePosition
 
 # Create your views here.
@@ -48,8 +52,20 @@ def timetable(request):
       form.sat = sat
       form.sun = sun
 
-      course.save()
-      return redirect('timetable')
+      try:
+          course.full_clean()  # Trigger the model's clean() method
+          course.save()
+          return redirect('timetable')
+      except ValidationError as e:
+          # Pass the error message to the template
+          return render(request, 'mt/timetable.html', {
+              'form': form,
+              'modla_optn':True,
+              'error_message': e.message_dict  # Pass error messages as a dictionary
+          })
+
+      # course.save()
+      # return redirect('timetable')
     else:
       render(request, 'mt/timetable.html', {'form':form, "modal_open":True})
   else:
@@ -64,6 +80,40 @@ def timetable(request):
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
   # return render(request, 'mt/timetable.html')
+
+@login_required
+def settings(request):
+    # get nickname of user before getting form
+    curr_nickname = request.user.nickname
+
+    if request.method == "POST":
+      password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+      if password_change_form.is_valid():
+        password_change_form.save()
+        update_session_auth_hash(request, password_change_form.user) # Keep the user logged in
+        return redirect('settings')
+      else:
+        nickname_change_form = NicknameChangeForm(request.POST, instance=request.user)
+        if nickname_change_form.is_valid():
+          nickname_change_form.save()
+          return redirect('settings')
+        else:
+          return render(request, 'mt/settings.html', 
+          {
+          'password_change_form': password_change_form, 
+          'nickname_change_form':nickname_change_form, 
+          'curr_nickname': curr_nickname
+          })
+    else:
+      password_change_form = PasswordChangeForm(user=request.user)
+      nickname_change_form = NicknameChangeForm(request.POST, instance=request.user)
+
+    return render(request, 'mt/settings.html', 
+      {
+      'password_change_form': password_change_form, 
+      'nickname_change_form':nickname_change_form, 
+      'curr_nickname': curr_nickname
+      })
 
 def delete_post(request, post_id):
 
@@ -203,6 +253,45 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     post = self.get_object()
     return post.author == user
 
-class CustomPasswordChangeView(PasswordChangeView):
-  def get_success_url(self):
-    return reverse("home")
+class BoardView(ListView):
+  model = Post
+  template_name = "mt/board.html"
+  context_object_name = "posts"
+  paginate_by = 10
+  ordering = ["-dt_created"]
+
+
+# @login_required
+# def custom_password_change(request):
+#     # Initialize forms with no data for initial GET request
+#     password_change_form = PasswordChangeForm(user=request.user)
+#     nickname_change_form = NicknameChangeForm(instance=request.user)
+
+#     if request.method == 'POST':
+#         form_type = request.POST.get('form_type')
+
+#         if form_type == 'password_change':
+#             # Process the password change form
+#             password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+#             if password_change_form.is_valid():
+#                 password_change_form.save()
+#                 update_session_auth_hash(request, password_change_form.user)
+#                 messages.success(request, "Your password was successfully changed.")
+#                 return redirect('settings')
+#         elif form_type == 'nickname_change':
+#             # Process the nickname change form
+#             nickname_change_form = NicknameChangeForm(instance=request.user, data=request.POST)
+#             if nickname_change_form.is_valid():
+#                 nickname_change_form.save()
+#                 messages.success(request, "Your nickname was successfully updated.")
+#                 return redirect('settings')
+            
+#     email = request.user.email
+#     nickname = request.user.nickname
+
+#     return render(request, 'mt/settings.html', {
+#         'password_change_form': password_change_form,
+#         'nickname_change_form': nickname_change_form,
+#         'email':email, 
+#         'nickname':nickname
+#     })

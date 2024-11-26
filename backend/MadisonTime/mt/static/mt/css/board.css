@@ -1,218 +1,168 @@
-/* common styles */
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Josefin Sans", sans-serif;
-}
 
-html {
-    font-size: 62.5%;
-}
-
-body {
-    background-color: #fbe7e7;
-}
-/* end of common styles */
-.container-page {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: minmax(5rem, 1fr) 2fr minmax(5rem, 1fr);
-    grid-template-rows: repeat(2, min-content) 1fr;
-    grid-row-gap: 2rem;
-}
-.title{
-    grid-column: 2/4;
-	  grid-row: 1/2;
-    display: grid;
-    align-items: center;
-    justify-content: left;
-    font-size: 27.5px;
-    border-bottom: solid #990000;
-    background-color: #fff;
-}
-
-/* container page left */
-
-.left {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
-    display: flex; /* Enable flexbox */
-    flex-direction: column; /* Stack items vertically */
-    background-color: #990000; /* Maintain the background color */
-    color: #fff;
-    height: 100%; /* Ensure it fills the height */
-}
-
-.left-content {
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack items vertically */
-    flex-grow: 1; /* Allow it to grow to fill available space */
-    padding: 20px; /* Optional: Add padding */
-}
-
-.left-content-heading {
-    text-align: center;
-    margin: 0;
-    margin-top: 20px; /* Add margin for spacing */
-}
-
-/* Ensure buttons are spaced correctly */
-.profile-button {
-    margin-top: 70vh; /* Push these buttons to the bottom */
-}
-
-/* Styles for buttons */
-.home-button,
-.schedule-button,
-.profile-button,
-.settings-button {
-    background-color: #990000;
-    color: #fff;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.home-button:hover,
-.schedule-button:hover,
-.profile-button:hover,
-.settings-button:hover {
-    color: #f3b8b8; /* Change hover color */
-}
-/* end of left */
-
-/* title */
-.right{
-    grid-column: 3 / -1;
-	  grid-row: 1 / 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #990000;
-    border-bottom: solid #990000;
-    background-color: #fff;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
+/* 메인 컨텐츠 영역 */
+.main-content {
     position: relative;
-}
-.search-bar-input {
-	width: 10rem;
-	height: 3rem;
-	border: 0.1rem solid #990000;
-	border-radius: 3rem;
-	background-color: #FACECE;
-	padding-left: 5rem;
-	transition: all 0.3s;
+    min-height: 100vh;
 }
 
-.search-bar-input:focus {
-	background-color: #fff;
-	border-color: #ff0000;
-    outline: solid #ff0000;
+.content-wrapper {
+    margin-top: 60px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ca7a7a;
 }
 
-.search-button {
-    border: none;
+/* 하단 바 및 페이지네이션 */
+.footer-bar {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    /* border-top: 1px solid #ca7a7a; */
+}
+
+/* 게시물 목록 스타일 */
+.post-list {
+    margin-top: 20px;
+    border-top: 1px solid #ca7a7a;
+    border-bottom: 1px solid #ca7a7a;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f3b8b8;
+    transition: background-color 0.3s;
+}
+
+.post-item:hover {
+    background-color: #fff5f5;
+}
+
+.post-title a {
+    color: #333;
+    text-decoration: none;
+    /* font-size: 16px; */
+    font-weight: 500;
+}
+
+.post-title a:hover {
     color: #990000;
-    font-size: large;
-    background-color: #fff;
-    padding: 12px;
+}
+
+.post-info {
+    display: flex;
+    gap: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-button {
+    padding: 8px 12px;
+    border: 1px solid #990000;
+    background-color: white;
+    color: #990000;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.search-button:hover {
-    color: #fff;
-    background-color: #ff0000;
-}
-
-/* end of title */
-/* container page */
-
-.container {
-    
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    background-color: #fff;
-    width: 100rem;
-    height: 80vh;
-    display: grid;
-    grid-template-rows: 5fr 1fr;
-    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    border: 3px solid #990000;
-    margin-left: 4rem;
-    margin-top: 1rem;
-    padding-top: 5rem;
-    
-}
-.container-content {
-    grid-column: 2 / -1;
-    grid-row: 1 / 2;
-    padding: 5rem 1rem 0;
-    padding-top: 0rem;
-}
-
-.container-content h1 {
-    text-align: center;
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-label {
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-input[type="text"],
-textarea {
-    width: 96%;
-    padding: 1rem;
-    border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 2.4rem ;
-    resize: none;
 }
 
-textarea {
-    width: 96%;
-    height: 20rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1.8rem; 
-    resize: none;
-}
-
-.button-container {
-    display: flex;
-    justify-content: flex-end; 
-    margin-top: 1.5rem;
-}
-
-button {
-    padding: 1.2rem;
+.page-button.active {
     background-color: #990000;
     color: white;
+}
+
+.page-button:hover {
+    background-color: #ffecec;
+}
+
+
+.write-button {
+    float: right;
+    padding: 15px 20px;
+    background-color: #990000;
+    color: white;
+    font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.6rem;
+    margin-left: 10px;
 }
 
-button:hover {
-    background-color: #b30000;
+/* 헤더 바 */
+/* .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    border-bottom: 1px solid #ca7a7a;
+} */
+
+/* 검색 결과 없음 메시지 스타일 */
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 16px;
 }
-/* end of container page */
+
+/* 검색어 하이라이트 스타일 (옵션) */
+.highlight {
+    background-color: #ffeb3b;
+    padding: 0 2px;
+}
+
+/* footer */
+footer {
+  color: #fff; /* White text */
+  text-align: center;
+  padding: 10px 0;
+}
+
+.pagination {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: block;
+  padding: 8px 12px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #b22222; /* Red background for links */
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #f3b8b8; /* Light red on hover */
+}
+
+.current {
+  display: block;
+  padding: 8px 12px;
+  background-color: #f3b8b8; /* Highlighted background */
+  color: #990000; /* Dark red text */
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+
+/* end of footer*/

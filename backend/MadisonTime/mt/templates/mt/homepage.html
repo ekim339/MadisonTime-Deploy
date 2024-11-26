@@ -1,64 +1,73 @@
-
 {% extends "mt_base/base.html" %} 
+{% load static %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/home.css" %} />
+{% endblock css %}
 
 {% block title %}
 Home | MadisonTime
 {% endblock title %}
 
 {% block content %}
-  <div class="add-post">
-      <p class="post-modal">
-          Questions? What do you want to share?
-      </p>
-      <a href="{% url 'post-create' %}">
-        <button type="button" class="post-btn">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </a>
-  </div>
-  {% for post in posts %}
-    <a href="{% url 'post-detail' post.id %}" class="post-detail">
-      <div class="center-contents">
-        <h2 class="title-text">{{ post.title }}</h2>
-        <date class="date">{{ post.dt_created|date:"M, d Y H:i" }}</date>
-        <div class="author">{{ post.author.nickname }}</div>
-        <p class="content">
-            {{post.content}}
+<div class="center-grid">
+  <div class="center-contents">
+    <div class="add-post">
+        <p class="post-modal">
+            Questions? What do you want to share?
         </p>
-        <div class="comment-container">
-            <input type="text" placeholder="Add a comment" class="comment"/>
-            <button type="button" class="comment-button">
-                <i class="fa-regular fa-paper-plane"></i>
-            </button>
+        <a href="{% url 'post-create' %}">
+          <button type="button" class="post-btn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </a>
+    </div>
+    {% for post in posts %}
+      <a href="{% url 'post-detail' post.id %}" class="post-detail">
+        <div class="post-contents">
+          <h2 class="title-text">{{ post.title }}</h2>
+          <date class="date">{{ post.dt_created|date:"M, d Y H:i" }}</date>
+          <div class="author">{{ post.author.nickname }}</div>
+          <p class="content">
+              {{post.content}}
+          </p>
+          <div class="comment-container">
+              <input type="text" placeholder="Add a comment" class="comment"/>
+              <button type="button" class="comment-button">
+                  <i class="fa-regular fa-paper-plane"></i>
+              </button>
+          </div>
         </div>
-      </div>
-    </a>
-  {% empty %}
-    <div class="empty">No Posts yet :(</div>
-  {% endfor %}
+      </a>
+    {% empty %}
+      <div class="empty">No Posts yet :(</div>
+    {% endfor %}
 
-  {% if is_paginated %}
-    <footer>
-      <ul class="pagination">
-        {% if page_obj.has_previous %}
-          <li><a href="?page=1">Start</a></li>
-          <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
-        {% endif %}
-
-        {% for num in page_obj.paginator.page_range %}
-          {% if page_obj.number == num %}
-            <li class="current">{{ num }}</li>
-          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <li><a href="?page={{ num }}">{{ num }}</a></li>
+    {% if is_paginated %}
+      <footer>
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+            <li><a href="?page=1">Start</a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
           {% endif %}
-        {% endfor %}
 
-        {% if page_obj.has_next %}
-          <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
-          <li><a href="?page={{ page_obj.paginator.num_pages }}">End</a></li>
-        {% endif %}
-      </ul>
-    </footer>
-  {% endif %}
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <li class="current">{{ num }}</li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}">End</a></li>
+          {% endif %}
+        </ul>
+      </footer>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
 
