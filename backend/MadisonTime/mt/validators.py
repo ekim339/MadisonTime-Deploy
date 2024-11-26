@@ -69,3 +69,4 @@ def validate_time_to(time_to):
             raise ValidationError("End time must be between 6:01AM-12:00AM")
         elif time_to.hour == 6 and time_to.minute == 0:
             raise ValidationError("End time must be between 6:01AM-12:00AM")
+        
