@@ -44,8 +44,7 @@ label {
     font-size: 2rem;
 }
 
-input[type="text"],
-textarea {
+.mt-input-title{
     width: 96%;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -54,7 +53,7 @@ textarea {
     resize: none;
 }
 
-textarea {
+.mt-input-content{
     width: 96%;
     height: 20rem;
     padding: 1rem;

@@ -48,7 +48,9 @@
           {% if courses %}
             {% for course in courses %}
               {% if course.mon %}
-                <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                <a href="{% url 'course-detail' %}" class="course-detail">
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                </a>
               {% endif %}
             {% endfor %}
           {% endif %}
@@ -59,7 +61,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.tue %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -70,7 +74,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.wed %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -81,7 +87,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.thu %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -92,7 +100,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.fri %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -103,7 +113,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sat %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -114,7 +126,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sun %}
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  <a href="{% url 'course-detail' %}" class="course-detail">
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  </a>
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -192,9 +206,19 @@
           <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
           <button type="button" class="days-button su-button">Su</button>
         </div>
+        <script>
+          $(document).ready(function() {
+              {% if form.errors %}
+                $("#modal-wrapper").modal("show");
+              {% endif %}
+          });
+        </script>
       </form>
+      
     </div>
   </div>
+  
 <!-- end of add course modal -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="{% static 'mt/js/timetable.js' %}"></script>
 {% endblock content %}

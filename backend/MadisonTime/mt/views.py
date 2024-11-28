@@ -8,14 +8,12 @@ from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from django.contrib import messages
+from django.db.models import Q
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied, ValidationError
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
-from allauth.account.views import PasswordChangeView
 from allauth.account.models import EmailAddress
-from allauth.account.forms import ChangePasswordForm
-from mt.models import User, Post, Comment, Course
+from mt.models import Post, Comment, Course
 from mt.forms import PostForm, CommentForm, CourseForm, NicknameChangeForm
 from mt.functions import confirmation_required_redirect, calculateDuration, calculatePosition
 
@@ -78,8 +76,8 @@ def timetable(request):
   for course in courses:
     duration = calculateDuration(course.time_from, course.time_to)
     time_from_start = calculatePosition(course.time_from)
-    course.height = duration * 5.5555
-    course.position = time_from_start * 5.5555
+    course.height = duration * 5.555555
+    course.position = time_from_start * 5.555555
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
 
@@ -144,12 +142,41 @@ def delete_comment(request, comment_id):
   comment.delete()
   return redirect('post-detail', post_id=post_id)
 
+def delete_course(request, course_id):
+
+  if not request.user.is_authenticated:
+    raise PermissionDenied
+  
+  course = get_object_or_404(Course, id=course_id)
+
+  if request.user != course.author:
+    raise PermissionDenied
+  
+  course.delete()
+  return redirect('timetable')
+
 class HomepageView(ListView):
   model = Post
   template_name = "mt/homepage.html"
   context_object_name = "posts"
   paginate_by = 4
-  ordering = ["-dt_created"]
+
+  def get_queryset(self):
+    query = self.request.GET.get('q')  # Get the search query
+    if query:
+        # Filter posts by title or content containing the query
+        return Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        ).order_by("-dt_created")
+    # Return all posts if no query is provided
+    return Post.objects.all().order_by("-dt_created")
+
+  def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      # Add the search query to the context for use in the template
+      context['query'] = self.request.GET.get('q', '')
+      return context
+
 
 class PostDetailView(FormMixin, DetailView):
   model = Post

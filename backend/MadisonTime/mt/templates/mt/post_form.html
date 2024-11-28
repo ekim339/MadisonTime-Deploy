@@ -27,14 +27,14 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="title">Title</label>
-                    {{ form.title|add_class:"mt-input"|attr:"placeholder:Enter your title here."}}
+                    {{ form.title|add_class:"mt-input-title"|attr:"placeholder:Enter your title here."}}
                     {% for error in form.title.errors %}
                       <div class="error-message">{{error}}</div>
                     {% endfor %}
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    {{ form.content|add_class:"mt-input"|attr:"placeholder:Write your content here..."}}
+                    {{ form.content|add_class:"mt-input-content"|attr:"placeholder:Write your content here..."}}
                     {% for error in form.content.errors %}
                       <div class="error-message">{{error}}</div>
                     {% endfor %}

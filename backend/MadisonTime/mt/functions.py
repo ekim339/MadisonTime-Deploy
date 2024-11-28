@@ -16,7 +16,10 @@ def confirmation_required_redirect(*args, **kwargs):
 def calculateDuration(time_from, time_to):
   time_from_hrs = time_from.hour + time_from.minute / 60
   time_to_hrs = time_to.hour + time_to.minute / 60
-  duration = time_to_hrs - time_from_hrs
+  if time_to_hrs == 0:
+    duration = 24 - time_from_hrs
+  else:
+    duration = time_to_hrs - time_from_hrs
   return duration
 
 def calculatePosition(time_from):

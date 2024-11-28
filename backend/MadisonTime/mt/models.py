@@ -108,7 +108,8 @@ class Course(models.Model):
     super().clean()  # Call the parent class's clean method
     
     if self.time_from >= self.time_to:
-      raise ValidationError("Start time must be earlier than end time.")
+      if not (self.time_to.hour == 0 and self.time_to.minute == 0):
+        raise ValidationError("Start time must be earlier than end time.")
   
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   

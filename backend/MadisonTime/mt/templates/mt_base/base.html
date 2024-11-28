@@ -32,12 +32,28 @@
               {% if user.is_authenticated %}
                 <h1>Welcome, {{user.nickname}}</h1>
               {% endif %}
-              <div class="search-bar">
-                  <input type="text" placeholder="Search" class="search-bar-input" />
-                  <button type="button" class="search-button">
-                      <i class="fas fa-search"></i>
-                  </button>
-              </div>
+              <form method="GET" action="{% url 'home' %}">
+                <div class="search-bar">
+                    <input 
+                      type="text" 
+                      name="q" 
+                      placeholder="Search" 
+                      class="search-bar-input" 
+                      value="{{ query|default:'' }}"/>
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+              </form>
+
+              {% comment %} <form method="GET" action="{% url 'homepage' %}">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search posts..." 
+                    value="{{ query|default:'' }}">
+                <button type="submit">Search</button>
+            </form> {% endcomment %}
           </header>
             <!-- left -->
             <div class="left">
