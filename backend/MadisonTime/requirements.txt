@@ -1,6 +1,8 @@
 asgiref==3.7.2
 Django==3.2.25
 django-allauth==0.63.6
+django-braces==1.16.0
+django-colorfield==0.11.0
 django-widget-tweaks==1.4.12
 numpy==1.21.0
 Pillow==9.5.0
