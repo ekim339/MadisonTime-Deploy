@@ -24,9 +24,6 @@ def home(request):
 def board(request):
   return render(request, 'mt/board.html')
 
-def course_detail(request):
-  return render(request, 'mt/course_detail.html')
-
 @login_required
 def timetable(request):
   if request.method == "POST":
@@ -80,6 +77,18 @@ def timetable(request):
     course.position = time_from_start * 5.555555
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
+
+@login_required
+def course_detail(request, course_id):
+    # Fetch the course or return a 404 error if it doesn't exist
+    course = get_object_or_404(Course, id=course_id)
+
+    # Check if the current user is the author of the course
+    if course.author != request.user:
+        raise PermissionDenied
+
+    # Render the template with course details
+    return render(request, 'mt/course_detail.html', {'course': course})
 
 @login_required
 def settings(request):
@@ -176,7 +185,6 @@ class HomepageView(ListView):
       # Add the search query to the context for use in the template
       context['query'] = self.request.GET.get('q', '')
       return context
-
 
 class PostDetailView(FormMixin, DetailView):
   model = Post
@@ -289,38 +297,3 @@ class BoardView(ListView):
   paginate_by = 10
   ordering = ["-dt_created"]
 
-
-# @login_required
-# def custom_password_change(request):
-#     # Initialize forms with no data for initial GET request
-#     password_change_form = PasswordChangeForm(user=request.user)
-#     nickname_change_form = NicknameChangeForm(instance=request.user)
-
-#     if request.method == 'POST':
-#         form_type = request.POST.get('form_type')
-
-#         if form_type == 'password_change':
-#             # Process the password change form
-#             password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
-#             if password_change_form.is_valid():
-#                 password_change_form.save()
-#                 update_session_auth_hash(request, password_change_form.user)
-#                 messages.success(request, "Your password was successfully changed.")
-#                 return redirect('settings')
-#         elif form_type == 'nickname_change':
-#             # Process the nickname change form
-#             nickname_change_form = NicknameChangeForm(instance=request.user, data=request.POST)
-#             if nickname_change_form.is_valid():
-#                 nickname_change_form.save()
-#                 messages.success(request, "Your nickname was successfully updated.")
-#                 return redirect('settings')
-            
-#     email = request.user.email
-#     nickname = request.user.nickname
-
-#     return render(request, 'mt/settings.html', {
-#         'password_change_form': password_change_form,
-#         'nickname_change_form': nickname_change_form,
-#         'email':email, 
-#         'nickname':nickname
-#     })

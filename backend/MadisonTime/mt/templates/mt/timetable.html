@@ -48,7 +48,7 @@
           {% if courses %}
             {% for course in courses %}
               {% if course.mon %}
-                <a href="{% url 'course-detail' %}" class="course-detail">
+                <a href="{% url 'course-detail' course.id %}" class="course-detail">
                   <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                 </a>
               {% endif %}
@@ -61,7 +61,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.tue %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}
@@ -74,7 +74,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.wed %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}
@@ -87,7 +87,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.thu %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}
@@ -100,7 +100,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.fri %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}
@@ -113,7 +113,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sat %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}
@@ -126,7 +126,7 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sun %}
-                  <a href="{% url 'course-detail' %}" class="course-detail">
+                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
                     <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
                   </a>
                 {% endif %}

@@ -1,4 +1,5 @@
 {% extends "mt_base/base_no_search.html" %} 
+{% comment %}
 {% load static %}
 {% load widget_tweaks %}
 
@@ -170,6 +171,180 @@
           <button type="button" class="days-button s-button">S</button>
           <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
           <button type="button" class="days-button su-button">Su</button>
+        </div>
+    </div>
+  </div>
+<!-- end of add course modal -->
+{% endblock content %} {% endcomment %}
+ 
+{% load static %}
+{% load widget_tweaks %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "mt/css/course_detail.css" %} />
+{% endblock css %}
+
+{% block content %}
+  <!-- default display -->
+  <div class="content">
+    <h1 class="timetable-header">My Timetable</h1>
+    <div class="timetable">
+      <div class="days">
+        <h3 class="weekdays">Mon</h3>
+        <h3 class="weekdays">Tue</h3>
+        <h3 class="weekdays">Wed</h3>
+        <h3 class="weekdays">Thu</h3>
+        <h3 class="weekdays">Fri</h3>
+        <h3 class="weekends">Sat</h3>
+        <h3 class="weekends">Sun</h3>
+      </div>
+      <div class="timeline">
+        <div class="time-slot">6:00 AM</div>
+        <div class="time-slot">7:00 AM</div>
+        <div class="time-slot">8:00 AM</div>
+        <div class="time-slot">9:00 AM</div>
+        <div class="time-slot">10:00 AM</div>
+        <div class="time-slot">11:00 AM</div>
+        <div class="time-slot">12:00 PM</div>
+        <div class="time-slot">1:00 PM</div>
+        <div class="time-slot">2:00 PM</div>
+        <div class="time-slot">3:00 PM</div>
+        <div class="time-slot">4:00 PM</div>
+        <div class="time-slot">5:00 PM</div>
+        <div class="time-slot">6:00 PM</div>
+        <div class="time-slot">7:00 PM</div>
+        <div class="time-slot">8:00 PM</div>
+        <div class="time-slot">9:00 PM</div>
+        <div class="time-slot">10:00 PM</div>
+        <div class="time-slot">11:00 PM</div>
+        <div class="time-slot">12:00 AM</div>
+      </div>
+      <div class="display-courses">
+        <div class="display monday">
+          <div class="courses mon">
+          {% if courses %}
+            {% for course in courses %}
+              {% if course.mon %}
+                <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          </div>
+        </div>
+        <div class="display tuesday">
+          <div class="courses tue">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.tue %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="display wednesday">
+          <div class="courses wed">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.wed %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="display thursday">
+          <div class="courses thu">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.thu %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="display friday">
+          <div class="courses fri">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.fri %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="display saturday">
+          <div class="courses sat">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.sat %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="display sunday">
+          <div class="courses sun">
+            {% if courses %}
+              {% for course in courses %}
+                {% if course.sun %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="add-course-btn">+ Course</button>
+  </div>
+  <!-- end of default display -->
+</section>
+<!-- end of feeds page -->
+
+
+<!-- add course modal -->
+  <div class="modal-wrapper" id="modal-wrapper">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Course Detail</h3>
+        <a href={% url 'timetable' %}>
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+        <div class="input-wrapper">
+          <div class="course-name">Course Name</div>
+          <div class="info">{{ course.name }}</div>
+          <div class="location">Location</div>
+          <div class="info">{{ course.location }}</div>
+          <div class="from">From</div>
+          <div class="info">{{ course.time_from|date:'H:i A'  }}</div>
+          <div class="to">To</div>
+          <div class="info">{{ course.time_to|date:'H:i A'  }}</div>
+          <div class="color">Select color for this course</div>
+          <div "course-color" style="background-color:{{course.color}};border-radius:50%;height:50px;width:50px;"></div>
+
+        </div>
+        <!-- add 버튼말고 edit, delete 버튼 넣기 -->
+
+        <div class="days-text">Select days</div>
+        <div class="days-button-wrapper">
+          <button type="button" class="days-button m-button {% if course.mon %}active{% endif %}">M</button>
+          <button type="button" class="days-button t-button {% if course.tue %}active{% endif %}">T</button>
+          <button type="button" class="days-button w-button {% if course.wed %}active{% endif %}">W</button>
+          <button type="button" class="days-button th-button {% if course.thu %}active{% endif %}">Th</button>
+          <button type="button" class="days-button f-button {% if course.fri %}active{% endif %}">F</button>
+          <button type="button" class="days-button s-button {% if course.sat %}active{% endif %}">S</button>
+          <button type="button" class="days-button su-button {% if course.sun %}active{% endif %}">Su</button>
+        </div>
+
+        <div class="container">
+          <button type="button" class="edit">Edit</button>
+          <button type="button" class="delete">Delete</button>
         </div>
     </div>
   </div>

@@ -119,7 +119,7 @@ btnAdd.addEventListener('click', (e) => {
     const errors = document.querySelectorAll('.error-message');
     
     // Prevent closing the modal if there are validation errors
-    if (errors.length > 0) {
+    if (errors.length !== 0) {
       e.preventDefault();// Stop form submission
       modalAdd.style.display = 'block';
       modalWrapper.classList.add('modal-wrapper-display');
@@ -143,7 +143,7 @@ form.addEventListener('submit', (e) => {
   const errors = document.querySelectorAll('.error-message');
 
   // Prevent closing the modal if there are validation errors
-  if (errors.length > 0) {
+  if (errors.length !== 0) {
     e.preventDefault(); // Stop form submission
     modalAdd.style.display = 'block';
     modalWrapper.classList.add('modal-wrapper-display');

@@ -1,4 +1,4 @@
-.message{
+/* .message{
   margin-top: 3rem;
   margin-bottom: 1rem;
   font-size: 2rem;
@@ -7,4 +7,54 @@
 .redirect {
   margin-top: 3rem;
   font-size: 2rem;
+} */
+
+*{
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #fbe7e7;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/*  container */
+.email-confirmation {
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* message text */
+.email-confirmation .message {
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+/* button style */
+.email-confirmation .redirect {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.email-confirmation .redirect:hover {
+  background-color: #0056b3;
 }

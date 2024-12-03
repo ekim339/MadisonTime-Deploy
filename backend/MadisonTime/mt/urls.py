@@ -7,6 +7,11 @@ urlpatterns = [
     path('post/', views.board, name='board'),
     path('posts/new/', views.PostCreateView.as_view(), name='post-create'),
     path(
+      'posts/<int:post_id>', 
+      views.PostDetailView.as_view(), 
+      name='post-detail'
+    ),
+    path(
       'posts/<int:post_id>/edit',
       views.PostUpdateView.as_view(),
       name='post-update'),
@@ -22,12 +27,7 @@ urlpatterns = [
 
     # timetable urls
     path('timetable/', views.timetable, name='timetable'),
-    path(
-      'posts/<int:post_id>', 
-      views.PostDetailView.as_view(), 
-      name='post-detail'
-    ),
-    path('coursedetail/', views.course_detail, name='course-detail'),
+    path('course/<int:course_id>/', views.course_detail, name='course-detail'),
 
     # settings urls
     path('settings/', views.settings, name='settings'),
