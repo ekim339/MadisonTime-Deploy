@@ -48,9 +48,9 @@
           {% if courses %}
             {% for course in courses %}
               {% if course.mon %}
-                <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                </a>
+                {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                  <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                {% comment %} </a> {% endcomment %}
               {% endif %}
             {% endfor %}
           {% endif %}
@@ -61,9 +61,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.tue %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -74,9 +74,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.wed %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -87,9 +87,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.thu %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -100,9 +100,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.fri %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -113,9 +113,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sat %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -126,9 +126,9 @@
             {% if courses %}
               {% for course in courses %}
                 {% if course.sun %}
-                  <a href="{% url 'course-detail' course.id %}" class="course-detail">
-                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
-                  </a>
+                  {% comment %} <a href="{% url 'course-detail' course.id %}" class="course-detail"> {% endcomment %}
+                    <div class="course" style="background-color:{{course.color}};height:{{course.height}}%;top:{{course.position}}%;" onclick="showModal('{{ course.id }}', '{{ course.name }}', '{{ course.location }}', '{{ course.time_from }}', '{{ course.time_to }}', '{{ course.color }}', '{{ course.mon }}', '{{ course.tue }}', '{{ course.wed }}', '{{ course.thu }}', '{{ course.fri }}', '{{ course.sat }}', '{{ course.sun }}')">{{ course.name }}<br>{{course.time_from}}-{{course.time_to}}</div>
+                  {% comment %} </a> {% endcomment %}
                 {% endif %}
               {% endfor %}
             {% endif %}
@@ -143,14 +143,22 @@
 <!-- end of feeds page -->
 
 <!-- add course modal -->
-  <div class="modal-wrapper" id="modal-wrapper" {% if modal_open %}modal-wrapper-display{% endif %}>
-    <div class="modal">
+  <div class="modal-wrapper {% if modal_open %}modal-wrapper-display{% endif %}" id="modal-wrapper">
+    <div class="modal" {% if modal_open %}style="display: block;"{% endif %}>
       <div class="modal-header">
-        <h3 class="modal-title">Add a Course</h3>
-        <i class="fas fa-times"></i>
+        {% if edit_course %}
+          <h3 class="modal-title">Edit Course</h3>
+        {% else %}
+          <h3 class="modal-title">Add a Course</h3>
+        {% endif %}
+        <a href="{% url 'timetable' %}">
+          <i class="fas fa-times"></i>
+        </a>
       </div>
       <form method="POST">
         {% csrf_token %}
+        <input type="hidden" name="course_id" value="{{ edit_course.id|default:'' }}">
+
         <div class="input-wrapper">
           <div class="course-name">Course Name</div>
           {{form.name|add_class:"course-name-input"}}
@@ -173,7 +181,7 @@
             <div class="error-message">{{error}}</div>
           {% endfor %}
           <div class="color">Select color for this course</div>
-          <input type="color" name="color" value="#ff0000" class="course-color">
+          <input type="color" name="color" value="{{ form.color.value|default:'#ff0000' }}" class="course-color">
           {% for error in form.color.errors %}
             <div class="error-message">{{error}}</div>
           {% endfor %}
@@ -191,20 +199,27 @@
         {% endif %} {% endcomment %}
         <div class="days-text">Select days</div>
         <div class="days-button-wrapper">
-          <input type="hidden" name="mon" id="mon" value="{{ course.mon }}">
-          <button type="button" class="days-button m-button">M</button>
-          <input type="hidden" name="tue" id="tue" value="{{ course.tue }}">
-          <button type="button" class="days-button t-button">T</button>
-          <input type="hidden" name="wed" id="wed" value="{{ course.wed }}">
-          <button type="button" class="days-button w-button">W</button>
-          <input type="hidden" name="thu" id="thu" value="{{ course.thu }}">
-          <button type="button" class="days-button th-button">Th</button>
-          <input type="hidden" name="fri" id="fri" value="{{ course.fri }}">
-          <button type="button" class="days-button f-button">F</button>
-          <input type="hidden" name="sat" id="sat" value="{{ course.sat }}">
-          <button type="button" class="days-button s-button">S</button>
-          <input type="hidden" name="sun" id="sun" value="{{ course.sun }}">
-          <button type="button" class="days-button su-button">Su</button>
+          <input type="hidden" name="mon" id="mon" value="{{edit_course.mon}}">
+          <button type="button" class="days-button m-button 
+          {% if edit_course.mon %}active{% endif %}">M</button>
+          <input type="hidden" name="tue" id="tue" value="{{edit_course.tue}}">
+          <button type="button" class="days-button t-button 
+          {% if edit_course.tue %}active{% endif %}">T</button>
+          <input type="hidden" name="wed" id="wed" value="{{edit_course.wed}}">
+          <button type="button" class="days-button w-button 
+          {% if edit_course.wed %}active{% endif %}">W</button>
+          <input type="hidden" name="thu" id="thu" value="{{edit_course.thu}}">
+          <button type="button" class="days-button th-button 
+          {% if edit_course.thu %}active{% endif %}">Th</button>
+          <input type="hidden" name="fri" id="fri" value="{{edit_course.fri}}">
+          <button type="button" class="days-button f-button 
+          {% if edit_course.fri %}active{% endif %}">F</button>
+          <input type="hidden" name="sat" id="sat" value="{{edit_course.sat}}">
+          <button type="button" class="days-button s-button 
+          {% if edit_course.sat %}active{% endif %}">S</button>
+          <input type="hidden" name="sun" id="sun" value="{{edit_course.sun}}">
+          <button type="button" class="days-button su-button 
+          {% if edit_course.sun %}active{% endif %}">Su</button>
         </div>
         <script>
           $(document).ready(function() {
@@ -217,8 +232,56 @@
       
     </div>
   </div>
-  
 <!-- end of add course modal -->
+
+<!-- course detail modal -->
+<div class="course-modal-wrapper" id="course-modal-wrapper">
+  <div class="course-modal">
+    <div class="modal-header">
+      <h3 class="modal-title">Course Detail</h3>
+      <i class="fas fa-times" onclick="closeModal()"></i>
+    </div>
+    <div class="input-wrapper">
+        <div class="course-name">Course Name</div>
+        <div class="info" id="modal-course-name"></div>
+        <div class="location">Location</div>
+        <div class="info" id="modal-course-location"></div>
+        <div class="from">From</div>
+        <div class="info" id="modal-course-time-from"></div>
+        <div class="to">To</div>
+        <div class="info" id="modal-course-time-to"></div>
+        <div class="color">Color</div>
+        <div id="modal-course-color" style="border-radius:50%;height:50px;width:50px;"></div>
+    </div>
+
+    <div class="days-text">Days</div>
+    <div class="days-button-wrapper">
+      <button type="button" class="course-days-button c-m-button">M</button>
+      <button type="button" class="course-days-button c-t-button">T</button>
+      <button type="button" class="course-days-button c-w-button">W</button>
+      <button type="button" class="course-days-button c-th-button">Th</button>
+      <button type="button" class="course-days-button c-f-button">F</button>
+      <button type="button" class="course-days-button c-s-button">S</button>
+      <button type="button" class="course-days-button c-su-button">Su</button>
+    </div>
+
+    <div class="course-container">
+      <a class ="edit-button" href="?edit_course=" id="edit-course-link">
+        <button type="button" class="edit">Edit</button>
+      </a>
+      <a 
+        class="delete-button"
+        href=""
+        id="delete-course-link"
+        onclick="return confirm(
+        'Would you like to delete this course?');">
+        <button type="button" class="delete">Delete</button>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- end of course detail modal -->
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="{% static 'mt/js/timetable.js' %}"></script>
 {% endblock content %}

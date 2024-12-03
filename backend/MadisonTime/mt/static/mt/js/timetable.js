@@ -8,7 +8,7 @@ const wedInput = document.getElementById('wed');
 const thuInput = document.getElementById('thu');
 const friInput = document.getElementById('fri');
 const satInput = document.getElementById('sat');
-const sunInput = document.querySelector('sun');
+const sunInput = document.getElementById('sun');
 const btnM = document.querySelector('.m-button');
 const btnT = document.querySelector('.t-button');
 const btnW = document.querySelector('.w-button');
@@ -29,7 +29,16 @@ const thuBox = document.querySelector('.thursday');
 const friBox = document.querySelector('.friday');
 const satBox = document.querySelector('.saturday');
 const sunBox = document.querySelector('.sunday');
-
+const modalCourse = document.querySelector('.course-modal');
+const modalCourseWrapper = document.querySelector('.course-modal-wrapper');
+const course = document.querySelector('.course');
+const btnCM = document.querySelector('.c-m-button');
+const btnCT = document.querySelector('.c-t-button');
+const btnCW = document.querySelector('.c-w-button');
+const btnCTh = document.querySelector('.c-th-button');
+const btnCF = document.querySelector('.c-f-button');
+const btnCS = document.querySelector('.c-s-button');
+const btnCSu = document.querySelector('.c-su-button');
 /*************************************************/
 /*************************************************/
 
@@ -52,9 +61,9 @@ function clicked(button) {
 function updateInputField(button, inputField){
   if (button.classList.contains('active')) {
     inputField.value = "True"; // Set to True if active
-} else {
-    inputField.value = "False"; // Set to False if not active
-}
+  } else {
+      inputField.value = "False"; // Set to False if not active
+  }
 }
 
 btnM.addEventListener('click', function(){
@@ -113,46 +122,46 @@ btnSu.addEventListener('click', function(){
 //   modalWrapper.classList.remove('modal-wrapper-display');
 // });
 
-btnAdd.addEventListener('click', (e) => {
-  const form = document.querySelector('form');
-  form.addEventListener('submit', (event) => {
-    const errors = document.querySelectorAll('.error-message');
+// btnAdd.addEventListener('click', (e) => {
+//   const form = document.querySelector('form');
+//   form.addEventListener('submit', (event) => {
+//     const errors = document.querySelectorAll('.error-message');
     
-    // Prevent closing the modal if there are validation errors
-    if (errors.length !== 0) {
-      e.preventDefault();// Stop form submission
-      modalAdd.style.display = 'block';
-      modalWrapper.classList.add('modal-wrapper-display');
-    }
-    else{
-      // tbxCourseName.value = '';
-      // tbxLocation.value = '';
-      // timeFrom.value = '';
-      // timeTo.value = '';
-      // clrCourse.value = '#ff0000';
-      form.submit()
-      modalAdd.style.display = 'none';
-      modalWrapper.classList.remove('modal-wrapper-display');
-    }
-  });
-});
+//     // Prevent closing the modal if there are validation errors
+//     if (errors.length !== 0) {
+//       e.preventDefault();// Stop form submission
+//       modalAdd.style.display = 'block';
+//       modalWrapper.classList.add('modal-wrapper-display');
+//     }
+//     else{
+//       // tbxCourseName.value = '';
+//       // tbxLocation.value = '';
+//       // timeFrom.value = '';
+//       // timeTo.value = '';
+//       // clrCourse.value = '#ff0000';
+//       form.submit()
+//       modalAdd.style.display = 'none';
+//       modalWrapper.classList.remove('modal-wrapper-display');
+//     }
+//   });
+// });
 
-// const form = document.querySelector('form');
+// // const form = document.querySelector('form');
 
-form.addEventListener('submit', (e) => {
-  const errors = document.querySelectorAll('.error-message');
+// form.addEventListener('submit', (e) => {
+//   const errors = document.querySelectorAll('.error-message');
 
-  // Prevent closing the modal if there are validation errors
-  if (errors.length !== 0) {
-    e.preventDefault(); // Stop form submission
-    modalAdd.style.display = 'block';
-    modalWrapper.classList.add('modal-wrapper-display');
-  } else {
-    // Proceed with submission
-    modalAdd.style.display = 'none';
-    modalWrapper.classList.remove('modal-wrapper-display');
-  }
-});
+//   // Prevent closing the modal if there are validation errors
+//   if (errors.length !== 0) {
+//     e.preventDefault(); // Stop form submission
+//     modalAdd.style.display = 'block';
+//     modalWrapper.classList.add('modal-wrapper-display');
+//   } else {
+//     // Proceed with submission
+//     modalAdd.style.display = 'none';
+//     modalWrapper.classList.remove('modal-wrapper-display');
+//   }
+// });
 
 
 // function checkDays(){
@@ -194,3 +203,61 @@ form.addEventListener('submit', (e) => {
 //     daysArray[i].append(course);
 // }
   
+// Course detail modal
+// course.addEventListener('click', () => {
+//   console.log('hi');
+//   modalCourse.style.display = 'block';
+//   modalCourseWrapper.classList.add('modal-course-wrapper-display');
+// })
+
+function showModal(courseId, name, location, timeFrom, timeTo, color, mon, tue, wed, thu, fri, sat, sun) {
+  // Show modal
+  modalCourse.style.display = 'block';
+  modalCourseWrapper.classList.add('course-modal-wrapper-display');
+  modalCourseWrapper.style.visibility = 'visible';
+
+  // Populate modal content
+  document.getElementById('modal-course-name').textContent = name;
+  document.getElementById('modal-course-location').textContent = location;
+  document.getElementById('modal-course-time-from').textContent = timeFrom;
+  document.getElementById('modal-course-time-to').textContent = timeTo;
+  document.getElementById('modal-course-color').style.backgroundColor = color;
+  console.log(mon);
+  pressButton(mon, btnCM);
+  pressButton(tue, btnCT);
+  pressButton(wed, btnCW);
+  pressButton(thu, btnCTh);
+  pressButton(fri, btnCF);
+  pressButton(sat, btnCS);
+  pressButton(sun, btnCSu);
+  modalCourseWrapper.style.display = 'flex'; // Use flex to center the modal
+
+  // set course edit link and delete link
+  document.getElementById('edit-course-link').href = `?edit_course=${courseId}`;
+  document.getElementById('delete-course-link').href = `${courseId}/delete/`;
+}
+
+function pressButton(input, button){
+  if (input == "True"){
+    if (!button.classList.contains('active')){
+      clicked(button);
+    }
+  } else{
+    if (button.classList.contains('active')){
+      button.classList.remove('active');
+    }
+  }
+}
+
+function closeModal() {
+  // Hide modal
+  modalCourseWrapper.style.visibility = 'hidden';
+  modalCourseWrapper.style.display = 'none';
+}
+
+// Close modal if clicked outside of it
+window.onclick = function (event) {
+  if (event.target === courseModalWrapper) {
+    modalCourseWrapper.style.display = 'none';
+  }
+};

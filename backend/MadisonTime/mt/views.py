@@ -15,7 +15,8 @@ from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from allauth.account.models import EmailAddress
 from mt.models import Post, Comment, Course
 from mt.forms import PostForm, CommentForm, CourseForm, NicknameChangeForm
-from mt.functions import confirmation_required_redirect, calculateDuration, calculatePosition
+from mt.functions import confirmation_required_redirect, get_courses_with_dimensions
+#calculateDuration, calculatePosition
 
 # Create your views here.
 def home(request):
@@ -26,8 +27,17 @@ def board(request):
 
 @login_required
 def timetable(request):
+
   if request.method == "POST":
-    form = CourseForm(request.POST)
+    course_id = request.POST.get('course_id') 
+    if course_id:
+      course = get_object_or_404(Course, id=course_id, author=request.user)
+      form = CourseForm(request.POST, instance=course)
+    else:
+      form = CourseForm(request.POST)
+      # course = form.save(commit=False)  # Don't save to the database yet
+      # course.author = request.user      # Set the author field
+
     if form.is_valid():
       course = form.save(commit=False)  # Don't save to the database yet
       course.author = request.user      # Set the author field
@@ -58,23 +68,42 @@ def timetable(request):
           # Pass the error message to the template
           return render(request, 'mt/timetable.html', {
               'form': form,
-              'modla_optn':True,
+              'modal_open':True,
+              'courses': get_courses_with_dimensions(request.user),
               'error_message': e.message_dict  # Pass error messages as a dictionary
           })
 
       # course.save()
       # return redirect('timetable')
     else:
-      render(request, 'mt/timetable.html', {'form':form, "modal_open":True})
+      return render(request, 'mt/timetable.html', 
+             {'form':form,
+              'courses': get_courses_with_dimensions(request.user),
+              "modal_open":True})
   else:
-    form = CourseForm()
+    course_id = request.GET.get('edit_course')
+    courses = get_courses_with_dimensions(request.user)
 
-  courses = Course.objects.filter(author=request.user)
-  for course in courses:
-    duration = calculateDuration(course.time_from, course.time_to)
-    time_from_start = calculatePosition(course.time_from)
-    course.height = duration * 5.555555
-    course.position = time_from_start * 5.555555
+    if course_id:
+      course = Course.objects.get(id=course_id, author=request.user)
+      # get_object_or_404(Course, id=course_id, author=request.user)
+      form = CourseForm(instance=course)
+      return render(request, 'mt/timetable.html', 
+            {'form':form,
+            'courses': courses,
+            "edit_course": course,
+            "modal_open":True})
+    else:
+      form = CourseForm(initial={'color': '#ff0000'})
+
+  # courses = Course.objects.filter(author=request.user)
+  # for course in courses:
+  #   duration = calculateDuration(course.time_from, course.time_to)
+  #   time_from_start = calculatePosition(course.time_from)
+  #   course.height = duration * 5.555555
+  #   course.position = time_from_start * 5.555555
+
+  # courses = get_courses_with_dimensions(request.user)
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
 

@@ -27,7 +27,11 @@ urlpatterns = [
 
     # timetable urls
     path('timetable/', views.timetable, name='timetable'),
-    path('course/<int:course_id>/', views.course_detail, name='course-detail'),
+    # path('course/<int:course_id>/', views.course_detail, name='course-detail'),
+    path(
+      'timetable/<int:course_id>/delete/', 
+      views.delete_course, 
+      name='course-delete'),
 
     # settings urls
     path('settings/', views.settings, name='settings'),

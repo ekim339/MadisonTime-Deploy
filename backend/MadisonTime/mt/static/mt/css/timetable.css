@@ -130,7 +130,8 @@ color: #f3b8b8;
 /* end of default display */
 
 /* add modal */
-.modal-wrapper{
+.modal-wrapper,
+.course-modal-wrapper{
   position: fixed;
   background-color: rgb(0, 0, 0, 0.5);
   top: 0;
@@ -140,12 +141,14 @@ color: #f3b8b8;
   visibility: hidden;
 }
 
-.modal-wrapper-display{
+.modal-wrapper-display,
+.course-modal-wrapper-display{
   opacity: 1;
   visibility: visible;
 }
 
-.modal{
+.modal,
+.course-modal{
   position: relative;
   top: 50%;
   left: 50%;
@@ -307,7 +310,8 @@ color: #f3b8b8;
   font-size: 2rem;
 }
 
-.days-button{
+.days-button,
+.course-days-button{
   display: flex;
   position: relative;
   width: 40px;
@@ -327,6 +331,13 @@ color: #f3b8b8;
 .f-button:active,
 .s-button:active,
 .su-button:active,
+.c-m-button:active,
+.c-t-button:active,
+.c-w-button:active,
+.c-th-button:active,
+.c-f-button:active,
+.c-s-button:active,
+.c-su-button:active,
 .active {
   top: 2px;
   left: 1px;
@@ -334,3 +345,35 @@ color: #f3b8b8;
   background-color: pink;
 }
 /* end of add modal */
+
+/* course detail modal */
+.course-container {
+  display: flex;
+  gap: 1rem; 
+  justify-content: center;
+  margin-top: 2rem; 
+}
+
+.edit, 
+.delete {
+  width: 12rem;
+  padding: 1rem 1rem;
+  background-color: #9B0000;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.3);
+  transition: color 0.3s;
+  outline: none;
+}
+
+.edit:hover, .delete:hover{
+  color: #f3b8b8;
+}
+
+.info {
+  font-size: 2rem;
+}
+/* end of course detail modal */
