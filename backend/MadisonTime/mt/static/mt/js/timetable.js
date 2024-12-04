@@ -251,6 +251,7 @@ function pressButton(input, button){
 
 function closeModal() {
   // Hide modal
+  modalCourseWrapper.classList.remove('course-modal-wrapper-display');
   modalCourseWrapper.style.visibility = 'hidden';
   modalCourseWrapper.style.display = 'none';
 }
