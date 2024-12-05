@@ -59,11 +59,11 @@ def validate_no_special_characters(value):
     
 def validate_time_from(time_from):
     if time_from.hour < 6:
-        raise ValidationError("Start time must be between 6:00AM-11:59PM")
+        raise ValidationError("Start time must be between 6:00AM-11:59PM.")
 
 def validate_time_to(time_to):
     if 1 < time_to.hour and time_to.hour < 5:
-        raise ValidationError("End time must be between 6:01AM-12:00AM")
+        raise ValidationError("End time must be between 6:01AM-12:00AM.")
     else:
         if time_to.hour == 0 and time_to.minute != 0:
             raise ValidationError("End time must be between 6:01AM-12:00AM")

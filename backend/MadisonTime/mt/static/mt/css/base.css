@@ -181,6 +181,7 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%; /* Allow full width within its grid area */
+  height: 100%;
 }
 
 /* updated */

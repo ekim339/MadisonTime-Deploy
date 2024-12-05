@@ -109,7 +109,10 @@ class Course(models.Model):
     
     if self.time_from >= self.time_to:
       if not (self.time_to.hour == 0 and self.time_to.minute == 0):
-        raise ValidationError("Start time must be earlier than end time.")
-  
+        raise ValidationError({"time_from" : "Start time must be earlier than end time."})
+      
+    if not (self.mon or self.tue or self.wed or self.thu or self.fri or self.sat or self.sun):
+        raise ValidationError({"mon": "At least one day must be selected."})
+
   author = models.ForeignKey(User, on_delete=models.CASCADE)
   

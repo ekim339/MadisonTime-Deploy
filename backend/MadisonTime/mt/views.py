@@ -11,12 +11,12 @@ from django.contrib.auth import update_session_auth_hash
 from django.db.models import Q
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied, ValidationError
+from django.http import JsonResponse
 from braces.views import LoginRequiredMixin, UserPassesTestMixin
 from allauth.account.models import EmailAddress
 from mt.models import Post, Comment, Course
 from mt.forms import PostForm, CommentForm, CourseForm, NicknameChangeForm
 from mt.functions import confirmation_required_redirect, get_courses_with_dimensions
-#calculateDuration, calculatePosition
 
 # Create your views here.
 def home(request):
@@ -64,13 +64,15 @@ def timetable(request):
           course.full_clean()  # Trigger the model's clean() method
           course.save()
           return redirect('timetable')
+          # return JsonResponse({'success':True}, status=200)
       except ValidationError as e:
           # Pass the error message to the template
+          for field, errors in e.message_dict.items():
+              form.add_error(field, errors[0])
           return render(request, 'mt/timetable.html', {
               'form': form,
               'modal_open':True,
               'courses': get_courses_with_dimensions(request.user),
-              'error_message': e.message_dict  # Pass error messages as a dictionary
           })
 
       # course.save()
@@ -85,25 +87,19 @@ def timetable(request):
     courses = get_courses_with_dimensions(request.user)
 
     if course_id:
-      course = Course.objects.get(id=course_id, author=request.user)
-      # get_object_or_404(Course, id=course_id, author=request.user)
-      form = CourseForm(instance=course)
+      course_to_edit = Course.objects.get(id=course_id)
+
+      if request.user != course_to_edit.author:
+        raise PermissionDenied
+
+      form = CourseForm(instance=course_to_edit)
       return render(request, 'mt/timetable.html', 
             {'form':form,
             'courses': courses,
-            "edit_course": course,
+            "edit_course": course_to_edit,
             "modal_open":True})
     else:
       form = CourseForm(initial={'color': '#ff0000'})
-
-  # courses = Course.objects.filter(author=request.user)
-  # for course in courses:
-  #   duration = calculateDuration(course.time_from, course.time_to)
-  #   time_from_start = calculatePosition(course.time_from)
-  #   course.height = duration * 5.555555
-  #   course.position = time_from_start * 5.555555
-
-  # courses = get_courses_with_dimensions(request.user)
 
   return render(request, 'mt/timetable.html', {'form':form, 'courses':courses})
 
