@@ -64,7 +64,6 @@ def timetable(request):
           course.full_clean()  # Trigger the model's clean() method
           course.save()
           return redirect('timetable')
-          # return JsonResponse({'success':True}, status=200)
       except ValidationError as e:
           # Pass the error message to the template
           for field, errors in e.message_dict.items():
@@ -75,8 +74,6 @@ def timetable(request):
               'courses': get_courses_with_dimensions(request.user),
           })
 
-      # course.save()
-      # return redirect('timetable')
     else:
       return render(request, 'mt/timetable.html', 
              {'form':form,

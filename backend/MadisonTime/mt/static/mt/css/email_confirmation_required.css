@@ -48,7 +48,7 @@ body {
   padding: 1rem 2rem;
   font-size: 1.4rem;
   color: #ffffff;
-  background-color: #007bff;
+  background-color: #990000;
   border: none;
   border-radius: 0.5rem;
   text-decoration: none;
@@ -56,5 +56,5 @@ body {
 }
 
 .email-confirmation .redirect:hover {
-  background-color: #0056b3;
+  background-color: #b30000;
 }
