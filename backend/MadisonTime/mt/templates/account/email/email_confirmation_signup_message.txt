@@ -4,13 +4,7 @@ Thank you for using Madison Time.
 
 In order to use Madison Time, email verification is required. Please verify your email by clicking the following link.
 
-<p>
-  <a href="{{ activate_url }}" 
-     style="display:inline-block;padding:10px 16px;background:#1a73e8;color:#fff;text-decoration:none;border-radius:6px;">
-    Verify my email
-  </a>
-</p>
-
+{{ activate_url }}
 
 Thank you.
 
