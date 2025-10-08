@@ -88,6 +88,7 @@
 
                   <div class="comments-section">
                       <h2>Comments</h2>
+                      {% if post.comments.all %}
                           {% for comment in post.comments.all %}
                             {% if edit_comment and comment.id == edit_comment.id %}
                               <div class="comment-meta">
@@ -128,7 +129,7 @@
                                       {% csrf_token %}
                                       <input type="hidden" name="dislike_comment_id" value="{{ comment.id }}">
                                       <span class="dislikes-count">{{ comment.dislikes.count }}</span>
-                                      <button type="submit" class="thumbs_btn {% if user in comment.dislikes.all %}pressed{% endif %}">
+                                      <button type="submit" class="thumbs_btn {% if user in comment.likes.all %}pressed{% endif %}">
                                         <i class="fa fa-thumbs-down"></i>
                                       </button>
                                     </form>
@@ -154,9 +155,10 @@
                                 {% endif %}
                               </div>
                             {% endif %}
-                          {% empty %}
-                              <h3 class="no-comment">No comments... Be the first one to comment!</h3>
                           {% endfor %}
+                      {% else %}
+                          <h3 class="no-comment">No comments... Be the first one to comment!</h3>
+                      {% endif %}
                   </div>
 
                   <div class="comment-form">
@@ -173,7 +175,7 @@
               </div>
           </div>
         </div>
-        {% endblock content %}
+        {%endblock content%}
 {% comment %}     
 </body>
 </html> {% endcomment %}
