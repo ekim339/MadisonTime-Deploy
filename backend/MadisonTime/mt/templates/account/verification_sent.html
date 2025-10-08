@@ -14,7 +14,14 @@
     </head>
     <body>
       <div class="email-confirmation">
-        <p class="message"> You must verify your email address in order create a post or comment. We've sent you an email to {{ confirmation.email_address.email }}. Please check and comlete the email confirmation. If the email is not in your inbox, please check your spam folder.
+        <p class="message">
+          You must verify your email address in order to create a post or comment.
+          {% if email %}
+            We've sent you an email to <strong>{{ email }}</strong>.
+          {% else %}
+            We've sent you a confirmation email.
+          {% endif %}
+          Please check and complete the email confirmation. If it’s not in your inbox, check your spam folder.
         </p>
         <a class="redirect" href="{% url 'home' %}">Home</a>
       </div>
