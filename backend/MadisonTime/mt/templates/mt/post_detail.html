@@ -129,7 +129,7 @@
                                       {% csrf_token %}
                                       <input type="hidden" name="dislike_comment_id" value="{{ comment.id }}">
                                       <span class="dislikes-count">{{ comment.dislikes.count }}</span>
-                                      <button type="submit" class="thumbs_btn {% if user in comment.likes.all %}pressed{% endif %}">
+                                      <button type="submit" class="thumbs_btn {% if user in comment.dislikes.all %}pressed{% endif %}">
                                         <i class="fa fa-thumbs-down"></i>
                                       </button>
                                     </form>
