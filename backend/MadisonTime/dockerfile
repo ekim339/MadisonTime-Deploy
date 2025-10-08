@@ -9,9 +9,12 @@ COPY backend/MadisonTime/requirements.txt /app/
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+# RUN pip install -r /app/requirements.txt
 
-COPY backend/MadisonTime/ /app/
+COPY ./  /app/
+# COPY backend/MadisonTime/ /app/
 
 EXPOSE 8000
 
 CMD ["sh", "-c", "python manage.py migrate && gunicorn MadisonTime.wsgi:application --bind 0.0.0.0:8000"]
+# CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn MadisonTime.wsgi:application --bind 0.0.0.0:8000"]
