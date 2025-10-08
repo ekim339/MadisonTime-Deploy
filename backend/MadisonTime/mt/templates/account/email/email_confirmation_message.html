@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
+    <p>Hello, {{ user.nickname|default:user.get_username }}</p>
+
+    <p>Thank you for using Madison Time.</p>
+
+    <p>To finish setting up your account, please verify your email:</p>
+
+    <p>
+      <a href="{{ activate_url }}" 
+         style="display:inline-block;padding:10px 16px;background:#1a73e8;color:#fff;text-decoration:none;border-radius:6px;">
+        Verify my email
+      </a>
+    </p>
+
+    <p>If the button doesn’t work, copy and paste this link:</p>
+    <p><a href="{{ activate_url }}">{{ activate_url }}</a></p>
+
+    <p>Thanks,<br>Madison Time</p>
+  </body>
+</html>
