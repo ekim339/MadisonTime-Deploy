@@ -5,6 +5,7 @@ from django.views.generic import (
   CreateView, 
   UpdateView)
 from django.views.generic.edit import FormMixin
+from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -258,6 +259,32 @@ class PostDetailView(FormMixin, DetailView):
     if not EmailAddress.objects.filter(user=request.user, verified=True).exists():
       return confirmation_required_redirect(request)
 
+    # view identifies the request as a like request
+    if 'like_comment_id' in request.POST:
+      comment_id = request.POST['like_comment_id']
+      comment_to_like = get_object_or_404(Comment, pk=comment_id, post=self.object)
+      if comment_to_like.likes.filter(pk=request.user.pk).exists():
+          comment_to_like.likes.remove(request.user)
+      else:
+          if comment_to_like.dislikes.filter(pk=request.user.pk).exists():
+              comment_to_like.dislikes.remove(request.user)
+          comment_to_like.likes.add(request.user)
+
+      return redirect('post-detail', post_id=self.object.id)
+    
+    # view identifies the request as a dislike request
+    if 'dislike_comment_id' in request.POST:
+      comment_id = request.POST['dislike_comment_id']
+      comment_to_dislike = get_object_or_404(Comment, pk=comment_id, post=self.object)
+      if comment_to_dislike.dislikes.filter(pk=request.user.pk).exists():
+          comment_to_dislike.dislikes.remove(request.user)
+      else:
+          if comment_to_dislike.likes.filter(pk=request.user.pk).exists():
+              comment_to_dislike.likes.remove(request.user)
+          comment_to_dislike.dislikes.add(request.user)
+
+      return redirect('post-detail', post_id=self.object.id)
+
     # view identifies the request as an edit request
     if 'edit_comment_id' in request.POST:
       comment_id = request.POST['edit_comment_id']
@@ -270,6 +297,7 @@ class PostDetailView(FormMixin, DetailView):
       return self.form_valid(form)
     else:
       return self.form_invalid(form)
+    
     
   def form_valid(self, form):
     if not form.instance.pk:
@@ -319,3 +347,80 @@ class BoardView(ListView):
   paginate_by = 10
   ordering = ["-dt_created"]
 
+@login_required
+@require_POST
+def like_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    user = request.user
+
+    if comment.likes.filter(pk=user.pk).exists():
+        comment.likes.remove(user)
+        liked = False
+    else:
+        if comment.dislikes.filter(pk=user.pk).exists():
+            comment.dislikes.remove(user)
+        comment.likes.add(user)
+        liked = True
+
+    return JsonResponse({
+        'liked': liked,
+        'likes_count': comment.likes.count(),
+    })
+
+@login_required
+@require_POST
+def dislike_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    user = request.user
+
+    if comment.dislikes.filter(pk=user.pk).exists():
+        comment.dislikes.remove(user)
+        disliked = False
+    else:
+        if comment.likes.filter(pk=user.pk).exists():
+            comment.likes.remove(user)
+        comment.dislikes.add(user)
+        disliked = True
+
+    return JsonResponse({
+        'disliked': disliked,
+        'dislikes_count': comment.dislikes.count(),
+    })
+
+@login_required
+@require_POST
+def post_like(request, pk):
+    p = get_object_or_404(Post, pk=pk)
+    u = request.user
+    liked = False
+    if p.likes.filter(id=u.id).exists():
+        p.likes.remove(u)
+    else:
+        p.likes.add(u)
+        liked = True
+        if hasattr(c, "dislikes"):
+            p.dislikes.remove(u)
+    return JsonResponse({
+        "liked": liked,
+        "likes": p.likes.count(),
+        "dislikes": getattr(p, "dislikes", None) and p.dislikes.count() or 0
+    })
+
+@login_required
+@require_POST
+def post_dislike(request, pk):
+    p = get_object_or_404(Post, pk=pk)
+    u = request.user
+    disliked = False
+    if p.dislikes.filter(id=u.id).exists():
+        p.dislikes.remove(u)
+    else:
+        p.dislikes.add(u)
+        disliked = True
+        if hasattr(p, "likes"):
+            p.likes.remove(u)
+    return JsonResponse({
+        "disliked": disliked,
+        "dislikes": p.dislikes.count(),
+        "likes": getattr(p, "likes", None) and p.likes.count() or 0
+    })

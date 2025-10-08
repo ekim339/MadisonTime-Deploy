@@ -24,6 +24,7 @@ class User(AbstractUser):
   
 class Post(models.Model):
   title = models.CharField(max_length=50)
+  author = models.ForeignKey(User, related_name='authored_posts', on_delete=models.CASCADE)
   content = models.TextField()
   image1 = models.ImageField(upload_to="post_pics", blank=True)
   image2 = models.ImageField(upload_to="post_pics", blank=True)
@@ -31,6 +32,11 @@ class Post(models.Model):
   dt_created = models.DateTimeField(auto_now_add=True)
   dt_updated = models.DateTimeField(auto_now=True)
   edited = models.BooleanField(default=False)
+  likes = models.ManyToManyField(User, related_name="liked_posts", blank=True)
+  dislikes = models.ManyToManyField(User, related_name="disliked_posts", blank=True)
+
+  def __str__(self):
+    return self.title
 
   def save(self, *args, **kwargs):
     if self.pk:
@@ -43,11 +49,9 @@ class Post(models.Model):
         self.edited = True
         self.dt_updated = timezone.now()
     super().save(*args, **kwargs)
-
-  author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-  def __str__(self):
-    return self.title
+  
+  def num_likes(self):
+    return self.likes.count()
   
 class Comment(models.Model):
   content = models.TextField()
@@ -55,8 +59,13 @@ class Comment(models.Model):
   dt_updated = models.DateTimeField(auto_now=True)
   edited = models.BooleanField(default=False)
 
-  author = models.ForeignKey(User, on_delete=models.CASCADE)
+  author = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
   post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+  likes = models.ManyToManyField(User, related_name="liked_comments", blank=True)
+  dislikes = models.ManyToManyField(User, related_name="disliked_comments", blank=True)
+
+  def __str__(self):
+    return f"{self.author.username} on {self.post.title}"
 
   def save(self, *args, **kwargs):
     if self.pk:
@@ -66,8 +75,8 @@ class Comment(models.Model):
         self.dt_updated = timezone.now()
     super().save(*args, **kwargs)
 
-  def __str__(self):
-    return f"{self.author.username} on {self.post.title}"
+  def num_likes(self):
+    return self.likes.count()
   
 class Course(models.Model):
   name = models.CharField(max_length=30)

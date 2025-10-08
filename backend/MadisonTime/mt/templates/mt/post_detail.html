@@ -1,42 +1,6 @@
 {% extends "mt_base/base.html" %} 
 {% load static %}
 {% load widget_tweaks %}
-{% comment %} 
-<!-- post_detail.html -->
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{post.title}} | MadisonTime</title>
-    <link rel="stylesheet" href="{% static 'mt/css/post_detail.css' %}">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-    crossorigin="anonymous"
-/>
-<link
-    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700&display=swap"
-    rel="stylesheet"
-/>
-<script
-    src="https://kit.fontawesome.com/ed63704ebd.js"
-    crossorigin="anonymous"
-></script>
-<script src="script.js"></script>
-</head>
-<body>
-    <!-- Header section (title and search bar) -->
-    <header class="header">
-        <div class="title">Madison Time</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search" class="search-bar-input" />
-            <button type="button" class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </header> {% endcomment %}
 
     {% block css %}
       {{ block.super }}
@@ -124,7 +88,6 @@
 
                   <div class="comments-section">
                       <h2>Comments</h2>
-                      {% if post.comments.all %}
                           {% for comment in post.comments.all %}
                             {% if edit_comment and comment.id == edit_comment.id %}
                               <div class="comment-meta">
@@ -151,7 +114,27 @@
                                   {{comment.author.nickname}} | Date: {{comment.dt_created|date:"M, d Y H:i"}}
                                   {% if comment.edited %} | Last edited: {{ comment.dt_updated|date:"M d, Y H:i" }}
                                   {% endif %}
+                                  <div class="thumbs" data-comment-id="{{ comment.id }}">
+                                    <form method="post" action="{% url 'post-detail' post.id %}" style="display:inline">
+                                      {% csrf_token %}
+                                      <input type="hidden" name="like_comment_id" value="{{ comment.id }}">
+                                      <button type="submit" class="thumbs_btn {% if user in comment.likes.all %}pressed{% endif %}">
+                                        <i class="fa fa-thumbs-up"></i>
+                                      </button>
+                                      <span class="likes-count">{{ comment.likes.count }}</span>
+                                    </form>
+                                    |
+                                    <form method="post" action="{% url 'post-detail' post.id %}" style="display:inline">
+                                      {% csrf_token %}
+                                      <input type="hidden" name="dislike_comment_id" value="{{ comment.id }}">
+                                      <span class="dislikes-count">{{ comment.dislikes.count }}</span>
+                                      <button type="submit" class="thumbs_btn {% if user in comment.dislikes.all %}pressed{% endif %}">
+                                        <i class="fa fa-thumbs-down"></i>
+                                      </button>
+                                    </form>
+                                  </div>
                                 </div>
+                                
                                 <div class="comment-content">{{comment.content}}</div>
                                 {% if comment.author == user %}
                                 <div class="ud-comment-buttons">
@@ -171,10 +154,9 @@
                                 {% endif %}
                               </div>
                             {% endif %}
+                          {% empty %}
+                              <h3 class="no-comment">No comments... Be the first one to comment!</h3>
                           {% endfor %}
-                      {% else %}
-                          <h3 class="no-comment">No comments... Be the first one to comment!</h3>
-                      {% endif %}
                   </div>
 
                   <div class="comment-form">
@@ -191,7 +173,8 @@
               </div>
           </div>
         </div>
-        {%endblock content%}
+        {% endblock content %}
 {% comment %}     
 </body>
 </html> {% endcomment %}
+  

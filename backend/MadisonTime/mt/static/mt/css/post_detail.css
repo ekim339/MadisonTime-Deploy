@@ -17,6 +17,21 @@
     border-radius: 8px;
 }
 
+/* thumbs button */
+.thumbs_btn{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.thumbs_btn:hover .fa{
+  color: #990000;
+  transform: translateY(-1px) scale(1.06);
+}
+
+.pressed{
+  color: #990000;
+}
 
 /* edit and delete buttons */
 .ud-post-buttons,
@@ -86,9 +101,19 @@
 }
 
 .comment-meta {
+    display: flex;
+    align-items: center;
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
+}
+
+.thumbs{
+    margin-left: auto;
+}
+
+.fa fa-thumbs-up{
+
 }
 
 .comment-content {
@@ -151,8 +176,6 @@ html {
 .logOut-button:hover {
     color: #f3b8b8; /* Change hover color */
 }
-
-
 
 
 img {
