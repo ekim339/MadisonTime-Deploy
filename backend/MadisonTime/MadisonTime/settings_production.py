@@ -32,11 +32,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # WhiteNoise for serving static files
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    *MIDDLEWARE,
+    m for m in MIDDLEWARE  # from base settings
+    if m != 'django.middleware.security.SecurityMiddleware'
 ]
+MIDDLEWARE.insert(0, 'django.middleware.security.SecurityMiddleware')
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
+# Add these Render/HTTPS settings:
+CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS if not h.startswith("*.")]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
@@ -52,14 +58,16 @@ X_FRAME_OPTIONS = 'DENY'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.sendgrid.net")
 EMAIL_PORT = int(os.environ.get("EMAIL_PORT", 587))
-EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
-EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True") == "True"
-DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "no-reply@example.com")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "apikey")   # literally "apikey"
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]         # your SendGrid API key
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_TIMEOUT = int(os.environ.get("EMAIL_TIMEOUT", 10))         # IMPORTANT
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "Eugene Kim <ekim339@wisc.edu>")
 
-# allauth bits
+# allauth basics
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"   # or "optional"
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 
