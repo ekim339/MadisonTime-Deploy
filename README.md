@@ -4,7 +4,7 @@ A comprehensive Django-based social platform designed for university students to
 
 ## 📋 Overview
 
-MadisonTime is a full-stack web application that combines course scheduling with social networking features. Students can create personalized timetables, share posts with images, comment on content, and interact with their peers through likes and dislikes. The platform features real-time notifications using WebSocket connections and asynchronous task processing for optimal performance.
+MadisonTime is a full-stack web application that combines course scheduling with social networking features. Students can create personalized timetables, share posts with images, comment on content, and interact with their peers through likes and dislikes.
 
 ## ✨ Features
 
@@ -13,13 +13,10 @@ MadisonTime is a full-stack web application that combines course scheduling with
 - **📝 Social Board**: Share posts with up to 3 images and rich text content
 - **💬 Comments System**: Engage in discussions with nested comments
 - **👍 Like/Dislike**: React to posts and comments with real-time updates
-- **🔔 Real-time Notifications**: WebSocket-powered instant notifications for interactions
 - **🔐 User Authentication**: Secure email-based registration and login via Django Allauth
 - **✉️ Email Verification**: Account verification system for security
 
 ### Advanced Features
-- **⚡ Async Operations**: Non-blocking database operations for better performance
-- **🔄 Background Tasks**: Celery-powered asynchronous task processing
 - **🎨 Custom Color Picker**: Colorful course categorization in timetables
 - **📱 Responsive Design**: Mobile-friendly interface
 - **🖼️ Image Uploads**: Support for multiple images per post
@@ -37,7 +34,7 @@ MadisonTime is a full-stack web application that combines course scheduling with
 
 ### Frontend
 - **HTML5/CSS3**: Custom responsive design
-- **JavaScript**: Vanilla JS with WebSocket integration
+- **JavaScript**: Vanilla JS
 - **Templates**: Django Template Engine
 
 ### DevOps
@@ -150,7 +147,6 @@ docker run -d -p 8000:8000 \
 
 The Docker container automatically:
 - Starts Redis server
-- Launches Celery worker
 - Collects static files
 - Runs database migrations
 - Starts the Daphne ASGI server
@@ -166,15 +162,10 @@ MadisonTime/
 │       │   ├── settings_production.py
 │       │   ├── urls.py
 │       │   ├── asgi.py           # ASGI configuration
-│       │   ├── wsgi.py
-│       │   └── celery.py         # Celery configuration
+│       │   └── wsgi.py
 │       ├── mt/                   # Main app
 │       │   ├── models.py         # User, Post, Comment, Course models
 │       │   ├── views.py          # Sync views
-│       │   ├── async_views.py    # Async views
-│       │   ├── consumers.py      # WebSocket consumers
-│       │   ├── routing.py        # WebSocket routing
-│       │   ├── tasks.py          # Celery tasks
 │       │   ├── forms.py          # Django forms
 │       │   ├── validators.py     # Custom validators
 │       │   ├── static/           # Static files (CSS, JS)
@@ -212,7 +203,6 @@ MadisonTime/
 - Like/dislike comments
 - Edit your own comments
 - Delete your own comments
-- Real-time updates via WebSocket
 
 ### User Authentication
 - Email-based registration
@@ -243,17 +233,6 @@ python manage.py migrate
 python manage.py flush
 ```
 
-### Monitoring
-
-#### Celery Monitoring
-```bash
-# Check active tasks
-celery -A MadisonTime inspect active
-
-# Monitor events
-celery -A MadisonTime events
-```
-
 ## 📚 API Endpoints
 
 ### Authentication
@@ -274,6 +253,3 @@ celery -A MadisonTime events
 - `/async/like-comment/<id>/` - Async comment like
 - `/async/dislike-comment/<id>/` - Async comment dislike
 
-### WebSocket Endpoints
-- `ws://localhost:8000/ws/notifications/` - User notifications
-- `ws://localhost:8000/ws/posts/<id>/` - Post-specific updates
