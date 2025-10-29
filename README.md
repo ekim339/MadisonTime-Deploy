@@ -28,7 +28,6 @@ MadisonTime is a full-stack web application that combines course scheduling with
 - **Framework**: Django 4.2.7
 - **Database**: PostgreSQL (Production) / SQLite (Development)
 - **Authentication**: Django Allauth
-- **Async**: Channels + Daphne (ASGI server)
 - **Static Files**: Whitenoise
 - **Server**: Gunicorn (Production)
 
@@ -149,7 +148,6 @@ The Docker container automatically:
 - Starts Redis server
 - Collects static files
 - Runs database migrations
-- Starts the Daphne ASGI server
 
 ## 📁 Project Structure
 
@@ -161,7 +159,6 @@ MadisonTime/
 │       │   ├── settings.py
 │       │   ├── settings_production.py
 │       │   ├── urls.py
-│       │   ├── asgi.py           # ASGI configuration
 │       │   └── wsgi.py
 │       ├── mt/                   # Main app
 │       │   ├── models.py         # User, Post, Comment, Course models
@@ -246,10 +243,3 @@ python manage.py flush
 - `/board/` - Posts board
 - `/timetable/` - Timetable management
 - `/settings/` - User settings
-
-### Async Endpoints
-- `/async/like-post/<id>/` - Async post like
-- `/async/dislike-post/<id>/` - Async post dislike
-- `/async/like-comment/<id>/` - Async comment like
-- `/async/dislike-comment/<id>/` - Async comment dislike
-
